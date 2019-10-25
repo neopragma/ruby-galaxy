@@ -67,7 +67,7 @@ The problem description also specifies messages like these:
 - glob prok Gold is 57800 Credits
 - pish pish Iron is 3910 Credits
 
-These messages don't result in a response payload. We might interpret them as tests or probes to verify the system is operational. There are no instructions to the contrary, so that's the assumption we will make. 
+These messages don't result in a response payload. We might interpret them as probes to verify the system is operational and not misbehaving in an obvious way, such as reporting incorrect prices. There are no instructions to the contrary, so that's the assumption we will make. 
 
 Messages that end with a question mark look as if they require a response: 
 
