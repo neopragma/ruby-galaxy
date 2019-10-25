@@ -81,6 +81,14 @@ So, in the absence of clarifying information, our message-handling standard will
 
 We also intend to begin development by verifying that we've set up the development and deployment environment correctly. We'll build an _echo_ transaction to do that. 
 
+## Observability and Monitoring 
+
+_Observability_ has become an important feature of microservice solutions. The complexity of a live production environments running in an elastic cloud infrastructure makes it impossible to test all possible scenarios exhaustively before deploying to production. Software product teams need a way to understand what's happening with their solution in the live production environment. 
+
+As this exercise is based on "free" cloud-based tools, we have no practical way to demonstrate real production monitoring using observability-based tools like [Wavefront](https://www.wavefront.com/) or [Honeycomb](https://www.honeycomb.io/). In the interest of "realism," we'll write API calls to Honeycomb [as documented here](https://docs.honeycomb.io/api/events/) to register _events_. We won't bother with other Honeycomb feartures in this exercise. We'll mock the Honeycomb API calls and return status 200 with an empty response body in all cases. We just want to show how one might add instrumentation to an app, as that is rapidly becoming a baseline requirement for professional application development. 
+
+This topic is not covered in the blog posts mentioned above.
+
 ## Initial Acceptance Tests
 
 Our first set of acceptance tests (which we will express as Cucumber features) will include: 
