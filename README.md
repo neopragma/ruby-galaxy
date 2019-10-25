@@ -67,7 +67,7 @@ The problem description also specifies messages like these:
 - glob prok Gold is 57800 Credits
 - pish pish Iron is 3910 Credits
 
-These messages don't result in a response payload. We might interpret them as tests or probes to verify the system is operational. There are no instructions to the contrary, so that's the assumption we will use. 
+These messages don't result in a response payload. We might interpret them as tests or probes to verify the system is operational. There are no instructions to the contrary, so that's the assumption we will make. 
 
 Messages that end with a question mark look as if they require a response: 
 
@@ -83,7 +83,7 @@ We also intend to begin development by verifying that we've set up the developme
 
 ## Observability and Monitoring 
 
-_Observability_ has become an important feature of microservice solutions. The complexity of a live production environments running in an elastic cloud infrastructure makes it impossible to test all possible scenarios exhaustively before deploying to production. Software product teams need a way to understand what's happening with their solution in the live production environment. 
+_Observability_ has become an important feature of microservice solutions. The complexity of a live production environment running in an elastic cloud infrastructure makes it impossible to test all possible scenarios exhaustively before deploying to production. Software product teams need a way to understand what's happening with their solution in the live production environment, providing sufficient fine-grained data to enable them to drill down into the problem and solve it quickly. Beyond that, what the team learns from these events should be folded back into the solution to improve it. 
 
 As this exercise is based on "free" cloud-based tools, we have no practical way to demonstrate real production monitoring using observability-based tools like [Wavefront](https://www.wavefront.com/) or [Honeycomb](https://www.honeycomb.io/). In the interest of "realism," we'll write API calls to Honeycomb [as documented here](https://docs.honeycomb.io/api/events/) to register _events_. We won't bother with other Honeycomb feartures in this exercise. We'll mock the Honeycomb API calls and return status 200 with an empty response body in all cases. We just want to show how one might add instrumentation to an app, as that is rapidly becoming a baseline requirement for professional application development. 
 
