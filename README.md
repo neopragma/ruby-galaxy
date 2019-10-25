@@ -28,7 +28,7 @@ Long ago, I wrote a series of blog posts intended to guide a semi-technical pers
 - [Part Three](https://www.leadingagile.com/2018/06/build-a-ci-cd-pipeline-in-the-cloud-part-three/)
 - [Part Four](https://www.leadingagile.com/2018/06/build-a-ci-cd-pipeline-in-the-cloud-part-four/)
 
-Most of the material is still valid, but not everything. Since writing those posts, I've learned that using Semantic Versioning for APIs isn't necessarily a good approach. Smarter people than I say it's better to create wholly-new APIs when things change. I'll follow their advice in this exercise. If you're following along with the blog posts, you may notice that difference. 
+Most of the material is still valid, but not everything. Since writing those posts, I've learned that using [Semantic Versioning](https://semver.org/) for APIs isn't necessarily a good approach. Smarter people than I say it's better to create wholly-new APIs when things change. I'll follow their advice in this exercise. If you're following along with the blog posts, you may notice that difference. 
 
 This project will use the [Ruby](https://www.ruby-lang.org/en/) language, not because it's necessarily "better" than other languages, but because it's relatively easy to set up and use. It doesn't require the same amount of scaffolding and tooling as languages like, for instance, Java or C#. I don't want to get bogged down with that sort of thing in this project. 
 
