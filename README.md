@@ -45,7 +45,7 @@ From the [Problem Description](ProblemDescription.md), we see the solution has t
 - processing and responding to messages via an API; and 
 - converting galactic numbers into decimal numbers representing the value of goods.
 
-Note: The documentation doesn't mention "API." Why are we calling for one? Because we want our design to adhere to the design principle, [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Responding to messages and calculating the prices of goods are the "business functionality" of the solution. Input/output is not. Any number of different clients may be written to interact with the service, from command line programs to webapps to mobile apps to you-name-it. All of that is outside the scope of this project, except for a simple command-line interface for demonstration purposes. There is no good reason to [couple](https://techdifferences.net/difference-between-cohesion-and-coupling/) that client interface with the service logic. 
+Note: The documentation doesn't mention "API." Why are we calling for one? Because we want our design to adhere to the design principle, [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Responding to messages and calculating the prices of goods are the "business functionality" of the solution. Input/output is not. Any number of different clients may be written to interact with the service, from command line programs to webapps to mobile apps to you-name-it. All of that is outside the scope of this project. 
 
 The message processing functionality comprises two parts: 
 
