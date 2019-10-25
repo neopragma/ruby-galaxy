@@ -52,7 +52,36 @@ The message processing functionality comprises two parts:
 - accepting messages that provide the value of goods, for later reference; and 
 - responding to queries about the cost of various shipments of goods. 
 
+Just to be a little more realistic (for a loose definition of "realistic"), we'll add a database to the solution. There isn't one in the setup documented in the blog posts. The problem description states the solution must be able to accept messages that define the prices of goods, like this: 
+
+- glob is I 
+- prok is V 
+- pish is X 
+- tegj is L 
+
+Based on the way the problem is described, it looks as if the solution must accept price values at runtime. That implies they can't be hard-coded either in the code or in a configuration file. So, we need someplace to store the values once they've been supplied by the client. (This was probably not the author's intent, but they wrote it they way they wrote it, so here we are.)
+
+The problem description also specifies messages like these: 
+
+- glob glob Silver is 34 Credits
+- glob prok Gold is 57800 Credits
+- pish pish Iron is 3910 Credits
+
+These messages don't result in a response payload. We might interpret them as tests or probes to verify the system is operational. There are no instructions to the contrary, so that's the assumption we will use. 
+
+Messages that end with a question mark look as if they require a response: 
+
+- how much is pish tegj glob glob ?
+- how many Credits is glob prok Silver ?
+- how many Credits is glob prok Gold ?
+- how many Credits is glob prok Iron ?
+- how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
+
+So, in the absence of clarifying information, our message-handling standard will be that any input message that ends with a question mark will result in a response payload, and other messages will either succeed silently or throw an exception. 
+
 We also intend to begin development by verifying that we've set up the development and deployment environment correctly. We'll build an _echo_ transaction to do that. 
+
+## Initial Acceptance Tests
 
 Our first set of acceptance tests (which we will express as Cucumber features) will include: 
 
