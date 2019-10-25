@@ -36,3 +36,29 @@ I mentioned that I want to take an _outside-in_ approach using mockist TDD at th
 
 Here we're writing a toy or sample application based on a technical screening exercise. One of the goals of the project is to illustrate several "good practices" for project setup and development work flow. With that in mind, I think Gherkin makes for a convenient and readable way to express acceptance tests that we can use to describe the behavior of the finished solution. This will be our "target" for development. It's true that one could dispense with the Cucumber layer and just use [Rspec](https://rspec.info/) to achieve the same result, but it would be less readable for interested parties who cannot read code. 
 
+## Design 
+
+The solution _architecture_ is "given," but the solution _design_ is not. We plan to define high-level acceptance tests guided by mockist-style TDD to lay out the general structure of the app, and then flesh out the detailed design incrementally using classic-style TDD. 
+
+From the [Problem Description](ProblemDescription.md), we see the solution has to support a couple of general areas of functionality: 
+
+- processing and responding to messages via an API; and 
+- converting galactic numbers into decimal numbers representing the value of goods.
+
+Note: The documentation doesn't mention "API." Why are we calling for one? Because we want our design to adhere to the design principle, [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Responding to messages and calculating the prices of goods are the "business functionality" of the solution. Input/output is not. Any number of different clients may be written to interact with the service, from command line programs to webapps to mobile apps to you-name-it. All of that is outside the scope of this project, except for a simple command-line interface for demonstration purposes. There is no good reason to [couple](https://techdifferences.net/difference-between-cohesion-and-coupling/) that client interface with the service logic. 
+
+The message processing functionality comprises two parts: 
+
+- accepting messages that provide the value of goods, for later reference; and 
+- responding to queries about the cost of various shipments of goods. 
+
+We also intend to begin development by verifying that we've set up the development and deployment environment correctly. We'll build an _echo_ transaction to do that. 
+
+Our first set of acceptance tests (which we will express as Cucumber features) will include: 
+
+- echo transaction - must "pass" before we proceed with any stories;
+- responding to API calls that supply the price of goods - must "fail" for the right reason; and 
+- responding to API calls that query the system for calculated prices - must "fail" for the right reason.
+
+As development progresses, we may add, modify, or remove acceptance test cases to reflect the emerging solution design. Ultimately, when all the acceptance tests "pass", we'll be _done_. 
+
