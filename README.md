@@ -2,6 +2,8 @@
 
 The Merchant's Guide to the Galaxy is a simple programming exercise that's often used to screen candidates for software developer positions. Here's the [Problem Description](ProblemDescription.md).  
 
+I will now subject you to a painfully-verbose explanation of my rationale for approaching the exercise in the way I did. Or you could just [skip ahead to the toolchain setup steps](##toolchain-setup). 
+
 ## Approach
 
 I decided to work the exercise as if I were on a team developing microservices. Our team follows generally-accepted contemporary development practices. 
@@ -98,4 +100,6 @@ Our first set of acceptance tests (which we will express as Cucumber features) w
 - responding to API calls that query the system for calculated prices - must "fail" for the right reason.
 
 As development progresses, we may add, modify, or remove acceptance test cases to reflect the emerging solution design. Ultimately, when all the acceptance tests "pass", we'll be _done_. 
+
+## Toolchain Setup 
 
