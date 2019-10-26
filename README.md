@@ -43,7 +43,7 @@ I mentioned that I want to take an _outside-in_ approach using mockist TDD at th
 
 Here we're writing a toy or sample application based on a practice exercise. One of the goals of the project is to illustrate several "good practices" for project setup and development work flow. With that in mind, I think Gherkin makes for a convenient and readable way to express acceptance tests that we can use to describe the behavior of the finished solution. This will be our "target" for development. It's true that one could dispense with the Cucumber layer and just use [Rspec](https://rspec.info/) to achieve the same result, but it would be less readable for interested parties who cannot read code. 
 
-## Design 
+## Analysis 
 
 The solution _architecture_ is "given," but the solution _design_ is not. We plan to define high-level acceptance tests guided by mockist-style TDD to lay out the general structure of the app, and then flesh out the detailed design incrementally using classic-style TDD. 
 
@@ -84,7 +84,7 @@ Messages that end with a question mark look as if they require a response:
 - how many Credits is glob prok Iron ?
 - how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
 
-So, in the absence of clarifying information, our message-handling standard will be that any input message that ends with a question mark will result in a response payload, and other messages will either succeed silently or throw an exception. 
+So, in the absence of clarifying information, our message-handling standard will be that any input message that ends with a question mark will result in a response payload, and other messages will either succeed and return an HTTP status 200 with no response payload, or return a 500 with a description of the error in the payload. 
 
 We also intend to begin development by verifying that we've set up the development and deployment environment correctly. We'll build an _echo_ transaction to do that. 
 
