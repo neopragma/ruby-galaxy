@@ -66,7 +66,7 @@ Just to be a little more realistic (for a loose definition of "realistic"), we'l
 - pish is X 
 - tegj is L 
 
-Based on the way the problem is described, it looks as if the solution must accept value definitions at runtime. That implies they can't be hard-coded either in the code or in a configuration file. So, we need someplace to store the values once they've been supplied by the client. (This was probably not the author's intent, but they wrote it they way they wrote it, so here we are.)
+Based on the way the problem is described, it looks as if the solution must accept value definitions at runtime. That implies they can't be hard-coded either in the code or in a configuration file. So, we need someplace to store the values once they've been supplied by the client. (This was probably not the author's intent, but they wrote it they way they wrote it, so here we are. Typically, when a prospective employer gives you a list of "test cases," the expectation is that your solution can process those test cases exactly as provided.)
 
 The problem description also specifies messages like these: 
 
