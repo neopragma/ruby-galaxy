@@ -213,27 +213,27 @@ We have not created a persistent data store yet. That's because we decided it wa
 
 Time: 
 
-Create project on Github
+_Create project on Github_
 
 - If someone on the team has done this before: 5 minutes 
 - If no one on the team has done this before: 15 minutes 
 
-Create project and container on CodeAnywhere 
+_Create project and container on CodeAnywhere_
 
 - If someone on the team has done this before: 10 minutes 
 - If no one on the team has done this before: 30 minutes 
 
-Sign up for Travis CI (not including config file)
+_Sign up for Travis CI (not including config file)_
 
 - If someone on the team has done this before: 5 minutes 
 - If no one on the team has done this before: 10 minutes 
 
-Sign up for Code Climate 
+_Sign up for Code Climate_ 
 
 - If someone on the team has done this before: 5 minutes 
 - If no one on the team has done this before: 10 minutes 
 
-Sign up for Heroku (not including config file)
+_Sign up for Heroku (not including config file)_
 
 - If someone on the team has done this before: 5 minutes 
 - If no one on the team has done this before: 10 minutes 
@@ -311,17 +311,107 @@ Scenario: Request message does not contain a check value
 
 We create a file under galaxy/features named echo.feature, and add the text above to the file. 
 
+We're using _bundler_ for dependency management, so we need to create a file named Gemfile in the project root directory and specify the Ruby Gems we will need for the project. It will look something like this:
+
+```
+source 'http://rubygems.org'
+
+gem 'sinatra', '1.4.8'
+gem 'thin'
+gem 'json'
+
+group :test do
+  gem 'cucumber'
+  gem 'rspec'
+  gem 'rest-client'
+end
+```
+
+In case some of that is unfamiliar to you, here's a summary:
+
+- sinatra - a lightweight webapp framework suitable for RESTful APIs 
+- thin - a lightweight web server
+- json - converts between Ruby hash objects and JSON documents 
+- cucumber - a BDD-style tool for testing UIs and APIs 
+- rspec - a BDD-style unit testing tool for Ruby 
+- rest-client - helper methods for interacting with a RESTful service 
+
+To download and install the dependencies, we use:
+
+```shell 
+bundle install --path vendor/bundle
+```
+
+That command will download and install a number of Ruby Gems into [current directory]/vendor/bundle.
+
+With that in place, we can run our Cukes and see if they fail for the right reason, which is the goal of this task. At this point in the project, we have no Cucumber steps defined. We expect Cucumber to report that it can't find step definitions that match the text in our feature file, and to suggest possible implementations. 
+
+In the project root directory, run:
+
+```shell 
+bundle exec cucumber 
+```
+
+Here's a subset of the output I got from that command when I was testing this documentation: 
+
+```shell 
+3 scenarios (3 undefined)
+14 steps (14 undefined)
+0m0.024s
+
+You can implement step definitions for undefined steps with these snippets:
+
+Given("the application is available") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+When("the client sends a valid Echo request with check value {int}") do |int|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("the resulting status code is {int}") do |int|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("the check value in the response is {int}") do |int|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+When("the client sends an invalid Echo request") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then("the response contains element {string} with value {string}") do |string, string2|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+When("the client sends an Echo request with no check value") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+```
+
+This is where we need to be just now. 
+
 Time: 
 
-Create the echo.feature file with initial scenarios
+_Create the echo.feature file with initial scenarios_
 
 - If someone on the team has done this before: 10 minutes 
 - If no one on the team has done this before: 30 minutes 
 
-Create the Gemfile file specifying the dependencies for Cucumber 
+_Create the Gemfile file specifying the dependencies for Cucumber_ 
 
 - If someone on the team has done this before: 5 minutes 
 - If no one on the team has done this before: 15 minutes 
+
+Cycle Time so far: 
+
+- Best case: 01:05 + 00:15 = 1:20 
+- Worst case: 02:20 + 00:45 = 03:05 
+
+
+
+
 
 
 
