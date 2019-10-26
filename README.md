@@ -160,6 +160,8 @@ The Echo Transaction is first, so we will elaborate that item in more detail tha
 
 At this point, the team _pulls_ the first work item from the list, and the [Cycle Time](http://www.businessdictionary.com/definition/cycle-time.html) clock starts ticking. Cycle Time is the simplest and most meaningful metric for tracking a team's delivery capacity, and for informing _forecasting_ of a team's upcoming work. Cycle Time has the same meaning regardless of the kind of process a team uses, and it can be used across multiple teams and projects (unlike Velocity, for instance). Cycle Time is also less subject to "gaming" than other metrics that are often used for iterative/incremental development.
 
+**Note:** I'm including timings for all the work in this write-up. The reason is that most people who have not worked in this way assume that doing things "right" will take considerably more time than doing things...well, however they _currently_ do things - typically, without much (if any) automation of routine, repetitive work such as functional checks, server provisioning, and code deployment, but with plenty of context-switching overhead and blocked work, bottlenecks caused by specialists working in silos, as well as misunderstandings and re-work caused by individuals working separately. I don't understand that logic, but...okay. Whatever. Timings included.
+
 To demonstrate we've set up the application stack correctly, the Echo Transaction must show that
 
 - the service returns the response defined for _echo_ 
