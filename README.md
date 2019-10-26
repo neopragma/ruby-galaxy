@@ -2,7 +2,7 @@
 
 The Merchant's Guide to the Galaxy is a simple programming exercise that's often used to screen candidates for software developer positions. Here's the [Problem Description](ProblemDescription.md).  
 
-I will now subject you to a painfully-verbose explanation of my rationale for approaching the exercise in the way I did. Or you could just [skip ahead to the toolchain setup steps](#toolchain-setup). 
+I will now subject you to a painfully-verbose explanation of my rationale for approaching the exercise in the way I did. Or you could just [skip it](#getting-started). 
 
 ## Approach
 
@@ -95,11 +95,50 @@ This topic is not covered in the blog posts mentioned above.
 
 Our first set of acceptance tests (which we will express as Cucumber features) will include: 
 
-- echo transaction - must "pass" before we proceed with any stories;
+- echo transaction - must "pass" before we proceed with any "user" stories;
 - responding to API calls that supply the price of goods - must "fail" for the right reason; and 
 - responding to API calls that query the system for calculated prices - must "fail" for the right reason.
 
 As development progresses, we may add, modify, or remove acceptance test cases to reflect the emerging solution design. Ultimately, when all the acceptance tests "pass", we'll be _done_. 
+
+## Getting Started 
+
+On any "real" project, the team(s) will use some sort of process framework and some sort of project management tool. We're interested in taking an iterative/incremental approach to this project. That implies the team and its primary stakeholder will agree on a short list of key things we believe the solution will have to do. All of that is subject to change as we explore the solution space, of course, but we need a starting point and a general direction for development. 
+
+This sort of list might be called: 
+
+- Product Backlog (Scrum) 
+- Master Story List (Extreme Programming)
+- Work Queue (Kanban) 
+- Work Breakdown Structure (traditional methods)
+- Whatever-you-want-to-call-it (your own method)
+
+The items in the list might be called: 
+
+- Backlog Items (Scrum) 
+- User Stories (Extreme Programming)
+- Tickets (Kanban) 
+- Work Packages (traditional methods)
+- Whatever-you-want-to-call-them (your own method)
+
+In substance, this is not a list of hard-and-fast "requirements," as we are not doing [big design up front (BDUF)](http://wiki.c2.com/?BigDesignUpFront). When we take an iterative/incremental approach, we use [rolling wave planning](https://project-management-knowledge.com/definitions/r/rolling-wave-planning/) or [multi-horizon planning](https://www.solutionsiq.com/learning/blog-post/planning-horizons-decision-making-within-agile-frameworks/). We'll elaborate each work item that we decide to deliver at the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/).
+
+Numerous techniques and models are available to help us reach a decision about what functionality our solution ought to have and how to prioritize and sequence the delivery of that functionality. The details are out of scope here. Let's pretent we've used some of those techniques and models, and we've decided to proceed with this list: 
+
+- Echo Message
+- Number Conversion 
+- Price Calculation 
+- System Probes 
+
+The Echo Transaction is first, so we will elaborate that item in more detail than the others initially. It's okay to leave the other three as one-liners to remind us that we have to pay attention to them eventually. 
+
+**Note:** You may have noticed that we haven't completed the _Toolchain Setup_ and _Project Setup_ steps, listed below. We can't proceed with application development until those things are done. So, why didn't we do them before planning our initial list of work? The reason is that building the Echo Message functionality will _force_ or _cause_ those activities to be done. When using lightweight methods for iterative/incremental development, it's common to define the [Definition of Done](https://www.agilealliance.org/glossary/definition-of-done/#q=~(infinite~false~filters~(postType~(~'page~'post~'aa_book~'aa_event_session~'aa_experience_report~'aa_glossary~'aa_research_paper~'aa_video)~tags~(~'definition*20of*20done))~searchTerm~'~sort~false~sortDirection~'asc~page~1)) for each work item in such a way that many implementation details fall out naturally, rather than attempting to predict and document all the detailed work in advance and document it in our project management tool. That sort of activity is _overhead_; it isn't [value-add work](http://businessknowledgesource.com/manufacturing/what_is_valueadded_work_nonvalue_added_work_021690.html). It won't be possible to respond to the Echo Message unless the application architecture is complete. That's the whole point of the Echo Message. A natural consequence of our effort to implement the Echo Message will be to build out the application architecture. It's a case of [emergent architecture](https://scrumcrazy.wordpress.com/2018/09/28/an-introduction-to-agile-emergent-architecture-always-intentional/). People sometimes worry about emergent architecture, but I think that's because they conflate the architecture of the elastic cloud infrastructure that hosts microservices (risky to emerge) with the architecture of the application that runs on that infrastructure (not risky to emerge). We're talking about letting the application architecture emerge, not the underlying cloud infrastructure. 
+
+
+## Echo Transaction Definition of Done 
+
+
+
 
 ## Toolchain Setup 
 
