@@ -156,7 +156,9 @@ The Echo Transaction is first, so we will elaborate that item in more detail tha
 **Note:** You may have noticed that we haven't completed the _Toolchain Setup_ and _Project Setup_ steps, listed below. We can't proceed with application development until those things are done. So, why didn't we do them before planning our initial list of work? The reason is that building the Echo Message functionality will _force_ or _cause_ those activities to be done. When using lightweight methods for iterative/incremental development, it's common to express the [Definition of Done](https://www.agilealliance.org/glossary/definition-of-done/#q=~(infinite~false~filters~(postType~(~'page~'post~'aa_book~'aa_event_session~'aa_experience_report~'aa_glossary~'aa_research_paper~'aa_video)~tags~(~'definition*20of*20done))~searchTerm~'~sort~false~sortDirection~'asc~page~1)) for each work item in such a way that many implementation details fall out naturally, rather than attempting to predict all the detailed work in advance and document it in our project management tool. That sort of activity is _overhead_; it isn't [value-add work](http://businessknowledgesource.com/manufacturing/what_is_valueadded_work_nonvalue_added_work_021690.html). It won't be possible to respond to the Echo Message unless the application architecture is complete. That's the whole point of the Echo Message. A natural consequence of our effort to implement the Echo Message will be to build out the application architecture. It's a case of [emergent architecture](https://scrumcrazy.wordpress.com/2018/09/28/an-introduction-to-agile-emergent-architecture-always-intentional/). People sometimes worry about emergent architecture, but I think that's because they conflate the architecture of the elastic cloud infrastructure that hosts microservices (risky to emerge within the scope of a single application development project) with the architecture of an application that runs on that infrastructure (not risky to emerge). We're talking about letting the application architecture emerge, not the underlying cloud infrastructure. 
 
 
-## Echo Transaction Definition of Done 
+## Work Item 1: Echo Transaction Definition of Done 
+
+At this point, the team _pulls_ the first work item from the list, and the [Cycle Time](http://www.businessdictionary.com/definition/cycle-time.html) clock starts ticking. Cycle Time is the simplest and most meaningful metric for tracking a team's delivery capacity, and for informing _forecasting_ of a team's upcoming work. 
 
 To demonstrate we've set up the application stack correctly, the Echo Transaction must show that
 
@@ -174,38 +176,23 @@ Out of scope:
 
 - evidence that there is a persistent data store somewhere in the universe 
 
-With all that in mind, we decide to start with these cases: 
+The team has performed the following work:
 
-```
-Feature: Echo Transaction
+- ensured all team members have a consistent understanding of the Echo Transaction
+- determined what functionality is in scope and out of scope for this work item 
+- specified a Definition of Done for the work item 
 
-Background:
-  Given the application is available 
+Time: 
 
-Scenario: Valid request message 
-  When the client sends a valid Echo request with check value 5
-  Then the resulting status code is 200 
-  And the check value in the response is 6 
+- If the team has worked in this way before: 30 minutes
+- If the team has not worked in this way before: 1 hour
 
-Scenario: Request message formatted incorrectly 
-  When the client sends an invalid Echo request 
-  Then the resulting status code is 500 
-  And the response contains element "errorMessage" with value "Echo request message is formatted incorrectly"
-  And the response contains element "sample" with value "/echo/5"
+Cycle Time so far: 
 
-Scenario: Request message does not contain a check value 
-  When the client sends an Echo request with no check value 
-  Then the resulting status code is 500
-  And the response contains element "errorMessage" with value "Echo request does not have a check value"
-  And the response contains element "sample" with value "/echo/5"
-```
+- Best case: 00:30
+- Worst case: 01:00
 
-
-
-
-
-
-## Toolchain Setup 
+## Work Item 1: Toolchain Setup 
 
 For this fresh, greenfield project, our team needs to set up a toolchain for development/test and CI/CD. After conferring with the rest of my colleagues on the team, here's what we decided on initially:
 
@@ -220,9 +207,45 @@ You're already looking at the Github repo, so there's no sense in walking throug
 
 The series of blog posts I mentioned earlier walks the reader through the setup steps for all these tools. Each online service also provides documentation, tutorials, and help for using their facilities. You might want to use different tools. For instance, many people prefer Circle CI to Travis CI. The specific tools you use aren't important for the purpose of this exercise. You might prefer to use an IDE on your local machine rather than CodeAnywhere. You might prefer to work in a different programming language. It's all good. I'm going to assume you can handle all that and move on. 
 
-## Project Setup 
+We have not created a persistent data store yet. That's because we decided it was out of scope for the Echo Transaction item.
 
-Let's organize our directory structure and install development tools for the project on our CodeAnywhere instance. (If you're working on a local instance you can do an equivalent setup according to your preferences.) The default CodeAnywhere configuration of an Ubuntu 16.04 instance for Ruby development gives us a practical starting point. Let's see where we are:
+Time: 
+
+Create project on Github
+
+- If someone on the team has done this before: 5 minutes 
+- If no one on the team has done this before: 15 minutes 
+
+Create project and container on CodeAnywhere 
+
+- If someone on the team has done this before: 10 minutes 
+- If no one on the team has done this before: 30 minutes 
+
+Sign up for Travis CI (not including config file)
+
+- If someone on the team has done this before: 5 minutes 
+- If no one on the team has done this before: 10 minutes 
+
+Sign up for Code Climate 
+
+- If someone on the team has done this before: 5 minutes 
+- If no one on the team has done this before: 10 minutes 
+
+Sign up for Heroku (not including config file)
+
+- If someone on the team has done this before: 5 minutes 
+- If no one on the team has done this before: 10 minutes 
+
+Cycle Time so far: 
+
+- Best case: 00:30 + 00:30 = 01:00
+- Worst case: 01:00 + 01:15 = 02:15
+
+## Work Item 1: Project Setup 
+
+Let's organize our directory structure and install development tools for the project on our CodeAnywhere instance. (If you're working on a local instance you can do an equivalent setup according to your preferences.) The default CodeAnywhere configuration of an Ubuntu 16.04 instance for Ruby development gives us a practical starting point. Let's see where we are. 
+
+The command
 
 ```shell 
 ruby --version 
@@ -246,6 +269,59 @@ In case some of that isn't familiar to you, here's the run-down:
 - app - this is where production code lives 
 - features - this is where Cucumber features and step definitions live 
 - spec - this is where rspec tests live 
+
+Time: 
+
+- 5 minutes 
+
+Cycle Time so far: 
+
+- Best case: 01:00 + 00:05 = 01:05
+- Worst case: 02:15 + 00:05 = 02:20
+
+## Work Item 1: Initial Gherkin Scenarios for Echo Transaction 
+
+Based on the team's discussion of the Echo Transaction, we decide to start with these cases: 
+
+```
+Feature: Echo Transaction
+
+Background:
+  Given the application is available 
+
+Scenario: Valid request message 
+  When the client sends a valid Echo request with check value 5
+  Then the resulting status code is 200 
+  And the check value in the response is 6 
+
+Scenario: Request message formatted incorrectly 
+  When the client sends an invalid Echo request 
+  Then the resulting status code is 500 
+  And the response contains element "errorMessage" with value "Echo request message is formatted incorrectly"
+  And the response contains element "sampleRequest" with value "/echo/5"
+
+Scenario: Request message does not contain a check value 
+  When the client sends an Echo request with no check value 
+  Then the resulting status code is 500
+  And the response contains element "errorMessage" with value "Echo request does not have a check value"
+  And the response contains element "sampleRequest" with value "/echo/5"
+```
+
+We create a file under galaxy/features named echo.feature, and add the text above to the file. 
+
+Time: 
+
+Create the echo.feature file with initial scenarios
+
+- If someone on the team has done this before: 10 minutes 
+- If no one on the team has done this before: 30 minutes 
+
+Create the Gemfile file specifying the dependencies for Cucumber 
+
+- If someone on the team has done this before: 5 minutes 
+- If no one on the team has done this before: 15 minutes 
+
+
 
 
 
