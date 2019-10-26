@@ -107,28 +107,42 @@ For this fresh, greenfield project, our team needs to set up a toolchain for dev
 
 - Version Control System - Git 
 - Version Control Service - Github (https://github.com)
-- Development Environment - Code Anywhere (https://codeanywhere.com)
+- Development Environment - CodeAnywhere (https://codeanywhere.com)
 - Continuous Integration - Travis CI (https://travis-ci.com)
 - Static Code Analysis - Code Climate (https://codeclimate.com/oss/)
 - Deployment, Production Ops - Heroku (https://www.heroku.com/home)
 
-You're already looking at the Github repo, so there's no sense in walking through that setup. The series of blog posts I mentioned earlier walks the reader through the setup steps for all these. Each online service also provides documentation, tutorials, and help for using their facilities. So, I'm going to assume you can handle all that and move on. 
+You're already looking at the Github repo, so there's no sense in walking through that setup. There's the usual Github housekeeping to do, like creating a .gitignore file and choosing a license. I'll assume you know how to do that.
+
+The series of blog posts I mentioned earlier walks the reader through the setup steps for all these tools. Each online service also provides documentation, tutorials, and help for using their facilities. You might want to use different tools. For instance, many people prefer Circle CI to Travis CI. The specific tools you use aren't important for the purpose of this exercise. You might prefer to use an IDE on your local machine rather than CodeAnywhere. You might prefer to work in a different programming language. It's all good. I'm going to assume you can handle all that and move on. 
 
 ## Project Setup 
 
-Let's organize our directory structure and install development/test tools for the project on our CodeAnywhere instance. The default CodeAnywhereconfiguration for an Ubuntu 16.04 instance for Ruby development gives us a practical starting point. Let's see where we are:
+Let's organize our directory structure and install development tools for the project on our CodeAnywhere instance. (If you're working on a local instance you can do an equivalent setup according to your preferences.) The default CodeAnywhereconfiguration of an Ubuntu 16.04 instance for Ruby development gives us a practical starting point. Let's see where we are:
 
 ```shell 
 ruby --version 
 ``` 
 
-shows we have Ruby 2.5.1p57. Depending on when you do this, you might see a more recent version. This is fine for our purposes.
+shows we have Ruby 2.5.1p57. Depending on when you do this, you might see a more recent version. It's good to check this, as sometimes cloud-based services have old releases of tools as their defaults, and we have to install more recent versions. This is fine for our purposes, and we don't need to do that. 
 
-By default, CodeAnywhere puts us in directory ~/workspace. That's fine. We'll create the project root directory in that location. 
-
+By default, CodeAnywhere puts us in directory ~/workspace. That's fine. We'll create the project root directory in that location. Let's create some subdirectories appropriate to the language and tools we'll be using. 
+ 
 ```shell 
-mkdir galaxy 
+mkdir galaxy
+cd galaxy
+mkdir app 
+mkdir -p features/step_definitions 
+mkdir -p features/support
+mkdir spec 
 ```
+
+In case some of that isn't familiar to you, here's the run-down:
+
+- app - this is where production code lives 
+- features - this is where Cucumber features and step definitions live 
+- spec - this is where rspec tests live 
+
 
 
 
