@@ -108,7 +108,7 @@ That means the values of the words are not predefined. An implication for the cu
 
 One of the realities of a robust cloud-based microservices application is that the server instances on which it runs will come and go, for example using the [phoenix server](https://www.thoughtworks.com/insights/blog/moving-to-phoenix-server-pattern-introduction) strategy, while the application is expected to remain available to customers all the time. If our data store is destroyed each time a server instance is destroyed, we will lose the associations between the "alien" words and their numerical values and the customer experience will be unpleasant. It will appear as if the application sometimes works and sometimes doesn't. 
 
-To provide a suitable customer experience, we need a persistent data store that remains valid as server instances are destroyed and re-created. We also need to provide reasonable behaviors for cases when a customer tries to use the application and the associates have not yet been defined. (The problem description creates the need for all this thrashing, when I suspect the authors really intended to have static definitions for the values; but they didn't write it that way.)
+To provide a suitable customer experience, we need a persistent data store that remains valid as server instances are destroyed and re-created. We also need to provide reasonable behaviors for cases when a customer tries to use the application and the values have not yet been defined. (The problem description creates the need for all this thrashing, when I suspect the authors really intended to have static definitions for the values; but they didn't write it that way.)
 
 ## Initial Acceptance Tests
 
@@ -142,7 +142,7 @@ The items in the list might be called:
 
 I'm going to call them "work items," for lack of a better name.
 
-In substance, this is not a list of hard-and-fast "requirements," as we are not doing [big design up front (BDUF)](http://wiki.c2.com/?BigDesignUpFront). When we take an iterative/incremental approach, we use [rolling wave planning](https://project-management-knowledge.com/definitions/r/rolling-wave-planning/) or [multi-horizon planning](https://www.solutionsiq.com/learning/blog-post/planning-horizons-decision-making-within-agile-frameworks/). We'll elaborate each work item that we decide to deliver at the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/).
+In substance, this is not a list of hard-and-fast "requirements," as we are not doing [big design up front (BDUF)](http://wiki.c2.com/?BigDesignUpFront). When we take an iterative/incremental approach, we use [rolling wave planning](https://project-management-knowledge.com/definitions/r/rolling-wave-planning/) or [multi-horizon planning](https://www.solutionsiq.com/learning/blog-post/planning-horizons-decision-making-within-agile-frameworks/). We'll elaborate each work item that we decide to complete at the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/).
 
 Numerous techniques and models are available to help us reach a decision about what functionality our solution ought to have and how to prioritize and sequence the delivery of that functionality. The details are out of scope here. Let's pretend we've used some of those techniques and models, and we've decided to proceed with this list: 
 
