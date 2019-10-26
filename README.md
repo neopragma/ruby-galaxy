@@ -2,7 +2,7 @@
 
 The Merchant's Guide to the Galaxy is a simple programming exercise that's often used to screen candidates for software developer positions. Here's the [Problem Description](ProblemDescription.md).  
 
-I will now subject you to a painfully-verbose explanation of my rationale for approaching the exercise in the way I did. Or you could just [skip ahead to the toolchain setup steps](##toolchain-setup). 
+I will now subject you to a painfully-verbose explanation of my rationale for approaching the exercise in the way I did. Or you could just [skip ahead to the toolchain setup steps](#toolchain-setup). 
 
 ## Approach
 
