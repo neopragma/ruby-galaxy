@@ -416,8 +416,8 @@ We're still in _outside-in_ mode at this point. We're going to realize the featu
 
 So, we'll start coding our service application. We want to separate concerns, so instead of dumping code into a single source file, we'll begin in the right way by separating the concerns of 
 
-- accepting RESTful calls
-- processing request messages and formatting responses
+- accepting RESTful calls; and
+- processing request messages and formatting responses.
 
 To accept RESTful calls, we create the file app/galaxy.rb and write therein the rudiments of a nascent Sinatra app:
 
@@ -452,14 +452,7 @@ require './app/galaxy'
 run Sinatra::Application
 ```
 
-Let's see if the server will start the way we expect. We'll do a quick manual check from the command line via curl. First, let's install package _jq_, which formats JSON text for readability. The default CodeAnywhere configuration for Ubuntu doesn't include it. 
-
-```shell 
-sudo apt install jq
-```
-
-Now we'll run rackup via bundler and specify IP address 0.0.0.0, which is what CodeAnywhere and Heroku will expect, and port 3000, which is what CodeAnywhere expects according to the container documentation that was generated when we created the CodeAnywhere container. We'll leave it running in the background so we can enter more commands in the same console. 
-
+Now we'll run _rackup_ via _bundler_ and specify IP address 0.0.0.0, which is what CodeAnywhere and Heroku will expect, and port 3000, which is what CodeAnywhere expects according to the container documentation that was generated when we created the CodeAnywhere container. We'll leave it running in the background so we can enter more commands in the same console. 
 
 ```shell 
 bundle exec rackup -o "0.0.0.0" -p 3000 &
@@ -479,7 +472,7 @@ Before checking the default URI, let's install package _jq_, which formats JSON 
 sudo apt install jq
 ```
 
-Now we'll do a quick manual check from the command line via curl. 
+Now we'll use _curl_ to do a quick manual check from the command line. The URL was provided in the CodeAnywhere documentation that was generated when we created the container. Yours will differ. 
 
 
 ```shell 
@@ -495,6 +488,15 @@ The response looks like what we were hoping for at this point:
   "description": "Merchant's Guide to the Galaxy implementation"
 }
 ```
+
+Success!
+
+Or not...?
+
+Remember our customer focus? That makes us a bit paranoid. In my case, I ran the same curl command from my Mac laptop. It returned exactly the same result. That gave me some assurance that I wasn't seeing a false positive in the CodeAnywhere container, as the server is running in the same instance as the command line console. Once we complete the setup, we'll be deploying to Heroku, but for the moment there's the possibility of a false positive with this sort of quick check. 
+
+So now let's use what we learned from _curl_ to write an appropriate Cucumber step definition to verify the service is available. 
+
 
 
 
