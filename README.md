@@ -66,7 +66,7 @@ Just to be a little more realistic (for a loose definition of "realistic"), we'l
 - pish is X 
 - tegj is L 
 
-Based on the way the problem is described, it looks as if the solution must accept value definitions at runtime. That implies they can't be hard-coded either in the code or in a configuration file. So, we need someplace to store the values once they've been supplied by the client. (This was probably not the author's intent, but they wrote it they way they wrote it, so here we are. Typically, when a prospective employer gives you a list of "test cases," the expectation is that your solution can process those test cases exactly as provided.)
+Based on the way the problem is described, it looks as if the solution must accept value definitions at runtime. That implies they can't be hard-coded either in the code or in a configuration file. So, we need someplace to store the values once they've been supplied by the client. (This was probably not the author's intent, but they wrote it they way they wrote it, so here we are. Typically, when a prospective employer gives you a list of "test cases" in the context of a screening exercise, the expectation is that your solution can process those test cases exactly as provided.)
 
 The problem description also specifies messages like these: 
 
@@ -74,7 +74,7 @@ The problem description also specifies messages like these:
 - glob prok Gold is 57800 Credits
 - pish pish Iron is 3910 Credits
 
-These messages don't result in a response payload. We might interpret them as probes to verify the system is operational and not misbehaving in an obvious way, such as reporting incorrect prices. There are no instructions to the contrary, so that's the assumption we will make. 
+These messages don't result in a response payload. We might interpret them as probes to verify the system is operational and not misbehaving in an obvious way, such as reporting incorrect prices. There are no instructions to the contrary, so that's the assumption we will make. Probes like these provide a deeper test of an application's health than just pinging the URL, so it's actually a good idea to include them. 
 
 Messages that end with a question mark look as if they require a response: 
 
@@ -108,7 +108,13 @@ That means the values of the words are not predefined. An implication for the cu
 
 One of the realities of a robust cloud-based microservices application is that the server instances on which it runs will come and go, for example using the [phoenix server](https://www.thoughtworks.com/insights/blog/moving-to-phoenix-server-pattern-introduction) strategy, while the application is expected to remain available to customers all the time. If our data store is destroyed each time a server instance is destroyed, we will lose the associations between the "alien" words and their numerical values and the customer experience will be unpleasant. It will appear as if the application sometimes works and sometimes doesn't. 
 
-To provide a suitable customer experience, we need a persistent data store that remains valid as server instances are destroyed and re-created. We also need to provide reasonable behaviors for cases when a customer tries to use the application and the values have not yet been defined. (The problem description creates the need for all this thrashing, when I suspect the authors really intended to have static definitions for the values; but they didn't write it that way.)
+To provide a suitable customer experience, we need a persistent data store that remains valid as server instances are destroyed and re-created. We also need to provide reasonable behaviors for cases when a customer tries to use the application and the values have not yet been defined. (The problem description creates the need for all this thrashing, when I suspect the authors really intended to have static definitions for the values; but they didn't write it that way.
+
+## Persistence 
+
+Unlike a traditional "monolithic" application, a cloud-based microservices application does not define its own database instances. Instead, it's preferable to use the data storage facilities offered by the cloud service provider who hosts the application. That way, we know persistent data will survive across server instances that may be destroyed and re-created at any time by the infrastructure. We aren't actually going to define an "elastic" server configuration for this particular exercise, but we will structure the application so that it could support such a configuration. 
+
+Each cloud service provider has unique data storage offerings. We plan to deploy this demo app on Heroku, so we will use a Heroku data offering known as [Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql). We will defer the design and configuration of the data store until the last responsible moment, as usual.
 
 ## Initial Acceptance Tests
 
@@ -126,23 +132,25 @@ On any "real" project, the team(s) will use some sort of process framework and s
 
 This sort of list might be called: 
 
-- Product Backlog (Scrum) 
-- Master Story List (Extreme Programming)
-- Work Queue (Kanban) 
-- Work Breakdown Structure (traditional methods)
+- Product Backlog ([Scrum](https://scrumguides.org/)) 
+- Master Story List ([Extreme Programming](http://www.extremeprogramming.org/))
+- Work Queue ([Kanban](https://resources.collab.net/agile-101/what-is-kanban)) 
+- Work Breakdown Structure ([traditional methods](https://www.workbreakdownstructure.com/))
 - Whatever-you-want-to-call-it (your own method)
+
+I'm going to call it "backlog," as that is a popular term in the industry today. 
 
 The items in the list might be called: 
 
-- Backlog Items (Scrum) 
-- User Stories (Extreme Programming)
-- Tickets (Kanban) 
-- Work Packages (traditional methods)
+- Backlog Items ([Scrum](https://scrumguides.org/)) 
+- User Stories ([Extreme Programming](http://www.extremeprogramming.org/))
+- Tickets ([Kanban](https://resources.collab.net/agile-101/what-is-kanban)) 
+- Work Packages ([traditional methods](https://www.workbreakdownstructure.com/))
 - Whatever-you-want-to-call-them (your own method)
 
 I'm going to call them "work items," for lack of a better name.
 
-In substance, this is not a list of hard-and-fast "requirements," as we are not doing [big design up front (BDUF)](http://wiki.c2.com/?BigDesignUpFront). When we take an iterative/incremental approach, we use [rolling wave planning](https://project-management-knowledge.com/definitions/r/rolling-wave-planning/) or [multi-horizon planning](https://www.solutionsiq.com/learning/blog-post/planning-horizons-decision-making-within-agile-frameworks/). We'll elaborate each work item that we decide to complete at the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/).
+Whatever we may call it, in substance this is not a list of hard-and-fast "requirements," as we are not doing [big design up front (BDUF)](http://wiki.c2.com/?BigDesignUpFront). When we take an iterative/incremental approach, we use [rolling wave planning](https://project-management-knowledge.com/definitions/r/rolling-wave-planning/) or [multi-horizon planning](https://www.solutionsiq.com/learning/blog-post/planning-horizons-decision-making-within-agile-frameworks/). We'll elaborate each work item that we decide to complete at the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/).
 
 Numerous techniques and models are available to help us reach a decision about what functionality our solution ought to have and how to prioritize and sequence the delivery of that functionality. The details are out of scope here. Let's pretend we've used some of those techniques and models, and we've decided to proceed with this list: 
 
