@@ -158,6 +158,50 @@ The Echo Transaction is first, so we will elaborate that item in more detail tha
 
 ## Echo Transaction Definition of Done 
 
+To demonstrate we've set up the application stack correctly, the Echo Transaction must show that
+
+- the service returns the response defined for _echo_ 
+- the response payload contains something that indicates application code saw and processed the _echo_ request 
+- the service returns the correct error response when the _echo_ request is not formatted properly 
+
+After a team discussion, we decide to pass a field containing an integer value on the Echo request, and expect the application to increment the value by one and return it in the response payload. That will satisfy the need to see evidence that the application did _something_ with the request. 
+
+We also decide the error case will be indicated by an HTTP status of 500 and a message in the payload that reads, "Echo request message is formatted incorrectly," as well as an example of the correct format. 
+
+We also decide the persistent data store will be created as a consequence of the first work item that pertains to storing the value of an "alien" word. There's no need to create "extra" work around the Echo Transaction for that purpose. So:
+
+Out of scope: 
+
+- evidence that there is a persistent data store somewhere in the universe 
+
+With all that in mind, we decide to start with these cases: 
+
+```
+Feature: Echo Transaction
+
+Background:
+  Given the application is available 
+
+Scenario: Valid request message 
+  When the client sends a valid Echo request with check value 5
+  Then the resulting status code is 200 
+  And the check value in the response is 6 
+
+Scenario: Request message formatted incorrectly 
+  When the client sends an invalid Echo request 
+  Then the resulting status code is 500 
+  And the response contains element "errorMessage" with value "Echo request message is formatted incorrectly"
+  And the response contains element "sample" with value "/echo/5"
+
+Scenario: Request message does not contain a check value 
+  When the client sends an Echo request with no check value 
+  Then the resulting status code is 500
+  And the response contains element "errorMessage" with value "Echo request does not have a check value"
+  And the response contains element "sample" with value "/echo/5"
+```
+
+
+
 
 
 
