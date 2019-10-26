@@ -59,14 +59,14 @@ The message processing functionality comprises two parts:
 - accepting messages that provide the value of goods, for later reference; and 
 - responding to queries about the cost of various shipments of goods. 
 
-Just to be a little more realistic (for a loose definition of "realistic"), we'll add a database to the solution. There isn't one in the setup documented in the blog posts. The problem description states the solution must be able to accept messages that define the prices of goods, like this: 
+Just to be a little more realistic (for a loose definition of "realistic"), we'll add a database to the solution. There isn't one in the setup documented in the blog posts. The problem description states the solution must be able to accept messages that define the values associated with "alien" words, like this: 
 
 - glob is I 
 - prok is V 
 - pish is X 
 - tegj is L 
 
-Based on the way the problem is described, it looks as if the solution must accept price values at runtime. That implies they can't be hard-coded either in the code or in a configuration file. So, we need someplace to store the values once they've been supplied by the client. (This was probably not the author's intent, but they wrote it they way they wrote it, so here we are.)
+Based on the way the problem is described, it looks as if the solution must accept value definitions at runtime. That implies they can't be hard-coded either in the code or in a configuration file. So, we need someplace to store the values once they've been supplied by the client. (This was probably not the author's intent, but they wrote it they way they wrote it, so here we are.)
 
 The problem description also specifies messages like these: 
 
