@@ -47,7 +47,7 @@ From the [Problem Description](ProblemDescription.md), we see the solution has t
 - processing and responding to messages via an API; and 
 - converting galactic numbers into decimal numbers representing the value of goods.
 
-Note: The documentation doesn't mention "API." Why are we calling for one? Because we want our design to adhere to the design principle, [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Responding to messages and calculating the prices of goods are the "business functionality" of the solution. Input/output is not. Any number of different clients may be written to interact with the service, from command line programs to webapps to mobile apps to you-name-it. All of that is outside the scope of this project. 
+**Note:** The documentation doesn't mention "API." Why are we calling for one? Because we want our design to adhere to the design principle, [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Responding to messages and calculating the prices of goods are the "business functionality" of the solution. Input/output is not. Any number of different clients may be written to interact with the service, from command line programs to webapps to mobile apps to you-name-it. All of that is outside the scope of this project. 
 
 The message processing functionality comprises two parts: 
 
@@ -102,4 +102,33 @@ Our first set of acceptance tests (which we will express as Cucumber features) w
 As development progresses, we may add, modify, or remove acceptance test cases to reflect the emerging solution design. Ultimately, when all the acceptance tests "pass", we'll be _done_. 
 
 ## Toolchain Setup 
+
+For this fresh, greenfield project, our team needs to set up a toolchain for development/test and CI/CD. After conferring with the rest of my colleagues on the team, here's what we decided on initially:
+
+- Version Control System - Git 
+- Version Control Service - Github (https://github.com)
+- Development Environment - Code Anywhere (https://codeanywhere.com)
+- Continuous Integration - Travis CI (https://travis-ci.com)
+- Static Code Analysis - Code Climate (https://codeclimate.com/oss/)
+- Deployment, Production Ops - Heroku (https://www.heroku.com/home)
+
+You're already looking at the Github repo, so there's no sense in walking through that setup. The series of blog posts I mentioned earlier walks the reader through the setup steps for all these. Each online service also provides documentation, tutorials, and help for using their facilities. So, I'm going to assume you can handle all that and move on. 
+
+## Project Setup 
+
+Let's organize our directory structure and install development/test tools for the project on our CodeAnywhere instance. The default CodeAnywhereconfiguration for an Ubuntu 16.04 instance for Ruby development gives us a practical starting point. Let's see where we are:
+
+```shell 
+ruby --version 
+``` 
+
+shows we have Ruby 2.5.1p57. Depending on when you do this, you might see a more recent version. This is fine for our purposes.
+
+By default, CodeAnywhere puts us in directory ~/workspace. That's fine. We'll create the project root directory in that location. 
+
+```shell 
+mkdir galaxy 
+```
+
+
 
