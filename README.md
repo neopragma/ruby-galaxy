@@ -1,8 +1,12 @@
 # Merchant's Guide to the Galaxy
 
-The Merchant's Guide to the Galaxy is a simple programming exercise that's often used to screen candidates for software developer positions. Here's the [Problem Description](ProblemDescription.md).  
+The Merchant's Guide to the Galaxy is a simple programming exercise that's often used to screen candidates for software developer positions or as an exercise in [code dojos](http://codingdojo.org/). Here's the [Problem Description](ProblemDescription.md).  
 
-I will now subject you to a painfully-verbose explanation of my rationale for approaching the exercise in the way I did. I wanted to use the exercise as a vehicle to illustrate several concepts pertaining to lightweight software development and delivery. Or you could just [skip it](#getting-started). 
+I will now subject you to a painfully-verbose explanation of my rationale for approaching the exercise in the way I did. I wanted to use the exercise as a vehicle to illustrate several concepts pertaining to lightweight software development and delivery. 
+
+There's a lot of [dot-connecting](https://idioms.thefreedictionary.com/connect+the+dots) in the following explanation, because I've noticed most developers don't intuitively understand the reasons behind the practices some of us recommend. They say test-driven development is just Kent Beck's "opinion," or pair programming is just Ron Jeffries' "opinion," or adaptive development is just Jim Highsmith's "opinion," and opinions are all equal. The thing is, [some opinions are more equal than others](https://www.dictionary.com/browse/all-animals-are-equal--but-some-animals-are-more-equal-than-others). 
+
+Or you could just [skip it](#getting-started). 
 
 ## Approach
 
