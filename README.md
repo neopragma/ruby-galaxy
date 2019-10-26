@@ -283,7 +283,7 @@ Cycle Time so far:
 
 ## Work Item 1: Initial Gherkin Scenarios for Echo Transaction 
 
-Based on the team's discussion of the Echo Transaction, we decide to start with these cases: 
+Previously, I mentioned we're going to take an _outside-in_ TDD approach initially, starting at the "acceptance test" level. We're starting that now. Based on the team's discussion of the Echo Transaction, we decide to start with these cases: 
 
 ```
 Feature: Echo Transaction
@@ -335,6 +335,7 @@ In case some of that is unfamiliar to you, here's a summary:
 - cucumber - a BDD-style tool for testing UIs and APIs 
 - rspec - a BDD-style unit testing tool for Ruby 
 - rest-client - helper methods for interacting with a RESTful service 
+- rake - a Ruby make and build utility
 
 To download and install the dependencies, we use:
 
@@ -409,12 +410,91 @@ Cycle Time so far:
 - Best case: 01:05 + 00:15 = 1:20 
 - Worst case: 02:20 + 00:45 = 03:05 
 
+## Work Item 1: Echo - Implement "Given the application is available" 
+
+We're still in _outside-in_ mode at this point. We're going to realize the feature step, "Given the application is available." This will force us...well, _help us_...to start setting up the development and deployment toolchain. That's because there's no other way to make it happen. 
+
+So, we'll start coding our service application. We want to separate concerns, so instead of dumping code into a single source file, we'll begin in the right way by separating the concerns of 
+
+- accepting RESTful calls
+- processing request messages and formatting responses
+
+To accept RESTful calls, we create the file app/galaxy.rb and write therein the rudiments of a nascent Sinatra app:
+
+```
+require 'sinatra'
+require 'thin'
+require 'json'
+require_relative "./handler"
+ 
+get '/' do 
+  Handler.new.default.to_json
+end
+```
+
+To process requests and format responses, we create the file app/handler.rb and code the behavior for the default URI path. For now, we'll create a response document with the name of the service and a brief description. 
+
+```
+class Handler 
+  def default 
+    { 
+      "service" => "galaxy",
+      "description" => "Merchant's Guide to the Galaxy implementation"
+    }
+  end
+end 
+```
+
+We'll be using _rackup_ to start the server in production, so let's use it to start the server in the development environment as well, for consistency. Here's our _config.ru_ file, located in the project root directory:
+
+```
+require './app/galaxy'
+run Sinatra::Application
+```
+
+Let's see if the server will start the way we expect. We'll do a quick manual check from the command line via curl. First, let's install package _jq_, which formats JSON text for readability. The default CodeAnywhere configuration for Ubuntu doesn't include it. 
+
+```shell 
+sudo apt install jq
+```
+
+Now we'll run rackup via bundler and specify IP address 0.0.0.0, which is what CodeAnywhere and Heroku will expect, and port 3000, which is what CodeAnywhere expects according to the container documentation that was generated when we created the CodeAnywhere container. We'll leave it running in the background so we can enter more commands in the same console. 
 
 
+```shell 
+bundle exec rackup -o "0.0.0.0" -p 3000 &
+```
+
+When I tried this, it reported that the _thin_ server was running and listening on port 3000:
+
+```
+Thin web server (v1.7.2 codename Bachmanity)
+Maximum connections set to 1024
+Listening on 0.0.0.0:3000, CTRL+C to stop
+```
+
+Before checking the default URI, let's install package _jq_, which formats JSON text for readability. It isn't included in CodeAnywhere's default Ubuntu/Ruby setup. 
+
+```shell 
+sudo apt install jq
+```
+
+Now we'll do a quick manual check from the command line via curl. 
 
 
+```shell 
+curl -s https://galaxy-davenicolette339440.codeanyapp.com | jq
+```
 
+The response looks like what we were hoping for at this point:
 
+```
+38.128.66.69 - - [26/Oct/2019:11:39:31 -0400] "GET / HTTP/1.1" 200 82 0.0088
+{
+  "service": "galaxy",
+  "description": "Merchant's Guide to the Galaxy implementation"
+}
+```
 
 
 
