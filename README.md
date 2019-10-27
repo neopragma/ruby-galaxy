@@ -160,6 +160,8 @@ The iterative/incremental approach calls for work to be done iteratively, so tha
 - Units of time - _week_, _fortnight_, _month_ ([traditional methods](https://www.workbreakdownstructure.com/))
 - Whatever-you-want-to-call-them (your own method)
 
+I'm going to call them "iterations," as that's the most general term.
+
 Numerous techniques and models are available to help us reach a decision about what functionality our solution ought to have and how to prioritize and sequence the delivery of that functionality. The details are out of scope here. Let's pretend we've used some of those techniques and models, and we've decided to proceed with this list: 
 
 - Echo Message
@@ -511,8 +513,178 @@ Or not...?
 
 Remember our customer focus? That makes us a bit paranoid. In my case, I ran the same curl command from my Mac laptop. It returned exactly the same result. That gave me some assurance that I wasn't seeing a false positive in the CodeAnywhere container, as the server is running in the same instance as the command line console. Once we complete the setup, we'll be deploying to Heroku, but for the moment there's the possibility of a false positive with this sort of quick check. 
 
-So now let's use what we learned from _curl_ to write an appropriate Cucumber step definition to verify the service is available. 
+#### Time check 
 
+_Implement default behavior in development environment_ 
+
+- If someone on the team has done this before: 1 hour 
+- If no one on the team has done this before: 3 hours
+
+Cycle Time so far: 
+
+- Best case: 01:20 + 01:00 = 02:20
+- Worst case: 03:05 + 03:00 = 06:05 
+
+#### Continuing with: Echo - Implement "Given the application is available"
+
+Now let's use what we learned from _curl_ to write an appropriate Cucumber step definition to verify the service is available. 
+
+When we ran Cucumber, it suggested this: 
+
+```ruby
+Given("the application is available") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+``` 
+
+"Application is available" will mean that when we access the API with path / we receive a JSON document containing an element _service_ with value _galaxy_. So our expectation could look like this: 
+
+```ruby 
+expect(JSON.parse(response)['service'])
+    .to eq('galaxy')
+```
+
+Of course, we won't execute _curl_ from inside our step definition. We'll use the _rest-client_ gem instead. 
+
+```ruby
+RestClient.get "https://galaxy-davenicolette339440.codeanyapp.com"
+``` 
+
+Putting that much together, we have the following code, which we save in a file named features/step_definitions/echo_steps.rb.
+
+```ruby
+Given("the application is available") do
+    response = RestClient.get "https://galaxy-davenicolette339440.codeanyapp.com"
+    expect(JSON.parse(response)['service'])
+    .to eq('galaxy')
+end
+```
+
+Clearly, this isn't quite right. We don't want to hard-code a URL here. In production, the URL will be provided in an environment variable. We'll want to do the same in the development environment. But this is sufficient to let us try the Cuke and see if we have any other basic errors, before adding more logic. 
+
+```shell 
+bundle exec cucumber 
+```
+
+The output is (in part): 
+
+```
+Feature: Echo Transaction
+
+  Background:                          # features/echo.feature:3
+    Given the application is available # features/step_definitions/echo_steps.rb:1
+      uninitialized constant RestClient (NameError)
+      ./features/step_definitions/echo_steps.rb:2:in `"the application is available"'
+      features/echo.feature:4:in `Given the application is available'
+```
+
+So, we're getting some help from our tools. In Ruby, the error "uninitialized constant [class name]" means the application can't find a class named [class name]. We haven't told Cucumber where to find the class, RestClient. We fix it by adding a _require_ statement. Cucumber will look in a specific place for _require_ statements that apply to all the Cukes: features/support/env.rb. So, we fix the problem by creating that file with the following contents: 
+
+```ruby 
+require 'json' 
+require 'rspec'
+require 'rest-client'
+```
+
+The _json_ and _rspec_ gems have nothing to do with this particular problem, but we know we're using those gems so we go ahead and include _require_ statements for them. Now when we run 
+
+```shell 
+bundle exec cucumber 
+```
+
+we get
+
+```
+Feature: Echo Transaction
+
+38.128.66.69 - - [27/Oct/2019:02:19:27 -0400] "GET / HTTP/1.1" 200 82 0.0024
+  Background:                          # features/echo.feature:3
+    Given the application is available # features/step_definitions/echo_steps.rb:1
+```
+
+This tells us we're on the right track with this step definition. As long as the _thin_ server is running and we access the correct URL, the step "works." Now let's remove the hard-coded URL and use an environment variable instead. 
+
+As a first step, the team decides to type the _export_ statement in the command line console. This will have to be done in a more automatic way eventually. For now, we want to be sure we've coded the environment variable and associated Ruby code correctly. 
+
+```shell 
+export GALAXY_URL="https://galaxy-davenicolette339440.codeanyapp.com"
+``` 
+
+And in features/step_definitions/echo_steps.rb: 
+
+```ruby 
+Given("the application is available") do
+    response = RestClient.get "#{ENV['GALAXY_URL']}/"
+    expect(JSON.parse(response)['service'])
+    .to eq('galaxy')
+end
+```
+
+We run the Cukes again, and the output is identical to the hard-coded version. So, we know we can use an environment variable to provide the URL. But we haven't set things up in a repeatable or automated way. 
+
+For now, we'll code a few steps in a shell script and run the Cukes that way. As we learn more about the environment, we may be able to improve on that implementation. Here's a script that 
+
+- sets the environment variable GALAXY_URL; 
+- starts the _thin_ server; and
+- runs the Cukes.
+
+We'll call it runcukes.sh.
+
+```shell 
+export GALAXY_URL="https://galaxy-davenicolette339440.codeanyapp.com"
+bundle exec rackup -o "0.0.0.0" -p 3000 &
+bundle exec cucumber
+``` 
+
+Let's make it executable: 
+
+```shell 
+chmod +x runcukes.sh 
+``` 
+
+and try it out:
+
+```shell 
+./runcukes.sh 
+``` 
+
+Okay, not too bad. One small problem: 
+
+```
+Thin web server (v1.7.2 codename Bachmanity)
+Maximum connections set to 1024
+Listening on 0.0.0.0:3000, CTRL+C to stop
+bundler: failed to load command: rackup (/home/cabox/workspace/galaxy/vendor/bundle/ruby/2.5.0/bin/rackup)
+RuntimeError: no acceptor (port is in use or requires root privileges)
+  /home/cabox/workspace/galaxy/vendor/bundle/ruby/2.5.0/gems/eventmachine-1.2.7/lib/eventmachine.rb:531:in `start_tcp_server'
+``` 
+
+The server is still running from before. We need to make the script [idempotent](https://en.wikipedia.org/wiki/Idempotence). Yes, I knew that was going to happen, but I wanted an excuse to introduce the topic of idempotence. It's pretty important for scripts that do configuration or provisioning in a dynamic environment. It means if an operation is supposed to happen exactly once, then executing that operation multiple times will only result in one result. Let's use this tiny, minor example to illustrate. 
+
+In the runcukes.sh script, we want the server to start exactly once. We might want to overwrite the value of the environment variable, so that operation needn't be idempotent in this context. We don't have to do anything special for the _bundle exec cucumber_ step. 
+
+We can achieve idempotence by checking whether the server is already running, and only attempting to start it if it isn't running. The team decides a quick-and-dirty solution will suffice for now, as we know this isn't the end of the task of building out the toolchain. If the URL returns an HTTP 200 status code, we'll assume the server is operational and we won't attempt to start it. Otherwise, we'll start it. 
+
+```shell 
+export GALAXY_URL="https://galaxy-davenicolette339440.codeanyapp.com"
+test $(curl --write-out %{http_code} --silent --head --output /dev/null "$GALAXY_URL" | grep "200") \
+    || bundle exec rackup -o "0.0.0.0" -p 3000 &
+bundle exec cucumber
+```
+
+#### Time check 
+
+_Implement Given step in Cucumber and run in the development environment_ 
+
+- If someone on the team has done this before: 1 hour 
+- If no one on the team has done this before: 3 hours
+
+Cycle Time so far: 
+
+- Best case: 02:20 + 01:00 = 03:29
+- Worst case: 06:05 + 03:00 = 09:05 
+
+#### Continuing with: Echo - Implement "Given the application is available"
 
 
 
