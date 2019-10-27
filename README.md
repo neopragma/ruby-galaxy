@@ -513,6 +513,8 @@ Or not...?
 
 Remember our customer focus? That makes us a bit paranoid. In my case, I ran the same curl command from my Mac laptop. It returned exactly the same result. That gave me some assurance that I wasn't seeing a false positive in the CodeAnywhere container, as the server is running in the same instance as the command line console. Once we complete the setup, we'll be deploying to Heroku, but for the moment there's the possibility of a false positive with this sort of quick check. 
 
+<hr/>
+
 #### Time check 
 
 _Implement default behavior in development environment_ 
@@ -524,6 +526,8 @@ Cycle Time so far:
 
 - Best case: 01:20 + 01:00 = 02:20
 - Worst case: 03:05 + 03:00 = 06:05 
+
+<hr/>
 
 #### Continuing with: Echo - Implement "Given the application is available"
 
