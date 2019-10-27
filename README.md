@@ -202,7 +202,9 @@ The team has performed the following work:
 - determined what functionality is in scope and out of scope for this work item 
 - specified a Definition of Done for the work item 
 
-Time: 
+<hr/>
+
+### Time check 
 
 - If the team has worked in this way before: 30 minutes
 - If the team has not worked in this way before: 1 hour
@@ -211,6 +213,8 @@ Cycle Time so far:
 
 - Best case: 00:30
 - Worst case: 01:00
+
+<hr/>
 
 ## Work Item 1: Toolchain Setup 
 
@@ -229,7 +233,9 @@ The series of blog posts I mentioned earlier walks the reader through the setup 
 
 We have not created a persistent data store yet. That's because we decided it was out of scope for the Echo Transaction item.
 
-Time: 
+<hr/>
+
+### Time check 
 
 _Create project on Github_
 
@@ -261,6 +267,8 @@ Cycle Time so far:
 - Best case: 00:30 + 00:30 = 01:00
 - Worst case: 01:00 + 01:15 = 02:15
 
+<hr/>
+
 ## Work Item 1: Project Setup 
 
 Let's organize our directory structure and install development tools for the project on our CodeAnywhere instance. (If you're working on a local instance you can do an equivalent setup according to your preferences.) The default CodeAnywhere configuration of an Ubuntu 16.04 instance for Ruby development gives us a practical starting point. Let's see where we are. 
@@ -290,7 +298,9 @@ In case some of that isn't familiar to you, here's the run-down:
 - features - this is where Cucumber features and step definitions live 
 - spec - this is where rspec tests live 
 
-Time: 
+<hr/>
+
+### Time check
 
 - 5 minutes 
 
@@ -298,6 +308,8 @@ Cycle Time so far:
 
 - Best case: 01:00 + 00:05 = 01:05
 - Worst case: 02:15 + 00:05 = 02:20
+
+<hr/>
 
 ## Work Item 1: Initial Gherkin Scenarios for Echo Transaction 
 
@@ -411,7 +423,9 @@ end
 
 This is where we need to be just now. 
 
-Time: 
+<hr/>
+
+### Time check 
 
 _Create the echo.feature file with initial scenarios_
 
@@ -427,6 +441,8 @@ Cycle Time so far:
 
 - Best case: 01:05 + 00:15 = 1:20 
 - Worst case: 02:20 + 00:45 = 03:05 
+
+<hr/>
 
 ## Work Item 1: Echo - Implement "Given the application is available" 
 
