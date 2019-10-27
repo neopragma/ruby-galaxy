@@ -2,9 +2,9 @@ language: ruby
 rvm:
  - 2.5
  - jruby
+install: 
+ - bundle install
 script:
- - sudo apt-get update -y
- - sudo apt install ruby-rack
  - export GALAXY_URL=http://0.0.0.0:3000
  - rackup -P rackup.pid -p 3000 -o 0.0.0.0 &
  - rake
