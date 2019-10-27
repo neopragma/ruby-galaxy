@@ -6,8 +6,8 @@ gem 'json'
 gem 'rake'
 gem 'rack'
 
-group :test do
+#group :test do
   gem 'cucumber'
   gem 'rspec'
   gem 'rest-client'
-end
+#end
