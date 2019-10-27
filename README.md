@@ -789,7 +789,7 @@ branches:
   only: master
 ```
 
-It's also helpful to be notified when a build fails. For that, we'll add an _email_ section to the .travis.yml file: 
+It's also helpful to be notified when a build fails. For that, we'll add an _email_ section to the .travis.yml file. At this point, our .travis.yml file looks like this:
 
 ```
 email:
@@ -812,7 +812,28 @@ script:
  - kill `cat rackup.pid`
 ```
 
-The resulting .travis.yml file looks like this: 
+When we commit changes to version control, the Travis CI build automatically starts, and it's running clean. But not for long, because we aren't finished with this task yet. 
 
-```
-```
+
+<hr/>
+
+### Time check 
+
+_Implement Given step in Cucumber and run in the development environment_ 
+
+- If someone on the team has done this before: 1 hour 
+- If no one on the team has done this before: 3 hours
+
+Cycle Time so far: 
+
+- Best case: 03:20 + 01:00 = 04:20
+- Worst case: 09:05 + 04:00 = 13:05 
+
+<hr/>
+
+### Continuing with: Echo - Implement "Given the application is available"
+
+At this point, our first Cucumber step for the Echo story is working in the development environment and in the CI environment, but not in production. We also haven't yet integrated static code analysis with the CI build. 
+
+Our team discusses the situation and decides to complete the static code analysis integration before moving on to set up automated deployment to production. 
+
