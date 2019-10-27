@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'cucumber'
+require 'cucumber/rake/task'
 require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec) do |t|
@@ -5,8 +8,8 @@ RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = Dir.glob('spec/**/*_spec.rb')
 end
 
-RSpec::Core::RakeTask.new(:integration) do |t|
-  t.rspec_opts = "--tag integration"
+Cucumber::Rake::Task.new(:features) do |t|
+  t.cucumber_opts = "--format pretty" # Any valid command line option can go here.
 end
 
-task :default => :spec
+task :default => :features
