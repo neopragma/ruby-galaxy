@@ -1,0 +1,13 @@
+current directory: /home/cabox/workspace/galaxy/vendor/bundle/ruby/2.5.0/gems/json-2.2.0/ext/json
+/home/cabox/.rvm/rubies/ruby-2.5.1/bin/ruby -r ./siteconf20191026-1159-15pz8vo.rb extconf.rb
+creating Makefile
+
+current directory: /home/cabox/workspace/galaxy/vendor/bundle/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR=" clean
+
+current directory: /home/cabox/workspace/galaxy/vendor/bundle/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR="
+make: Nothing to be done for 'all'.
+
+current directory: /home/cabox/workspace/galaxy/vendor/bundle/ruby/2.5.0/gems/json-2.2.0/ext/json
+make "DESTDIR=" install
