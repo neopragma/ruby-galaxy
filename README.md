@@ -152,6 +152,14 @@ I'm going to call them "work items," for lack of a better name.
 
 Whatever we may call it, in substance this is not a list of hard-and-fast "requirements," as we are not doing [big design up front (BDUF)](http://wiki.c2.com/?BigDesignUpFront). When we take an iterative/incremental approach, we use [rolling wave planning](https://project-management-knowledge.com/definitions/r/rolling-wave-planning/) or [multi-horizon planning](https://www.solutionsiq.com/learning/blog-post/planning-horizons-decision-making-within-agile-frameworks/). We'll elaborate each work item that we decide to complete at the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/).
 
+The iterative/incremental approach calls for work to be done iteratively, so that the team and the stakeholders can see partial results, provide feedback to each other, make decisions about what to do next, and steer the work toward a meaningful outcome. The iterations might be called: 
+
+- Sprints ([Scrum](https://scrumguides.org/)) 
+- Iterations ([Extreme Programming](http://www.extremeprogramming.org/))
+- Development Cadence ([Kanban](https://resources.collab.net/agile-101/what-is-kanban)) 
+- Units of time - _week_, _fortnight_, _month_ ([traditional methods](https://www.workbreakdownstructure.com/))
+- Whatever-you-want-to-call-them (your own method)
+
 Numerous techniques and models are available to help us reach a decision about what functionality our solution ought to have and how to prioritize and sequence the delivery of that functionality. The details are out of scope here. Let's pretend we've used some of those techniques and models, and we've decided to proceed with this list: 
 
 - Echo Message
