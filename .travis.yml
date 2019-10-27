@@ -7,5 +7,5 @@ install:
 script:
  - export GALAXY_URL=http://0.0.0.0:3000
  - rackup -P rackup.pid -p 3000 -o 0.0.0.0 &
- - rake
+ - bundle exec rake
  - kill `cat rackup.pid`
