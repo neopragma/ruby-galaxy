@@ -672,7 +672,8 @@ test $(curl --write-out %{http_code} --silent --head --output /dev/null "$GALAXY
 bundle exec cucumber
 ```
 
-#### Time check 
+<hr/>
+### Time check 
 
 _Implement Given step in Cucumber and run in the development environment_ 
 
@@ -683,8 +684,9 @@ Cycle Time so far:
 
 - Best case: 02:20 + 01:00 = 03:29
 - Worst case: 06:05 + 03:00 = 09:05 
+<hr/>
 
-#### Continuing with: Echo - Implement "Given the application is available"
+### Continuing with: Echo - Implement "Given the application is available"
 
 
 
