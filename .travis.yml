@@ -3,7 +3,7 @@ rvm:
  - 2.5
  - jruby
 script:
- - apt install ruby-rack
+ - sudo apt install ruby-rack
  - export GALAXY_URL=http://0.0.0.0:3000
  - rackup -P rackup.pid -p 3000 -o 0.0.0.0 &
  - rake
