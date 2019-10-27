@@ -439,7 +439,7 @@ _Create the Gemfile file specifying the dependencies for Cucumber_
 
 Cycle Time so far: 
 
-- Best case: 01:05 + 00:15 = 1:20 
+- Best case: 01:05 + 00:15 = 01:20 
 - Worst case: 02:20 + 00:45 = 03:05 
 
 <hr/>
@@ -679,7 +679,7 @@ RuntimeError: no acceptor (port is in use or requires root privileges)
   /home/cabox/workspace/galaxy/vendor/bundle/ruby/2.5.0/gems/eventmachine-1.2.7/lib/eventmachine.rb:531:in `start_tcp_server'
 ``` 
 
-The server is still running from before. We need to make the script [idempotent](https://en.wikipedia.org/wiki/Idempotence). Yes, I knew that was going to happen, but I wanted an excuse to introduce the topic of idempotence. It's pretty important for scripts that do configuration or provisioning in a dynamic environment. It means if an operation is supposed to happen exactly once, then executing that operation multiple times will only result in one result. Let's use this tiny, minor example to illustrate. 
+The server is still running from before. We need to make the script [idempotent](https://en.wikipedia.org/wiki/Idempotence). Yes, I knew that was going to happen, but I wanted an excuse to introduce the topic of idempotence. It's pretty important for scripts that do configuration or provisioning in a dynamic environment. It means if an operation is supposed to happen exactly once, then executing that operation multiple times the result will only happen once. Let's use this tiny, minor example to illustrate. 
 
 In the runcukes.sh script, we want the server to start exactly once. We might want to overwrite the value of the environment variable, so that operation needn't be idempotent in this context. We don't have to do anything special for the _bundle exec cucumber_ step. 
 
@@ -732,7 +732,7 @@ Cycle Time so far:
 
 ### Continuing with: Echo - Implement "Given the application is available"
 
-We've implemented the first Cucumber step for the Echo story, but it only runs in the development environment. We need it to run in production, per the Definition of Done. The next step toward that goal is to set up Continuous Integration, so a build will run automatically whenever the team commits changes to version control. 
+We've implemented the first Cucumber step for the Echo story, but it only runs in the development environment. We need it to run with an automated CI build, too. Our next step is to set up Continuous Integration, so a build will run automatically whenever the team commits changes to version control. 
 
 For our project, the team has selected Travis CI for continuous integration support. A minimal .travis.yml file looks like this: 
 
@@ -781,6 +781,8 @@ script:
 ```
 
 You might notice that the commands _rackup_ and _rake_ work just fine in the development environment without using bundler. This is one of the reasons to exercise the CI service as early as possible in the development process. Those commands will not work properly when the build runs under Travis CI. Bundler is handling all the dependencies, so we have to run these commands _via_ bundler. We can get away with it on our dev box because we have things installed and configured above and beyond the bare minimum requirements for the app. Travis CI does not. It creates and provisions the Ubuntu instance on the fly, based on what we specify in the .travis.yml file. 
+
+You might also notice the _bundle exec rackup_ command in the .travis.yml file is not idempotent. Why? It's because Travis CI will create the Ubuntu instance on the fly to run the build. It will not use a pre-existing instance that might already have a server active. 
 
 There are a couple more tweaks to make to the .travis.yml file. We stated in the introduction that our team uses trunk-based development as a standard work flow. However, that doesn't mean there are never any other branches. Short-lived branches for experimentation, and possibly sometimes to deal with production issues, may exist from time to time. We don't want Travis CI to start a build every time someone commits to one of those short-lived branches. So, we'll add a _branches_ section to the .travis.yml file:
 
