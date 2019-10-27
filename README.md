@@ -692,6 +692,28 @@ test $(curl --write-out %{http_code} --silent --head --output /dev/null "$GALAXY
 bundle exec cucumber
 ```
 
+The CI server will run _bundle exec rake_ by default, so let's set up a Rakefile and make sure Rake will generate the same output as _bundle exec cucumber_. This Rakefile will support running Cukes or Specs. By default, we'll run the Cukes. 
+
+```ruby 
+require 'rubygems'
+require 'cucumber'
+require 'cucumber/rake/task'
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = "--tag ~integration"
+  t.pattern = Dir.glob('spec/**/*_spec.rb')
+end
+
+Cucumber::Rake::Task.new(:features) do |t|
+  t.cucumber_opts = "--format pretty" # Any valid command line option can go here.
+end
+
+task :default => :features
+```
+
+Trying this in the development environment, we find it generates exactly the same output as _bundle exec cucumber_. 
+
 <hr/>
 
 ### Time check 
@@ -703,12 +725,94 @@ _Implement Given step in Cucumber and run in the development environment_
 
 Cycle Time so far: 
 
-- Best case: 02:20 + 01:00 = 03:29
+- Best case: 02:20 + 01:00 = 03:20
 - Worst case: 06:05 + 03:00 = 09:05 
 
 <hr/>
 
 ### Continuing with: Echo - Implement "Given the application is available"
 
+We've implemented the first Cucumber step for the Echo story, but it only runs in the development environment. We need it to run in production, per the Definition of Done. The next step toward that goal is to set up Continuous Integration, so a build will run automatically whenever the team commits changes to version control. 
 
+For our project, the team has selected Travis CI for continuous integration support. A minimal .travis.yml file looks like this: 
 
+```
+language: ruby
+rvm:
+ - 2.5
+ - jruby
+```
+
+The .travis.yml file goes in the project root directory. We know we will need much more configuration than this, but we want to take baby steps and check everything as we progress. 
+
+Let's add that .travis.yml file and commit to version control. At this point, our [Travis dashboard](https://travis-ci.com/neopragma/ruby-galaxy) shows "no builds." 
+
+Now when we commit to version control, we expect Travis CI to run a build automatically. Let's see if that happens. 
+
+The good news is the CI build started automatically!
+
+The bad news is we have an error: 
+
+```
+$ bundle exec rake
+/home/travis/.rvm/rubies/ruby-2.5.5/bin/ruby -S bundle exec cucumber --format pretty
+Feature: Echo Transaction
+  Background:                          # features/echo.feature:3
+    Given the application is available # features/step_definitions/echo_steps.rb:1
+      bad URI(no host provided): http:/// (URI::InvalidURIError)
+      ./features/step_definitions/echo_steps.rb:2:in `"the application is available"'
+      features/echo.feature:4:in `Given the application is available'
+``` 
+
+We haven't provided the correct URL for the service in the CI environment. We need to tell Travis CI to start our _thin_ server and on what port the service will listen. Let's add a _script_ section to the .travis.yml file. We'll set the GALAXY_URL variable, start the server, run the cukes, and stop the server. When we commit this change to version control, Travis CI starts another build automatically. 
+
+```
+language: ruby
+rvm:
+ - 2.5
+ - jruby
+install:
+ - bundle install
+script:
+ - export GALAXY_URL=http://0.0.0.0:3000
+ - bundle exec rackup -P rackup.pid -p 3000 -o 0.0.0.0 &
+ - bundle exec rake
+ - kill `cat rackup.pid`
+```
+
+You might notice that the commands _rackup_ and _rake_ work just fine in the development environment without using bundler. This is one of the reasons to exercise the CI service as early as possible in the development process. Those commands will not work properly when the build runs under Travis CI. Bundler is handling all the dependencies, so we have to run these commands _via_ bundler. We can get away with it on our dev box because we have things installed and configured above and beyond the bare minimum requirements for the app. Travis CI does not. It creates and provisions the Ubuntu instance on the fly, based on what we specify in the .travis.yml file. 
+
+There are a couple more tweaks to make to the .travis.yml file. We stated in the introduction that our team uses trunk-based development as a standard work flow. However, that doesn't mean there are never any other branches. Short-lived branches for experimentation, and possibly sometimes to deal with production issues, may exist from time to time. We don't want Travis CI to start a build every time someone commits to one of those short-lived branches. So, we'll add a _branches_ section to the .travis.yml file:
+
+```
+branches:
+  only: master
+```
+
+It's also helpful to be notified when a build fails. For that, we'll add an _email_ section to the .travis.yml file: 
+
+```
+email:
+  recipients:
+  - davenicolette@gmail.com
+  on_success: change
+  on_failure: change
+language: ruby
+rvm:
+ - 2.5
+ - jruby
+branches:
+  only: master
+install:
+ - bundle install
+script:
+ - export GALAXY_URL=http://0.0.0.0:3000
+ - bundle exec rackup -P rackup.pid -p 3000 -o 0.0.0.0 &
+ - bundle exec rake
+ - kill `cat rackup.pid`
+```
+
+The resulting .travis.yml file looks like this: 
+
+```
+```
