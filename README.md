@@ -2,11 +2,46 @@
 
 The Merchant's Guide to the Galaxy is a simple programming exercise that's often used to screen candidates for software developer positions or as an exercise in [code dojos](http://codingdojo.org/). Here's the [Problem Description](ProblemDescription.md).  
 
-I wanted to use the exercise as a vehicle to illustrate several concepts pertaining to lightweight software development and delivery. 
+## Another problem description
 
-I will now subject you to a painfully-verbose explanation of my rationale for approaching the exercise in the way I did. There's a lot of [dot-connecting](https://idioms.thefreedictionary.com/connect+the+dots) in the following explanation, because I've noticed most developers don't intuitively understand the reasons behind the practices some of us recommend. They say test-driven development is just Kent Beck's "opinion," or pair programming is just Ron Jeffries' "opinion," or adaptive development is just Jim Highsmith's "opinion," or WIP limits are just Mike Burrows' "opinion," or the value of trunk-based development is just Paul Hammant's "opinion," or the value of extreme collaboration is just Woody Zuill's "opinion," or the advisability of applying robust testing skills at all times is just Michael Bolton's "opinion," or the idea that a product-aligned team should take responsibility for both development and production support is just Charity Majors' "opinion," and, as everyone knows, all opinions are equal. The thing is, [some opinions are more equal than others](https://www.dictionary.com/browse/all-animals-are-equal--but-some-animals-are-more-equal-than-others). 
+Most of the time, people fly through exercises like this quickly. They may wish to show their friends that they can type source code really fast. They may have to submit a solution to a prospective employer as part of a screening or interviewing process, and they have limited time. They may be participating in a code dojo or similar event that's only 60 to 90 minutes long. For one reason or another, people tend to go fast on these things.
 
-Or you could just [skip it](#getting-started) and go straight to where the work starts. 
+Even when people aren't in a hurry, they usually gloss over most of the good practices they would normally use on the job. They may be more interested in learning a new programming language, or exploring an unfamiliar programming paradigm, or using the exercise to learn a new webapp framework. They aren't interested in treating the exercise as if it were real work. 
+
+It seems to me all of this leads to a general problem in the industry: Many software professionals are not in the habit of applying good practices. Good practices are rarely the focus of language tutorials, job screening challenges, or toy problems for practicing coding. 
+
+## Opinions are like belly-buttons
+
+I've noticed most developers don't intuitively understand the reasons behind the practices some of us recommend. They say test-driven development is just Kent Beck's "opinion," or pair programming is just Ron Jeffries' "opinion," or adaptive development is just Jim Highsmith's "opinion," or WIP limits are just Mike Burrows' "opinion," or the value of trunk-based development is just Paul Hammant's "opinion," or the value of extreme collaboration is just Woody Zuill's "opinion," or the advisability of applying robust testing skills at all times is just Michael Bolton's "opinion," or the idea that a product-aligned team should take responsibility for both development and production support is just Charity Majors' "opinion," or the value of frequent feedback from customers is just Ken Schwaber's "opinion," and, as everyone knows, all opinions are equal. 
+
+The thing is, [some opinions are more equal than others](https://www.dictionary.com/browse/all-animals-are-equal--but-some-animals-are-more-equal-than-others). 
+
+## Another goal for the exercise
+
+What if we use the exercise as a vehicle to explore some of the ways in which an effective product-oriented, cross-functional software team works? Factors to look for could include: 
+
+1. Scope of responsibility of the team is a "product" - not just _delivery_ but also _operations_ and _support_. 
+1. Focus of team's interest is the _customer_.
+1. Team works _collaboratively_, with a preference for tighter methods of collaboration whenever possible.
+1. A professional development environment includes support for continuous integration, static code analysis, automated testing, and automated deployment. It isn't just an IDE.
+1. Lower work-in-process (WIP) limits generally promote smoother _flow_. 
+1. To understand customer needs, collaboration with key stakeholders is necessary. The team can't afford to follow a written specification to the letter without questions.
+1. Small work items defined in a lightweight fashion help the team understand its own delivery capacity, forecast future delivery, track progress, change priorities, and steer the design. Use the Three C's - card, conversation, confirmation. 
+1. The first software design principle is the _principle of least astonishment_.
+1. You Ain't Gonna Need It (YAGNI), except when you _are_ gonna need it. We know we will need things like security, accessibility, internationalization, observability, consistent exception handling, and several other attributes. 
+1. An iterative and incremental approach facilitates customer feedback and the ability to adjust the plan and the solution design.
+1. Incremental delivery of _vertical slices_ of functionality provides customers with meaningful interim results they can relate to, so they can understand the value delivered to date and help the team adapt the plan and the design.
+1. Trunk-based development keeps the branching strategy as simple as possible, and helps the team avoid "merge hell."
+1. It's generally a good idea to _begin with the end in mind_. In software development, this often translates into a _test-first_ approach to building code. 
+1. Metrics that track delivery performance without any dependency on _how_ the work is done can help the team quantify the effects of any process improvement efforts they may make. Lean-based metrics have this characteristic.
+1. It's more valuable for each team member to be available immediately _at the moment they are needed_ than it is for them to stay "busy" with low-priority work. 
+1. When all team members are aware of one another's work, it helps everyone do things in a way that's easy to integrate and unlikely to cause re-work due to miscommunication.
+
+Let's walk with a hypothetical team as they implement a solution to this toy problem, and call out the times when the team exemplifies each of the factors listed above. 
+
+<hr/>
+
+Text below is being revised. Ignore it.
 
 ## Approach
 
