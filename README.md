@@ -231,6 +231,21 @@ Everyone agrees that the probe transactions can be the lowest-priority items for
 
 The team captures brief descriptions of the key functionality in the form of a list of options. This might be called a Product Backlog (Scrum), a Master Story List (Extreme Programming), a Work Queue (Kanban), a Work Breakdown Structure (traditional methods), or something else. In any case, it is not a requirements specification; it is a list of options that may be implemented at the discretion of key stakeholders, if and when they perceive there is value to be obtained from doing so.
 
+The team asks key stakeholders to assign [relative value points](https://www.simula.no/sites/simula.no/files/publications/files/earnedbusinessvalue_0.pdf) to each of the main functional areas of the solution. This will give the team a way to track the value they deliver to customers as they incrementally deliver the solution. They allocate 1,000 value points as follows: 
+
+| Price Request | Price Calculation | Probe Messages | Echo Transaction |
+| ------------- | ----------------- | -------------- | ---------------- |
+| 800           | 150               | 50             | 0
+
+The rationale is that the Price Request functionality can work even if the underlying prices are hard-coded in an early solution increment, and that is the functionality the galactic merchant needs most. The Price Calculation will make the Price Request more accurate and reliable. The Probe Messages offer indirect value to customers, as they can help the team keep the solution up and running. The Echo Transaction doesn't offer any customer value, as far as the stakeholders are concerned. 
+
+That means the _sequencing_ of the planned work differs from the _business value_ of the features: 
+
+1. Echo Transaction - to be done first for technical reasons
+2. Price Request - primary functionality of interest to galactic merchants
+3. Price Calculation - improves the implementation and quality of the Price Request functionality
+4. Probe Messages - useful for support, but not visible to customers; could be dropped if necessary
+
 Pursuant to [rolling wave planning](https://www.brighthubpm.com/project-planning/48953-basics-of-rolling-wave-planning/) the team and key stakeholders collaboratively define more details pertaining to the Echo transaction story. In keeping with the principle of deferring decisions until the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/), they refrain from adding details to the remaining stories. 
 
 Following the general guideline of [behavior-driven development](https://hiptest.com/behavior-driven-development/) and Steven Covey's 2nd habit of highly effective people, ["begin with the end in mind"](https://www.artofmanliness.com/articles/the-7-habits-begin-with-the-end-in-mind/), the team and key stakeholders collaboratively define a few sample scenarios for the Echo transaction. These will guide development of the solution. 
@@ -275,7 +290,7 @@ _Time so far:_
 
 | Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE  | Lead Time |
 | ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ---- | --------- |
-| 003:00  | 1. Initial project planning         | N/A        | 000:00   | 008:00   | 000:00 | 011:00  | 0.0% | 011:00    |
+| 003:00  | 1. Initial planning                 | N/A        | 000:00   | 008:00   | 000:00 | 011:00  | 0.0% | 011:00    |
 
 _Team feeling_ 
 
