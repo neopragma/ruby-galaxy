@@ -23,7 +23,7 @@ What if we use the exercise as a vehicle to explore some of the ways in which an
 1. The scope of responsibility of the team is a "product" - not just _delivery_ but also _operations_ and _support_. 
 1. The focus of team's interest is the _customer_, and therefore the health of the production environment, and not just throwing code over the wall as fast as possible.
 1. Everyone in an organization has their role to play. It is not management's role to dictate technical practices to software teams. The teams already have the right people to make those decisions.
-1. An effective team works _collaboratively_, with a preference for tighter methods of collaboration whenever possible.
+1. An effective team works _collaboratively_, with a preference for tighter methods of collaboration whenever possible. Swarming or mobbing is better than pairing; pairing is better than working solo; sitting together while working solo is better than sitting separately; communicating face-to-face is better than using email or other indirect methods.
 1. A professional development environment includes support for continuous integration, static code analysis, automated testing, and automated deployment. It isn't just an IDE, and it isn't someone else's job to set up the rest of the pipeline.
 1. Lower work-in-process (WIP) limits generally promote smoother _flow_. A focus on _finishing_ rather than _starting_ many tasks tends to result in earlier delivery and higher quality. 
 1. To understand customer needs, collaboration with key stakeholders is necessary. The team can't afford to follow a written specification to the letter without questions.
