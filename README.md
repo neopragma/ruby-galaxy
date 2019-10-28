@@ -48,6 +48,8 @@ Let's walk with a hypothetical team that uses all the good practices we know of 
 
 1. The team reviews the [Problem Description](ProblemDescription.md) together and in collaboration with the key stakeholder (may be called _Product Owner_ or _Customer_ or similar). 
 
+_Good things:_
+
 - Factor 4 - team works collaboratively (team analyzed the problem together)
 - Factor 7 - collaboration with stakeholders (team clarified the requirements)
 
@@ -59,6 +61,8 @@ Let's walk with a hypothetical team that uses all the good practices we know of 
 - tegj is L 
 
 Taken literally, this means the numerical values of _glob_, _prok_, _pish_, and _tegj_ are undefined, and must be given values through input to the application, provided in some form not specified. But if the model for galactic numbers is the Roman system, then this would be tantamount to having variable values for symbols like L and X. They note that this would lead to unexpected behavior from the customer's point of view, as prices could not be calculated until the base values had been provided by a client of the system. It also creates possibly-unnecessary technical complication in the design for (a) persisting the values that are subitted, and (b) handling the cases when customers access the system before values have been assigned to the alien number-words. The team collaborates with the key stakeholer to clarify that the numerical values of the alien words are, in fact, predefined and will not change at runtime. This will enable a simpler design. 
+
+_Good things:_
 
 - Factor 2 - customer focus (team thought about how customers would be affected in production)
 - Factor 4 - team works collaboratively (team analyzed the problem together)
@@ -72,12 +76,14 @@ They agree their service(s) will return results in the form of JSON documents; t
 
 They agree to use Git for version control with Github as the server; CodeClimate for static code analysis and code coverage; TravisCI for continuous integration; and Heroku as the cloud provider for production. 
 
+_Good things:_
+
 - Factor 3 - team owns technical decisions (they did not request an architectural design from a separate group)
 - Factor 4 - team works collaboratively (team reached consensus about architecture)
+- Factor 9 - principle of least astonishment (JSON with microservices is typical)
 - Factor 17 - cross-functional team aware of each other's work (team is capable of deciding on architecture)
 
-
-Time so far:
+_Time so far:_
 
 | Prev CT | Activity                         | VA Time  | NVA Time | PCE  | Lead Time |
 | ------- | -------------------------------- | -------- | -------- | ---- | --------- |
@@ -93,7 +99,11 @@ Time so far:
 
 The team submits the [Problem Description](ProblemDescription.md) to the Enterprise Architecture team and waits for their response. 
 
-Time so far:
+_Good things:_ 
+
+- (None)
+
+_Time so far:_
 
 | Prev CT | Activity                         | VA Time  | NVA Time | PCE  | Lead Time |
 | ------- | -------------------------------- | -------- | -------- | ---- | --------- |
