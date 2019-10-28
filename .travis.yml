@@ -1,11 +1,28 @@
+env:
+  global:
+   - CC_TEST_REPORTER_ID=2babeb9e60ac3b048b093f9d0db889e2233d37d841126276654e710ea571c137
+email:
+  recipients:
+   - davenicolette@gmail.com
+  on_success: change
+  on_failure: change
 language: ruby
 rvm:
  - 2.5
  - jruby
-install: 
+before_script:
+ - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+ - chmod +x ./cc-test-reporter
+ - "./cc-test-reporter before-build"
+branches:
+  only: master
+install:
  - bundle install
 script:
  - export GALAXY_URL=http://0.0.0.0:3000
  - bundle exec rackup -P rackup.pid -p 3000 -o 0.0.0.0 &
  - bundle exec rake
  - kill `cat rackup.pid`
+after_script:
+ - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+ 
