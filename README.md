@@ -134,7 +134,7 @@ _Good things:_
 - Factor 3 - team owns technical decisions (they did not request an architectural design from a separate group)
 - Factor 4 - team works collaboratively (team reached consensus about architecture)
 - Factor 9 - principle of least astonishment (JSON with microservices is typical)
-- Factor 17 - cross-functional Team CorporateCogsware of each other's work (team is capable of deciding on architecture)
+- Factor 17 - cross-functional team members are aware of each other's work (team is capable of deciding on architecture)
 
 _Time so far:_
 
@@ -209,13 +209,15 @@ _Time so far:_
   - how many Credits is glob prok Iron ?
   - how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
 - Price calculations - under the covers functionality, a separate concern from handling requests/responses
-  System probe messages, exemplified by the test cases
+- System probe messages, exemplified by the test cases
   - glob glob Silver is 34 Credits
   - glob prok Gold is 57800 Credits
   - pish pish Iron is 3910 Credits
 - An Echo transaction, to validate the application architecture is in place (not defined in the Problem Description)
 
 The team interprets some of the test cases provided in the Problem Description as "probe messages" because they do not return a result. They seem to be in the nature of assertions, in that they will either be "true" or the transaction will error out. Team members debate whether they are necessary, and ultimately agree that they could provide a more meaningful way to check the health of the application in production than merely pinging the server. To help avoid [gray failures](https://blog.acolyer.org/2017/06/15/gray-failure-the-achilles-heel-of-cloud-scale-systems/) and to provide a slightly more robust way to monitor production operations than log aggregation, the team decides to implement these messages as "probes." The galactic merchant will probably not use these transactions. 
+
+The team makes the technical decision to build _observability_ into the solution and to instrument the code to supply data to a tool for live production monitoring and problem resolution. This is because the nature of a dynamic, elastic cloud environment makes it impossible to test all possible scenarios prior to production release, and the team is responsible for operations as well as development. 
 
 Based on the Problem Description and discussions with key stakeholders, it becomes clear there is just one _Persona_ to be concerned about: The galactic merchant. They agree not to spend more time on creating Personas for the solution. 
 
