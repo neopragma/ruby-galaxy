@@ -851,7 +851,7 @@ _Time so far:_
 
 | Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE   | Lead Time |
 | ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ----- | --------- |
-| 011:00  | 1. Given the application is avail.  | 011:40     | 011:40   | 000:00   | 011:40 | 011:00  | 51.3% | 022:40    |
+| 011:00  | 1. Given the application is available  | 011:40     | 011:40   | 000:00   | 011:40 | 011:00  | 51.3% | 022:40    |
 
 _Team feeling:_ 
 
