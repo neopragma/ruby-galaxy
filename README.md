@@ -48,11 +48,12 @@ Let's walk with a hypothetical team that uses all the good practices we know of 
 
 The team submits the [Problem Description](ProblemDescription.md) to the Enterprise Architecture team and waits for their response. 
 
-| Previous CT | Activity | Value-add Time | Non-value-add Time | PCE until now |
-|   000:00    | Submit docs to arch team | 001:00 | 000:00 | 100% |
-|   159:00    | Wait for response from arch team | 000:00 | 159:00 | 0.6% |
+| Previous CT | Activity                         | Value-add Time | Non-value-add Time | PCE until now |
+| ----------- | -------------------------------- | -------------- | ------------------ | ------------- |
+|   000:00    | Submit docs to arch team         | 001:00         | 000:00             | 100%          |
+|   159:00    | Wait for response from arch team | 000:00         | 159:00             | 0.6%          |
 
- 
+
 
 
 
