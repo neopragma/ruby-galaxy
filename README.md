@@ -857,13 +857,13 @@ _Team feeling:_
 
 - High engagement 
 - High interest 
-- Satisfaction with initial results
-- Anticipation of fun building out a cloud-based microservices solution 
+- Happiness about learning new things
+- Pleasure in showing stakeholders actual running code, even if limited 
 
 _Customer satisfaction:_ 
 
-- High satisfaction resulting from direct collaboration with the team in understanding customer needs and clarifying requirements.
-- High satisfaction with the results of the initial planning activities.
+- Joy at seeing software actually running at this early stage of the project - less than a week in!
+- Anticipation that business value will be realized early, if the team continues to deliver at this rate.
 
 
 
