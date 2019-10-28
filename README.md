@@ -103,8 +103,8 @@ _Customer satisfaction_
 
 _Good things:_
 
-- Factor 4 - team works collaboratively (Team CorporateCogsnalyzed the problem together)
-- Factor 7 - collaboration with stakeholders (team clarified the requirements)
+- Factor 4 - team works collaboratively (they analyzed the problem together)
+- Factor 7 - collaboration with stakeholders (team worked directly with key stakeholders)
 
 **Activity 2.** The team notices that the Problem Description lists several acceptance test cases, including these: 
 
@@ -113,7 +113,7 @@ _Good things:_
 - pish is X 
 - tegj is L 
 
-Taken literally, this means the numerical values of _glob_, _prok_, _pish_, and _tegj_ are undefined, and must be given values through input to the application, provided in some form not specified. But if the model for galactic numbers is the Roman system, then this would be tantamount to having variable values for symbols like L and X. They note that this would lead to unexpected behavior from the customer's point of view, as prices could not be calculated until the base values had been provided by a client of the system. It also creates possibly-unnecessary technical complication in the design for (a) persisting the values that are subitted, and (b) handling the cases when customers access the system before values have been assigned to the alien number-words. The team collaborates with the key stakeholer to clarify that the numerical values of the alien words are, in fact, predefined and will not change at runtime. This will enable a simpler design. 
+Taken literally, this means the numerical values of _glob_, _prok_, _pish_, and _tegj_ are undefined, and must be given values through input to the application, provided in some form not specified. But if the model for galactic numbers is the Roman system, then this would be tantamount to having variable values for symbols like L and X. They note that this would lead to unexpected behavior from the customer's point of view, as prices could not be calculated until the base values had been provided by a client of the system. It also creates possibly-unnecessary technical complication in the design for (a) persisting the values that are submitted, and (b) handling the cases when customers access the system before values have been assigned to the alien number-words. The team collaborates with the key stakeholder to clarify that the numerical values of the alien words are, in fact, predefined and will not change at runtime. This will enable a simpler design. 
 
 _Good things:_
 
@@ -154,13 +154,15 @@ _Customer satisfaction_
 
 - High satisfaction resulting from direct collaboration with the team in understanding customer needs and clarifying requirements 
 
+Team CorporateCogs has taken 160.0 hours to reach this point. Team CustomersPet has taken 3.0 hours to reach the equivalent point in their process. 
+
 <hr/>
 
 ## Getting Started: Planning 
 
 ### Team CorporateCogs
 
-**Activity 1.** Based on the Problem Description, the team elaborates a detailed Requirements Specification to guide their work. Team CorporateCogs is working solely from the written Problem Description, and is not collaborating with stakeholders. Therefore, they have taken the description of the test cases of the form "prok is V" literally. 
+**Activity 1.** Based on the Problem Description, the team elaborates a detailed Requirements Specification to guide their work. Team CorporateCogs is working solely from the written Problem Description, and is not collaborating with stakeholders. Therefore, they have taken the description of the test cases of the form "prok is V" literally, and they plan to implement the number values as input messages from a client. In addition, about half the information in the Requirements Specification is incorrect or incomplete (typical with this sort of process), but the team has no way of knowing that yet. 
 
 _Good things:_ 
 
@@ -259,8 +261,35 @@ Scenario: Request message does not contain a check value
   And the response contains element "sampleRequest" with value "/echo/5"
 ```
 
+_Good things:_ 
 
+- Factor 1 - the team considers operations, production monitoring, and production support in their design approach.
+- Factor 2 - the team considers Personas and user experiences in their design approach. 
+- Factor 4 - the team works collaboratively with each other, each bringing unique specialized knowledge to the table.
+- Factor 7 - the team works collaboratively with  key stakeholders to clearly define the problem and the desired solution. 
+- Factor 11 - rolling wave planning with limited detail defined for work items that will be addressed in future are consistent with the iterative/incremental approach to development.
+- Factor 14 - by defining example scenarios in Gherkin to describe the behavior of the Echo transaction, the team _begins with the end in mind_ before starting to write code. 
+- Factor 17 - all team members are aware of each other's work, as they worked collaboratively up to this point.
 
+_Time so far:_
+
+| Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE  | Lead Time |
+| ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ---- | --------- |
+| 003:00  | 1. Initial project planning         | N/A        | 000:00   | 008:00   | 000:00 | 011:00  | 0.0% | 011:00    |
+
+_Team feeling_ 
+
+- High engagement 
+- High interest 
+- Satisfaction with initial results
+- Anticipation of fun building out a cloud-based microservices solution 
+
+_Customer satisfaction_ 
+
+- High satisfaction resulting from direct collaboration with the team in understanding customer needs and clarifying requirements.
+- High satisfaction with the results of the initial planning activities,.
+
+Both teams are now ready to begin development. Team CorporateCogs took 274 hours to reach this point. Team CustomersPet took 11 hours to reach the equivalent point in their process. 
 
 <hr/>
 
