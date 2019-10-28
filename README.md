@@ -68,18 +68,21 @@ _Good things:_
 
 _Time so far:_
 
-| Prev CT | Activity                            | Cycle Time | VA Time  | NVA Time | PCE  | Lead Time |
-| ------- | ----------------------------------- | ---------- | -------- | -------- | ---- | --------- |
-| 000:00  | 1. Submit docs to arch team         | N/A        | 001:00   | 000:00   | 100% | 001:00    |
-| 000:00  | 2. Wait for response from arch team | N/A        | 000:00   | 159:00   | 0.6% | 160:00    |
+
+| Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE  | Lead Time |
+| ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ---- | --------- |
+| 000:00  | 1. Submit docs to arch team         | N/A        | 001:00   | 000:00   | 001:00 | 000:00  | 100% | 001:00    |
+| 000:00  | 2. Wait for response from arch team | N/A        | 000:00   | 159:00   | 000:00 | 159:00  | 0.6% | 160:00    |
 
 **Note:**
 
-- Prev CT (Previous Cycle Time) - accumulated CT on the current work item, or N/A if not applicable to the activity. 
+- Prev LT (Previous Lead Time) - cumulative LT as the team starts this activity. 
 - Activity - one of the activities mentioned in the description just above the table. 
 - Cycle Time - CT in hours:minutes consumed in the activity.
 - VA Time (Value-Add Time) - time in hours:minutes during which value was added to the product. 
 - NVA Time (Non-Value-Add Time) - time in hours:minutes consumed in overhead activity or process waste.
+- Cum VA - cumulative VA up to this point.
+- Cum NVA - cumulative NVA up to this point. 
 - PCE (Process Cycle Efficiency) - percentage of Lead Time that was Value-Add Time, cumulative from the start of the project to the present moment. 
 - Lead Time - cumulative time from the start of the project to the present moment. 
 
@@ -135,11 +138,12 @@ _Good things:_
 
 _Time so far:_
 
-| Prev CT | Activity                         | VA Time  | NVA Time | PCE  | Lead Time |
-| ------- | -------------------------------- | -------- | -------- | ---- | --------- |
-| 000:00  | 1. Team review                   | 002:00   | 000:00   | 100% | 002:00    |
-| 159:00  | 2. Clarification about numbers   | 000:15   | 000:00   | 100% | 002:15    |
-| 159:00  | 3. Initial tech decisions        | 000:45   | 000:00   | 100% | 003:00    |
+
+| Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE  | Lead Time |
+| ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ---- | --------- |
+| 000:00  | 1. Team review                      | N/A        | 000:00   | 002:00   | 000:00 | 002:00  | 0.0% | 002:00    |
+| 159:00  | 2. Clarification about numbers      | N/A        | 000:00   | 002:15   | 000:00 | 002:15  | 0.0% | 002:15    |
+| 159:00  | 3. Initial tech decisions           | N/A        | 000:00   | 000:45   | 000:00 | 003:00  | 0.0% | 003:00    |
 
 _Team feeling_ 
 
@@ -157,13 +161,23 @@ _Customer satisfaction_
 
 ### Team CorporateCogs
 
-**Activity 1.** Based on the Problem Description, the team elaborates a detailed Requirements Specification to guide their work. 
+**Activity 1.** Based on the Problem Description, the team elaborates a detailed Requirements Specification to guide their work. Team CorporateCogs is working solely from the written Problem Description, and is not collaborating with stakeholders. Therefore, they have taken the description of the test cases of the form "prok is V" literally. 
 
 _Good things:_ 
 
 - (None)
 
-**Activity 2.** Based primarily on the response from the Enterprise Architecture group, the team determines which specialized team must be engaged to provide resources or work products for the project. 
+**Activity 2.** Based primarily on the response from the Enterprise Architecture group, as well as information in the Problem Description, the team determines which specialized teams must be engaged to provide resources or work products for the project. They identify several dependencies on external teams:
+
+- IT Administration Team, to create a Git repository for the project and user IDs for team members and the application to access network resources
+- Continuous Integration Team, to set up the project on a CI server
+- Infrastructure Engineering team, to create and provision development, test, and production servers and/or interface with a cloud service provider.
+- Storage Management Team, to ensure persistent storage is available for the application's database
+- database team, to define and create the database to store the numerical values of _glob_, _prok_, _pish_, and _tegj_. 
+- API Team, to design the API for the new service(s).
+- Testing Team, to perform end-to-end functional and regression testing and user acceptance testing for the project.
+- Release Team, to perform final system testing and migrate the code to production.
+- Security Team, to check for any potential security vulnerabilities in the solution as designed.
 
 _Good things:_ 
 
@@ -177,11 +191,11 @@ _Good things:_
 
 _Time so far:_
 
-| Prev CT | Activity                            | Cycle Time | VA Time  | NVA Time | PCE  | Lead Time |
-| ------- | ----------------------------------- | ---------- | -------- | -------- | ---- | --------- |
-| 000:00  | 1. Requirements Specification       | N/A        | 080:00   | 000:00   | 33%  | 241:00    |
-| 000:00  | 2. Team Dependencies                | N/A        | 001:00   | 000:00   | 33%  | 242:00    |
-| 000:00  | 3. Project Planning                 | N/A        | 030:00   | 000:00   | 30%  | 272:00    |
+| Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE   | Lead Time |
+| ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ----- | --------- |
+| 160:00  | 1. Requirements Specification       | N/A        | 080:00   | 000:00   | 081:00 | 159:00  | 30.0% | 241:00    |
+| 241:00  | 2. Team Dependencies                | N/A        | 000:00   | 003:00   | 081:00 | 162:00  | 30.0% | 244:00    |
+| 244:00  | 3. Project Planning                 | N/A        | 030:00   | 000:00   | 111:00 | 162:00  | 40.5% | 274:00    |
 
 ### Team CustomersPet
 
