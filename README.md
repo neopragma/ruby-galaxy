@@ -10,6 +10,7 @@ The Merchant's Guide to the Galaxy is a simple programming exercise that's often
 - [Assessment](#assessment)
 - [Getting Started: Analysis](#getting-started-analysis)
 - [Getting Started: Planning](#getting-started-planning)
+- [Development: First Work Items](#development-first-work-items)
 
 ## Another problem description
 
@@ -234,8 +235,6 @@ The team and key stakeholders carry out a [Feature Mapping](https://johnferguson
 
 The problem calls for very little complicated behavior, and the group feels there is no need to decompose the planned functionality to understand where to begin, or in what direction the design should go. So, they dispense with further formal planning methods. 
 
-Key stakeholders agree that the relative value of the different pieces of functionality don't vary by much. The price request functionality is the main thing, and that has to be supported by the underlying price calculation logic. 
-
 Technical team members recommend that the Echo transaction be implemented first, as a way to ensure the end-to-end solution architecture is sound, and is in place. Business stakeholders agree. 
 
 Everyone agrees that the probe transactions can be the lowest-priority items for implementation. 
@@ -319,10 +318,73 @@ Both teams are now ready to begin development. Team CorporateCogs took 274 hours
 
 <hr/>
 
+## Development: First Work Items
 
+### Team CorporateCogs
 
+Except where dependencies are noted, activities can be carried out in parallel.
 
+**Activity 1:** Submit request to the IT Administration team to create a Git repository for the project and user IDs for team members and the application to access network resources. CT = 1.
 
+**Activity 2:** Wait for results from the IT Administration team. CT = 120.
+
+**Activity 3:** Set up the developer workstations. CT = 40.
+
+**Activity 4:** Submit request to the Continuous Integration Team to set up the project on a CI server. This has a "finish" dependency on Activity 2. CT = 1.
+
+**Activity 5:** Wait for results from the Continuous Integration Team. CT = 80.
+
+**Activity 6:** Schedule a meeting with the API Team to explain what is needed from them. CT = 1.
+
+**Activity 7:** Wait until the meeting with the API Team. CT = 80.
+
+**Activity 8:** Wait for results from the API Team. CT = 80.
+
+**Activity 9:** Schedule a meeting with the Testing Team to discuss testing approaches and strategies for the solution. CT = 1. 
+
+**Activity 10:** Wait until the meeting with the Testing Team. CT = 80.
+
+**Activity 11:** Prepare initial design for the server environment for the solution. CT = 20.
+
+**Activity 12:** Schedule a meeting with the Infrastructure Engineering Team to present the design for the server environment. This has a "finish" dependency on Activity 11.
+
+**Activity 13:** Wait until the meeting with the Infrastructure Engineering Team.
+
+**Activity 14:** Modify the design for the server environment based on feedback from the Infrastructure Engineering Team. This has a "finish" dependency on Activity 13.
+
+**Activity 15:** Prepare initial design for the solution database. 
+
+**Activity 16:** Schedule a meeting with the Database Team to present the design for the solution database. This has a "finish" dependency on Activity 15. 
+
+**Activity 17:** Modify the design for the database based on feedback from the Database Team. This has a "finish" dependency on Activity 16. 
+
+**Activity 18:** Prepare task-level estimates for all the items in the project plan. 
+
+**Activity 19:** Schedule a meeting with the Project Manager to discuss the estimates. This has a "finish" dependency on Activity 18. 
+
+**Activity 20:** Adjust estimates based on feedback from the Project Manager. This has a "finish" dependency on activity 19.
+
+_Good things:_ 
+
+- (None)
+
+_Time so far:_
+
+| Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE   | Lead Time |
+| ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ----- | --------- |
+| 274:00  | 1. Submit req to IT Admin           | 001:00     | 000:00   | 001:00   | 111:00 | 163:00  | 40.0% | 275:00    |
+| 275:00  | 2. Wait for results from IT Admin   | 120:00     | 000:00   | 120:00   | 111:00 | 283:00  | 28.1% | 395:00    |
+| 275:00  | 3. Set up developer workstations    | 040:00     | 000:00   | 040:00   | 111:00 | 313:00  | 28.1% | 395:00    |
+| 395:00  | 4. Submit req to CI Team            | 001:00     | 000:00   | 001:00   | 111:00 | 314:00  | 28.1% | 395:00    |
+| 395:00  | 5. Wait for results from CI Team    | 080:00     | 000:00   | 080:00   | 111:00 | 394:00  | 23.4% | 475:00    |
+| 274:00  | 6. Sched meeting with API Team      | 001:00     | 000:00   | 001:00   | 111:00 | 395:00  | 23.4% | 475:00    |
+| 475:00  | 7. Wait until meeting with API Team | 080:00     | 000:00   | 080:00   | 111:00 | 475:00  | 23.4% | 475:00    |
+| 475:00  | 8. Wait for results from API Team   | 080:00     | 000:00   | 080:00   | 111:00 | 555:00  | 17.5% | 555:00    |
+| 555:00  | 9. Sched meeting with Testing Team  | 001:00     | 000:00   | 001:00   | 111:00 | 556:00  | 19.9% | 556:00    |
+| 556:00  | 10. Wait for meeting with Testing   | 080:00     | 000:00   | 080:00   | 111:00 | 636:00  | 17.5% | 636:00    |
+| 636:00  | 11. Initial server design           | 020:00     | 020:00   | 000:00   | 131:00 | 636:00  | 20.5% | 636:00    |
+
+<hr/>
 
 
 Text below is being revised. Ignore it.
