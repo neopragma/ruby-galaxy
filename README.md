@@ -20,15 +20,16 @@ The thing is, [some opinions are more equal than others](https://www.dictionary.
 
 What if we use the exercise as a vehicle to explore some of the ways in which an effective product-oriented, cross-functional software team works? Factors to look for could include: 
 
-1. Scope of responsibility of the team is a "product" - not just _delivery_ but also _operations_ and _support_. 
-1. Focus of team's interest is the _customer_.
-1. Team works _collaboratively_, with a preference for tighter methods of collaboration whenever possible.
-1. A professional development environment includes support for continuous integration, static code analysis, automated testing, and automated deployment. It isn't just an IDE.
-1. Lower work-in-process (WIP) limits generally promote smoother _flow_. 
+1. The scope of responsibility of the team is a "product" - not just _delivery_ but also _operations_ and _support_. 
+1. The focus of team's interest is the _customer_, and therefore the health of the production environment.
+1. Everyone in an organization has their role to play. It is not management's role to dictate technical practices to software teams. The teams already have the right people to make those decisions.
+1. An effective team works _collaboratively_, with a preference for tighter methods of collaboration whenever possible.
+1. A professional development environment includes support for continuous integration, static code analysis, automated testing, and automated deployment. It isn't just an IDE, and it isn't someone else's job to set up the rest of the pipeline.
+1. Lower work-in-process (WIP) limits generally promote smoother _flow_. A focus on _finishing_ rather than _starting_ many tasks tends to result in earlier delivery and higher quality. 
 1. To understand customer needs, collaboration with key stakeholders is necessary. The team can't afford to follow a written specification to the letter without questions.
 1. Small work items defined in a lightweight fashion help the team understand its own delivery capacity, forecast future delivery, track progress, change priorities, and steer the design. Use the Three C's - card, conversation, confirmation. 
 1. The first software design principle is the _principle of least astonishment_.
-1. You Ain't Gonna Need It (YAGNI), except when you _are_ gonna need it. We know we will need things like security, accessibility, internationalization, observability, consistent exception handling, and several other attributes. 
+1. You Ain't Gonna Need It (YAGNI), except when you _are_ gonna need it. We know a proper solution will need things like security, accessibility, internationalization, observability, consistent exception handling, and several other attributes. YAGNI doesn't mean that we pretend we forgot all that.
 1. An iterative and incremental approach facilitates customer feedback and the ability to adjust the plan and the solution design.
 1. Incremental delivery of _vertical slices_ of functionality provides customers with meaningful interim results they can relate to, so they can understand the value delivered to date and help the team adapt the plan and the design.
 1. Trunk-based development keeps the branching strategy as simple as possible, and helps the team avoid "merge hell."
