@@ -324,7 +324,7 @@ Both teams are now ready to begin development. Team CorporateCogs took 274 hours
 
 ## Development: First Work Items
 
-Now that the initial planning steps have been completed, our team can begin the enjoyable and satisfying work of building a useful and well-designed application that provides real value to our customers. This is the reason we entered the software field in the first place!
+Now that the initial planning steps have been completed, our team can begin the enjoyable and satisfying work of building a useful and well-designed application that provides real value to our customers. This is the reason we entered the software field in the first place! This is when the _fun_ begins!
 
 ### Team CorporateCogs
 
@@ -430,32 +430,13 @@ At this point, the team is taking an _outside-in_ test-driven development approa
 
 The Echo Transaction must penetrate all layers of the application architecture, and must provide a working example of key design considerations such as _observability_. 
 
-There was no need to design the application architecture in detail in advance, as the process of satisfying the Definition of Done for "Given the application is available" will drive out the architecture naturally - there would be no way to run a transaction without it. 
+There was no need to design the application architecture in detail in advance, as the process of satisfying the Definition of Done for "Given the application is available" will drive out the architecture naturally - there would be no way to run a transaction unless there were a production environment to host the service and a delivery pipeline to deploy the code. 
 
 Microservices are a "known" type of solution, and the team is confident they can allow the design to emerge provided they follow the _principle of least astonishment_, without the need for a detailed design up front. Other details, such as JSON, Cucumber, Rspec, the Honeycomb API, conventions regarding Ruby project directory structures and file naming conventions, good practices for exception handling, the format and content of configuration files for the various cloud-based services, and general API design guidelines are also well-known and amply documented. None of these things must be specified in detail up front before the team can begin development. 
 
 There is no need for team members to make short-term estimates for fine-grained tasks, as there is nothing they could do that would yield greater value than to complete the first work item in the backlog, and no estimate they could produce that would speed delivery of that work item. 
 
-
-
-<hr/>
-
-
-Text below is being revised. Ignore it.
-
-
-<hr/>
-
-
-## Observability and Monitoring 
-
-_Observability_ has become an important feature of microservice solutions. The complexity of a live production environment running in an elastic cloud infrastructure makes it impossible to test all scenarios exhaustively before deploying to production. Software product teams need a way to understand what's happening with their solution in the live production environment, providing sufficient fine-grained data to enable them to drill down into a problem and solve it quickly. Beyond that, what the team learns from these events should be folded back into the solution to improve it. 
-
-As this exercise is based on "free" cloud-based tools, we have no practical way to demonstrate real production monitoring using observability-based tools like [Wavefront](https://www.wavefront.com/) or [Honeycomb](https://www.honeycomb.io/). In the interest of "realism," we'll write API calls to Honeycomb [as documented here](https://docs.honeycomb.io/api/events/) to register _events_. We won't bother with other Honeycomb feartures in this exercise. We'll mock the Honeycomb API calls and return status 200 with an empty response body in all cases. We just want to show how one might add instrumentation to an app, as that is rapidly becoming a baseline requirement for professional application development. 
-
-## Work Item 1: Toolchain Setup 
-
-For this fresh, greenfield project, our team needs to set up a toolchain for development/test and CI/CD. After conferring with the rest of my colleagues on the team, here's what we decided on initially:
+Here's the deployment toolchain the team decided on:
 
 - Version Control System - Git 
 - Version Control Service - Github (https://github.com)
@@ -464,62 +445,18 @@ For this fresh, greenfield project, our team needs to set up a toolchain for dev
 - Static Code Analysis - Code Climate (https://codeclimate.com/oss/)
 - Deployment, Production Ops - Heroku (https://www.heroku.com/home)
 
-You're already looking at the Github repo, so there's no sense in walking through that setup. There's the usual Github housekeeping to do, like creating a .gitignore file and choosing a license. I'll assume you know how to do that.
+These things will fall into place as the team realizes, "Given the application is available."
 
-The series of blog posts I mentioned earlier walks the reader through the setup steps for all these tools. Each online service also provides documentation, tutorials, and help for using their facilities. You might want to use different tools. For instance, many people prefer Circle CI to Travis CI. The specific tools you use aren't important for the purpose of this exercise. You might prefer to use an IDE on your local machine rather than CodeAnywhere. You might prefer to work in a different programming language. It's all good. I'm going to assume you can handle all that and move on. 
+**Activity 1, Task 1:** Create Github project and invite team members to join it. 
 
-We have not created a persistent data store yet. That's because we decided it was out of scope for the Echo Transaction item.
+CT = 00:30. 
 
-<hr/>
+**Activity 1, Task 2:** Create a team account on CodeAnywhere and define a container provisioned with Ubuntu as a Ruby development environment. 
 
-### Time check 
+CT = 0:45.
 
-_Create project on Github_
+**Activity 1, Task 3:** Create a conventional project directory structure for Ruby webservice development, including Rspec and Cucumber. 
 
-- If someone on the team has done this before: 5 minutes 
-- If no one on the team has done this before: 15 minutes 
-
-_Create project and container on CodeAnywhere_
-
-- If someone on the team has done this before: 10 minutes 
-- If no one on the team has done this before: 30 minutes 
-
-_Sign up for Travis CI (not including config file)_
-
-- If someone on the team has done this before: 5 minutes 
-- If no one on the team has done this before: 10 minutes 
-
-_Sign up for Code Climate_ 
-
-- If someone on the team has done this before: 5 minutes 
-- If no one on the team has done this before: 10 minutes 
-
-_Sign up for Heroku (not including config file)_
-
-- If someone on the team has done this before: 5 minutes 
-- If no one on the team has done this before: 10 minutes 
-
-Cycle Time so far: 
-
-- Best case: 00:30 + 00:30 = 01:00
-- Worst case: 01:00 + 01:15 = 02:15
-
-<hr/>
-
-## Work Item 1: Project Setup 
-
-Let's organize our directory structure and install development tools for the project on our CodeAnywhere instance. (If you're working on a local instance you can do an equivalent setup according to your preferences.) The default CodeAnywhere configuration of an Ubuntu 16.04 instance for Ruby development gives us a practical starting point. Let's see where we are. 
-
-The command
-
-```shell 
-ruby --version 
-``` 
-
-shows we have Ruby 2.5.1p57. Depending on when you do this, you might see a more recent version. It's good to check this, as sometimes cloud-based services have old releases of tools as their defaults, and we have to install more recent versions. This is fine for our purposes, and we don't need to do that. 
-
-By default, CodeAnywhere puts us in directory ~/workspace. That's fine. We'll create the project root directory in that location. Let's create some subdirectories appropriate to the language and tools we'll be using. 
- 
 ```shell 
 mkdir galaxy
 cd galaxy
@@ -529,28 +466,11 @@ mkdir -p features/support
 mkdir spec 
 ```
 
-In case some of that isn't familiar to you, here's the run-down:
+CT = 01:00.
 
-- app - this is where production code lives 
-- features - this is where Cucumber features and step definitions live 
-- spec - this is where rspec tests live 
+**Activity 1, Task 4:** Create Cucumber feature file for the Echo Transaction 
 
-<hr/>
-
-### Time check
-
-- 5 minutes 
-
-Cycle Time so far: 
-
-- Best case: 01:00 + 00:05 = 01:05
-- Worst case: 02:15 + 00:05 = 02:20
-
-<hr/>
-
-## Work Item 1: Initial Gherkin Scenarios for Echo Transaction 
-
-Previously, I mentioned we're going to take an _outside-in_ TDD approach initially, starting at the "acceptance test" level. We're starting that now. Based on the team's discussion of the Echo Transaction, we decide to start with these cases: 
+The team creates a file under galaxy/features named echo.feature, and adds the Gherkin feature text they defined during planning. 
 
 ```
 Feature: Echo Transaction
@@ -576,9 +496,11 @@ Scenario: Request message does not contain a check value
   And the response contains element "sampleRequest" with value "/echo/5"
 ```
 
-We create a file under galaxy/features named echo.feature, and add the text above to the file. 
+CT = 00:05.
 
-We're using _bundler_ for dependency management, so we need to create a file named Gemfile in the project root directory and specify the Ruby Gems we will need for the project. It will look something like this:
+**Activity 1, Task 5:** Define project dependencies 
+
+The team is using _bundler_ for dependency management, so they create a file named _Gemfile_ in the project root directory and specify the Ruby Gems needed for the project.
 
 ```
 source 'http://rubygems.org'
@@ -594,33 +516,23 @@ group :test do
 end
 ```
 
-In case some of that is unfamiliar to you, here's a summary:
-
-- sinatra - a lightweight webapp framework suitable for RESTful APIs 
-- thin - a lightweight web server
-- json - converts between Ruby hash objects and JSON documents 
-- cucumber - a BDD-style tool for testing UIs and APIs 
-- rspec - a BDD-style unit testing tool for Ruby 
-- rest-client - helper methods for interacting with a RESTful service 
-- rake - a Ruby make and build utility
-
-To download and install the dependencies, we use:
+Then the team uses Bundler to download and install the dependencies. 
 
 ```shell 
 bundle install --path vendor/bundle
 ```
 
-That command will download and install a number of Ruby Gems into [current directory]/vendor/bundle.
+CT = 00:10. 
 
-With that in place, we can run our Cukes and see if they fail for the right reason, which is the goal of this task. At this point in the project, we have no Cucumber steps defined. We expect Cucumber to report that it can't find step definitions that match the text in our feature file, and to suggest possible implementations. 
+**Activity 1, Task 6:** Code minimal service implementation 
 
-In the project root directory, run:
+In the project root directory, the team runs:
 
 ```shell 
 bundle exec cucumber 
 ```
 
-Here's a subset of the output I got from that command when I was testing this documentation: 
+As the step definition doesn't exist, Cucumber offers a suggested implementation:
 
 ```shell 
 3 scenarios (3 undefined)
@@ -633,64 +545,15 @@ Given("the application is available") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("the client sends a valid Echo request with check value {int}") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("the resulting status code is {int}") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("the check value in the response is {int}") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("the client sends an invalid Echo request") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("the response contains element {string} with value {string}") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("the client sends an Echo request with no check value") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
+...
 ```
 
-This is where we need to be just now. 
-
-<hr/>
-
-### Time check 
-
-_Create the echo.feature file with initial scenarios_
-
-- If someone on the team has done this before: 10 minutes 
-- If no one on the team has done this before: 30 minutes 
-
-_Create the Gemfile file specifying the dependencies for Cucumber_ 
-
-- If someone on the team has done this before: 5 minutes 
-- If no one on the team has done this before: 15 minutes 
-
-Cycle Time so far: 
-
-- Best case: 01:05 + 00:15 = 01:20 
-- Worst case: 02:20 + 00:45 = 03:05 
-
-<hr/>
-
-## Work Item 1: Echo - Implement "Given the application is available" 
-
-We're still in _outside-in_ mode at this point. We're going to realize the feature step, "Given the application is available." This will force us...well, _help us_...to start setting up the development and deployment toolchain. That's because there's no other way to make it happen. 
-
-So, we'll start coding our service application. We want to separate concerns, so instead of dumping code into a single source file, we'll begin in the right way by separating the concerns of 
+The team wants to separate concerns from the outset, so instead of dumping code into a single source file, they separate the following concerns into different source files:  
 
 - accepting RESTful calls; and
 - processing request messages and formatting responses.
 
-To accept RESTful calls, we create the file app/galaxy.rb and write therein the rudiments of a nascent Sinatra app:
+To accept RESTful calls, they create the file app/galaxy.rb and write therein the rudiments of a nascent Sinatra app:
 
 ```
 require 'sinatra'
@@ -703,7 +566,7 @@ get '/' do
 end
 ```
 
-To process requests and format responses, we create the file app/handler.rb and code the behavior for the default URI path. For now, we'll create a response document with the name of the service and a brief description. 
+To process requests and format responses, they create the file app/handler.rb and code the behavior for the default URI path. For now, they create a response document with the name of the service and a brief description. Should different requirements emerge later, it will be easy to change this. 
 
 ```
 class Handler 
@@ -716,34 +579,36 @@ class Handler
 end 
 ```
 
-We'll be using _rackup_ to start the server in production, so let's use it to start the server in the development environment as well, for consistency. Here's our _config.ru_ file, located in the project root directory:
+One of the team members has worked with Heroku before, and she informed the team that in production, the server will be started using _bundler_ to execute _rackup_. To avoid unpleasant surprises due to configuration differences, the team decides to start the server in the development environment in the same way. 
+
+They create this _config.ru_ file in the project root directory:
 
 ```
 require './app/galaxy'
 run Sinatra::Application
 ```
 
-Now we'll run _rackup_ via _bundler_ and specify IP address 0.0.0.0, which is what CodeAnywhere and Heroku will expect, and port 3000, which is what CodeAnywhere expects according to the container documentation that was generated when we created the CodeAnywhere container. We'll leave it running in the background so we can enter more commands in the same console. 
+Then they run _rackup_ via _bundler_ and specify IP address 0.0.0.0, which are what the production environment will expect. They start it as a background process so they can experiment with ways to check its operational status before investing time in writing the step definition.  
 
 ```shell 
 bundle exec rackup -o "0.0.0.0" -p 3000 &
 ```
 
-When I tried this, it reported that the _thin_ server was running and listening on port 3000:
+The _thin_ server is now running locally in the CodeAnywhere container (the development environment). 
 
-```
-Thin web server (v1.7.2 codename Bachmanity)
-Maximum connections set to 1024
-Listening on 0.0.0.0:3000, CTRL+C to stop
-```
 
-Before checking the default URI, let's install package _jq_, which formats JSON text for readability. It isn't included in CodeAnywhere's default Ubuntu/Ruby setup. 
+CT = 01:30.
+
+
+**Activity 1, Task 7:** Experiment with commands that can check the status of the service 
+
+The team decides to use _curl_ to interact with the service. Another team member remembers there's a package named _jq_, which formats JSON text for readability. It isn't included in CodeAnywhere's default Ubuntu/Ruby setup. The team agrees to use it for command-line experimentation. It won't be part of the production solution. 
 
 ```shell 
 sudo apt install jq
 ```
 
-Now we'll use _curl_ to do a quick manual check from the command line. The URL was provided in the CodeAnywhere documentation that was generated when we created the container. Yours will differ. 
+The URL was provided in the CodeAnywhere documentation that was generated when the team created the container. If you're following along, your URL will differ. Now the team can use _curl_ from a command line to see how the service behaves. 
 
 
 ```shell 
@@ -760,33 +625,15 @@ The response looks like what we were hoping for at this point:
 }
 ```
 
-Success!
+The team is fanatical about quality, and doesn't want to be fooled by a false positive. It's possible an application can build and run nicely on the development environment because there are packages installed and/or configuration settings left over from previous work that enable the application to run. Those things might not exist on the target environment. So, a couple of the team members try the _curl_ command from their own laptops, separately from the CodeAnywhere container. They see the same result, so they are slightly more confident that things are working. 
 
-Or not...?
+CT = 00:10.
 
-Remember our customer focus? That makes us a bit paranoid. In my case, I ran the same curl command from my Mac laptop. It returned exactly the same result. That gave me some assurance that I wasn't seeing a false positive in the CodeAnywhere container, as the server is running in the same instance as the command line console. Once we complete the setup, we'll be deploying to Heroku, but for the moment there's the possibility of a false positive with this sort of quick check. 
+**Activity 1, Task 8:** Write executable step definition for "Given the application is available"
 
-<hr/>
+Now the team takes the lessons learned _curl_ to write an appropriate Cucumber step definition to verify the service is available. 
 
-#### Time check 
-
-_Implement default behavior in development environment_ 
-
-- If someone on the team has done this before: 1 hour 
-- If no one on the team has done this before: 3 hours
-
-Cycle Time so far: 
-
-- Best case: 01:20 + 01:00 = 02:20
-- Worst case: 03:05 + 03:00 = 06:05 
-
-<hr/>
-
-#### Continuing with: Echo - Implement "Given the application is available"
-
-Now let's use what we learned from _curl_ to write an appropriate Cucumber step definition to verify the service is available. 
-
-When we ran Cucumber, it suggested this: 
+Cucumber suggested this: 
 
 ```ruby
 Given("the application is available") do
@@ -794,20 +641,20 @@ Given("the application is available") do
 end
 ``` 
 
-"Application is available" will mean that when we access the API with path / we receive a JSON document containing an element _service_ with value _galaxy_. So our expectation could look like this: 
+"Application is available" will mean that when a client accesses the API with path / the service returns a JSON document containing an element _service_ with value _galaxy_. So the Rspec expectation could look like this: 
 
 ```ruby 
 expect(JSON.parse(response)['service'])
     .to eq('galaxy')
 ```
 
-Of course, we won't execute _curl_ from inside our step definition. We'll use the _rest-client_ gem instead. 
+The test script won't execute _curl_ from inside the step definition. It will use the _rest-client_ gem instead. 
 
 ```ruby
 RestClient.get "https://galaxy-davenicolette339440.codeanyapp.com"
 ``` 
 
-Putting that much together, we have the following code, which we save in a file named features/step_definitions/echo_steps.rb.
+Putting that much together results in the following code, which the team saves in a file named features/step_definitions/echo_steps.rb.
 
 ```ruby
 Given("the application is available") do
@@ -817,7 +664,7 @@ Given("the application is available") do
 end
 ```
 
-Clearly, this isn't quite right. We don't want to hard-code a URL here. In production, the URL will be provided in an environment variable. We'll want to do the same in the development environment. But this is sufficient to let us try the Cuke and see if we have any other basic errors, before adding more logic. 
+The team knows they can't leave the hard-coded URL in place. But for now, they want to focus on getting the step to execute correctly. They run Cucumber to try it out:
 
 ```shell 
 bundle exec cucumber 
@@ -835,7 +682,7 @@ Feature: Echo Transaction
       features/echo.feature:4:in `Given the application is available'
 ```
 
-So, we're getting some help from our tools. In Ruby, the error "uninitialized constant [class name]" means the application can't find a class named [class name]. We haven't told Cucumber where to find the class, RestClient. We fix it by adding a _require_ statement. Cucumber will look in a specific place for _require_ statements that apply to all the Cukes: features/support/env.rb. So, we fix the problem by creating that file with the following contents: 
+So, the team is getting some help from their tools. In Ruby, the error "uninitialized constant [class name]" means the application can't find a class named [class name]. They haven't told Cucumber where to find the class, RestClient. They fix it by adding a _require_ statement. By convention, Cucumber will look in a specific place for _require_ statements that apply to all the Cukes: features/support/env.rb. So, the fix is to create that file with the following contents: 
 
 ```ruby 
 require 'json' 
@@ -843,13 +690,13 @@ require 'rspec'
 require 'rest-client'
 ```
 
-The _json_ and _rspec_ gems have nothing to do with this particular problem, but we know we're using those gems so we go ahead and include _require_ statements for them. Now when we run 
+The _json_ and _rspec_ gems have nothing to do with this particular problem, but the team knows they're using those gems so we go ahead and include _require_ statements for them. Now when they run:
 
 ```shell 
 bundle exec cucumber 
 ```
 
-we get
+they get:
 
 ```
 Feature: Echo Transaction
@@ -859,9 +706,11 @@ Feature: Echo Transaction
     Given the application is available # features/step_definitions/echo_steps.rb:1
 ```
 
-This tells us we're on the right track with this step definition. As long as the _thin_ server is running and we access the correct URL, the step "works." Now let's remove the hard-coded URL and use an environment variable instead. 
+The team knows they're on the right track with this step definition. As long as the _thin_ server is running and the URL is correct, the step "works." 
 
-As a first step, the team decides to type the _export_ statement in the command line console. This will have to be done in a more automatic way eventually. For now, we want to be sure we've coded the environment variable and associated Ruby code correctly. 
+Now it's time to remove the hard-coded URL and use an environment variable instead. 
+
+As a first step, the team decides to type the _export_ statement in the command line console. This will have to be done in a more automatic way eventually. For now, they want to be sure they've coded the environment variable and the associated Ruby code correctly. 
 
 ```shell 
 export GALAXY_URL="https://galaxy-davenicolette339440.codeanyapp.com"
@@ -877,15 +726,13 @@ Given("the application is available") do
 end
 ```
 
-We run the Cukes again, and the output is identical to the hard-coded version. So, we know we can use an environment variable to provide the URL. But we haven't set things up in a repeatable or automated way. 
+Running the Cukes again, the output is identical to the hard-coded version. So, the team knows they can use an environment variable to provide the URL. But they haven't set things up in a repeatable or automated way. 
 
-For now, we'll code a few steps in a shell script and run the Cukes that way. As we learn more about the environment, we may be able to improve on that implementation. Here's a script that 
+They decide to code a few steps in a shell script and run the Cukes that way. As they learn more about the environment, they may be able to improve on that implementation. Here's a script that 
 
 - sets the environment variable GALAXY_URL; 
 - starts the _thin_ server; and
 - runs the Cukes.
-
-We'll call it runcukes.sh.
 
 ```shell 
 export GALAXY_URL="https://galaxy-davenicolette339440.codeanyapp.com"
@@ -893,13 +740,13 @@ bundle exec rackup -o "0.0.0.0" -p 3000 &
 bundle exec cucumber
 ``` 
 
-Let's make it executable: 
+They save it as _runcukes.sh_, and make it executable:
 
 ```shell 
 chmod +x runcukes.sh 
 ``` 
 
-and try it out:
+To run it:
 
 ```shell 
 ./runcukes.sh 
@@ -916,11 +763,9 @@ RuntimeError: no acceptor (port is in use or requires root privileges)
   /home/cabox/workspace/galaxy/vendor/bundle/ruby/2.5.0/gems/eventmachine-1.2.7/lib/eventmachine.rb:531:in `start_tcp_server'
 ``` 
 
-The server is still running from before. We need to make the script [idempotent](https://en.wikipedia.org/wiki/Idempotence). Yes, I knew that was going to happen, but I wanted an excuse to introduce the topic of idempotence. It's pretty important for scripts that do configuration or provisioning in a dynamic environment. It means if an operation is supposed to happen exactly once, then executing that operation multiple times the result will only happen once. Let's use this tiny, minor example to illustrate. 
+The server is still running from before. The script should be [idempotent](https://en.wikipedia.org/wiki/Idempotence). Idempotence is pretty important for scripts that do configuration or provisioning in a dynamic environment. It means if an operation is supposed to happen exactly once, then even if the operation is exdcuted multiple times the result will only happen once. Let's use this tiny, minor example to illustrate. 
 
-In the runcukes.sh script, we want the server to start exactly once. We might want to overwrite the value of the environment variable, so that operation needn't be idempotent in this context. We don't have to do anything special for the _bundle exec cucumber_ step. 
-
-We can achieve idempotence by checking whether the server is already running, and only attempting to start it if it isn't running. The team decides a quick-and-dirty solution will suffice for now, as we know this isn't the end of the task of building out the toolchain. If the URL returns an HTTP 200 status code, we'll assume the server is operational and we won't attempt to start it. Otherwise, we'll start it. 
+The _runcukes.sh_ script can be idempotent if it checks whether the server is already running, and only attempts to start it if it isn't running. The team decides a quick-and-dirty solution will suffice for now, as they know there's more work ahead to finish building out the toolchain. If the URL returns an HTTP 200 status code, the assumption will be the server is operational. Otherwise, we'll start it. That's a bit crude, but okay for now. 
 
 ```shell 
 export GALAXY_URL="https://galaxy-davenicolette339440.codeanyapp.com"
@@ -929,7 +774,7 @@ test $(curl --write-out %{http_code} --silent --head --output /dev/null "$GALAXY
 bundle exec cucumber
 ```
 
-The CI server will run _bundle exec rake_ by default, so let's set up a Rakefile and make sure Rake will generate the same output as _bundle exec cucumber_. This Rakefile will support running Cukes or Specs. By default, we'll run the Cukes. 
+The CI server will run _bundle exec rake_ by default, so the team wants to run it the same way in the development environment. They create a Rakefile in the project root directory and make sure _bundle exec rake_ will generate the same output as _bundle exec cucumber_. This Rakefile will support running Cukes or Specs. By default, it runs the Cukes. 
 
 ```ruby 
 require 'rubygems'
@@ -949,86 +794,13 @@ end
 task :default => :features
 ```
 
-Trying this in the development environment, we find it generates exactly the same output as _bundle exec cucumber_. 
+CT = 03:00. 
 
-<hr/>
+**Activity 1, Task 9:** Run Cukes with a CI build 
 
-### Time check 
+The next step is to set up Continuous Integration, so a build will run automatically whenever the team commits changes to version control. The team has selected Travis CI for continuous integration support. 
 
-_Implement Given step in Cucumber and run in the development environment_ 
-
-- If someone on the team has done this before: 1 hour 
-- If no one on the team has done this before: 3 hours
-
-Cycle Time so far: 
-
-- Best case: 02:20 + 01:00 = 03:20
-- Worst case: 06:05 + 03:00 = 09:05 
-
-<hr/>
-
-### Continuing with: Echo - Implement "Given the application is available"
-
-We've implemented the first Cucumber step for the Echo story, but it only runs in the development environment. We need it to run with an automated CI build, too. Our next step is to set up Continuous Integration, so a build will run automatically whenever the team commits changes to version control. 
-
-For our project, the team has selected Travis CI for continuous integration support. A minimal .travis.yml file looks like this: 
-
-```
-language: ruby
-rvm:
- - 2.5
- - jruby
-```
-
-The .travis.yml file goes in the project root directory. We know we will need much more configuration than this, but we want to take baby steps and check everything as we progress. 
-
-Let's add that .travis.yml file and commit to version control. At this point, our [Travis dashboard](https://travis-ci.com/neopragma/ruby-galaxy) shows "no builds." 
-
-Now when we commit to version control, we expect Travis CI to run a build automatically. Let's see if that happens. 
-
-The good news is the CI build started automatically!
-
-The bad news is we have an error: 
-
-```
-$ bundle exec rake
-/home/travis/.rvm/rubies/ruby-2.5.5/bin/ruby -S bundle exec cucumber --format pretty
-Feature: Echo Transaction
-  Background:                          # features/echo.feature:3
-    Given the application is available # features/step_definitions/echo_steps.rb:1
-      bad URI(no host provided): http:/// (URI::InvalidURIError)
-      ./features/step_definitions/echo_steps.rb:2:in `"the application is available"'
-      features/echo.feature:4:in `Given the application is available'
-``` 
-
-We haven't provided the correct URL for the service in the CI environment. We need to tell Travis CI to start our _thin_ server and on what port the service will listen. Let's add a _script_ section to the .travis.yml file. We'll set the GALAXY_URL variable, start the server, run the cukes, and stop the server. When we commit this change to version control, Travis CI starts another build automatically. 
-
-```
-language: ruby
-rvm:
- - 2.5
- - jruby
-install:
- - bundle install
-script:
- - export GALAXY_URL=http://0.0.0.0:3000
- - bundle exec rackup -P rackup.pid -p 3000 -o 0.0.0.0 &
- - bundle exec rake
- - kill `cat rackup.pid`
-```
-
-You might notice that the commands _rackup_ and _rake_ work just fine in the development environment without using bundler. This is one of the reasons to exercise the CI service as early as possible in the development process. Those commands will not work properly when the build runs under Travis CI. Bundler is handling all the dependencies, so we have to run these commands _via_ bundler. We can get away with it on our dev box because we have things installed and configured above and beyond the bare minimum requirements for the app. Travis CI does not. It creates and provisions the Ubuntu instance on the fly, based on what we specify in the .travis.yml file. 
-
-You might also notice the _bundle exec rackup_ command in the .travis.yml file is not idempotent. Why? It's because Travis CI will create the Ubuntu instance on the fly to run the build. It will not use a pre-existing instance that might already have a server active. In general, by creating server instances dynamically based on version-controlled specifications helps us avoid most of the issues that may be caused by inconsistent configuration settings or installed packages across different environments.
-
-There are a couple more tweaks to make to the .travis.yml file. We stated in the introduction that our team uses trunk-based development as a standard work flow. However, that doesn't mean there are never any other branches. Short-lived branches for experimentation, and possibly sometimes to deal with production issues, may exist from time to time. We don't want Travis CI to start a build every time someone commits to one of those short-lived branches. So, we'll add a _branches_ section to the .travis.yml file:
-
-```
-branches:
-  only: master
-```
-
-It's also helpful to be notified when a build fails. For that, we'll add an _email_ section to the .travis.yml file. At this point, our .travis.yml file looks like this:
+I'm not going to step through the setup process in detail here. This document is pretty long already. Suffice it to say that incorporating Travis CI with the project is a question of (a) signing up with Travis CI, (b) connecting the Github repo to Travis CI, and (c) providing a configuration file named _.travis.yml_ in the project root directory. For this sample project, the _.travis.yml_ file looks like this:
 
 ```
 email:
@@ -1051,28 +823,67 @@ script:
  - kill `cat rackup.pid`
 ```
 
-When we commit changes to version control, the Travis CI build automatically starts, and it's running clean. But not for long, because we aren't finished with this task yet. 
+In real life, a team would probably start with the _language_ and _rvm_ sections and run many trial builds, using the error messages and exceptions they saw to guide them in filling in the rest of the configuration settings they needed for their project. For this document, we're just skipping those details. 
+
+With Github connected to Travis CI and this _.travis.yml_ file in place, every commit to the _master_ branch will trigger a CI build. The team can then look at their Travis CI dashboard to check the results, examine log files, and so forth. 
+
+CT = 03:00. 
+
+
+
+
+**Activity 1, Task 10:** Configure static code analysis in the CI build
+
+TBD 
+
+
+CT = 00:30. 
+
+**Activity 1, Task 11:** Configure automated deployment to Heroku 
+
+TBD
+
+
+CT = 01:00.
+
+
+_Time so far:_
+
+| Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE   | Lead Time |
+| ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ----- | --------- |
+| 011:00  | 1. Given the application is avail.  | 011:40     | 011:40   | 000:00   | 011:40 | 011:00  | 51.3% | 022:40    |
+
+_Team feeling:_ 
+
+- High engagement 
+- High interest 
+- Satisfaction with initial results
+- Anticipation of fun building out a cloud-based microservices solution 
+
+_Customer satisfaction:_ 
+
+- High satisfaction resulting from direct collaboration with the team in understanding customer needs and clarifying requirements.
+- High satisfaction with the results of the initial planning activities.
+
+
+
+
 
 
 <hr/>
 
-### Time check 
 
-_Implement Given step in Cucumber and run in the development environment_ 
+Text below is being revised. Ignore it.
 
-- If someone on the team has done this before: 1 hour 
-- If no one on the team has done this before: 3 hours
-
-Cycle Time so far: 
-
-- Best case: 03:20 + 01:00 = 04:20
-- Worst case: 09:05 + 04:00 = 13:05 
 
 <hr/>
 
-### Continuing with: Echo - Implement "Given the application is available"
 
-At this point, our first Cucumber step for the Echo story is working in the development environment and in the CI environment, but not in production. We also haven't yet integrated static code analysis with the CI build. 
+## Observability and Monitoring 
 
-Our team discusses the situation and decides to complete the static code analysis integration before moving on to set up automated deployment to production. 
+_Observability_ has become an important feature of microservice solutions. The complexity of a live production environment running in an elastic cloud infrastructure makes it impossible to test all scenarios exhaustively before deploying to production. Software product teams need a way to understand what's happening with their solution in the live production environment, providing sufficient fine-grained data to enable them to drill down into a problem and solve it quickly. Beyond that, what the team learns from these events should be folded back into the solution to improve it. 
+
+As this exercise is based on "free" cloud-based tools, we have no practical way to demonstrate real production monitoring using observability-based tools like [Wavefront](https://www.wavefront.com/) or [Honeycomb](https://www.honeycomb.io/). In the interest of "realism," we'll write API calls to Honeycomb [as documented here](https://docs.honeycomb.io/api/events/) to register _events_. We won't bother with other Honeycomb feartures in this exercise. We'll mock the Honeycomb API calls and return status 200 with an empty response body in all cases. We just want to show how one might add instrumentation to an app, as that is rapidly becoming a baseline requirement for professional application development. 
+
+
 
