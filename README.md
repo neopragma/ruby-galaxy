@@ -312,13 +312,15 @@ _Team feeling_
 _Customer satisfaction_ 
 
 - High satisfaction resulting from direct collaboration with the team in understanding customer needs and clarifying requirements.
-- High satisfaction with the results of the initial planning activities,.
+- High satisfaction with the results of the initial planning activities.
 
 Both teams are now ready to begin development. Team CorporateCogs took 274 hours to reach this point. Team CustomersPet took 11 hours to reach the equivalent point in their process. 
 
 <hr/>
 
 ## Development: First Work Items
+
+Now that the initial planning steps have been completed, our team can begin the enjoyable and satisfying work of building a useful and well-designed application that provides real value to our customers. This is the reason we entered the software field in the first place!
 
 ### Team CorporateCogs
 
@@ -346,23 +348,25 @@ Except where dependencies are noted, activities can be carried out in parallel.
 
 **Activity 11:** Prepare initial design for the server environment for the solution. CT = 20.
 
-**Activity 12:** Schedule a meeting with the Infrastructure Engineering Team to present the design for the server environment. This has a "finish" dependency on Activity 11.
+**Activity 12:** Schedule a meeting with the Infrastructure Engineering Team to present the design for the server environment. This has a "finish" dependency on Activity 11. CT = 1.
 
-**Activity 13:** Wait until the meeting with the Infrastructure Engineering Team.
+**Activity 13:** Wait until the meeting with the Infrastructure Engineering Team. CT = 80.
 
-**Activity 14:** Modify the design for the server environment based on feedback from the Infrastructure Engineering Team. This has a "finish" dependency on Activity 13.
+**Activity 14:** Modify the design for the server environment based on feedback from the Infrastructure Engineering Team. This has a "finish" dependency on Activity 13. CT = 8.
 
-**Activity 15:** Prepare initial design for the solution database. 
+**Activity 15:** Prepare initial design for the solution database. CT = 12.
 
-**Activity 16:** Schedule a meeting with the Database Team to present the design for the solution database. This has a "finish" dependency on Activity 15. 
+**Activity 16:** Schedule a meeting with the Database Team to present the design for the solution database. This has a "finish" dependency on Activity 15. CT = 1.
 
-**Activity 17:** Modify the design for the database based on feedback from the Database Team. This has a "finish" dependency on Activity 16. 
+**Activity 17:** Wait until the meeting with the Database Team. CT = 80.
 
-**Activity 18:** Prepare task-level estimates for all the items in the project plan. 
+**Activity 18:** Modify the design for the database based on feedback from the Database Team. This has a "finish" dependency on Activity 17. CT = 6.
 
-**Activity 19:** Schedule a meeting with the Project Manager to discuss the estimates. This has a "finish" dependency on Activity 18. 
+**Activity 19:** Prepare task-level estimates for all the items in the project plan. CT = 35.
 
-**Activity 20:** Adjust estimates based on feedback from the Project Manager. This has a "finish" dependency on activity 19.
+**Activity 20:** Schedule a meeting with the Project Manager to discuss the estimates. This has a "finish" dependency on Activity 19. CT = 1.
+
+**Activity 21:** Adjust estimates based on feedback from the Project Manager. This has a "finish" dependency on activity 19.
 
 _Good things:_ 
 
@@ -377,12 +381,34 @@ _Time so far:_
 | 275:00  | 3. Set up developer workstations    | 040:00     | 000:00   | 040:00   | 111:00 | 313:00  | 28.1% | 395:00    |
 | 395:00  | 4. Submit req to CI Team            | 001:00     | 000:00   | 001:00   | 111:00 | 314:00  | 28.1% | 395:00    |
 | 395:00  | 5. Wait for results from CI Team    | 080:00     | 000:00   | 080:00   | 111:00 | 394:00  | 23.4% | 475:00    |
-| 274:00  | 6. Sched meeting with API Team      | 001:00     | 000:00   | 001:00   | 111:00 | 395:00  | 23.4% | 475:00    |
+| 475:00  | 6. Sched meeting with API Team      | 001:00     | 000:00   | 001:00   | 111:00 | 395:00  | 23.4% | 475:00    |
 | 475:00  | 7. Wait until meeting with API Team | 080:00     | 000:00   | 080:00   | 111:00 | 475:00  | 23.4% | 475:00    |
 | 475:00  | 8. Wait for results from API Team   | 080:00     | 000:00   | 080:00   | 111:00 | 555:00  | 17.5% | 555:00    |
 | 555:00  | 9. Sched meeting with Testing Team  | 001:00     | 000:00   | 001:00   | 111:00 | 556:00  | 19.9% | 556:00    |
 | 556:00  | 10. Wait for meeting with Testing   | 080:00     | 000:00   | 080:00   | 111:00 | 636:00  | 17.5% | 636:00    |
 | 636:00  | 11. Initial server design           | 020:00     | 020:00   | 000:00   | 131:00 | 636:00  | 20.5% | 636:00    |
+| 636:00  | 12. Sched meeting with Infrastruc.  | 001:00     | 000:00   | 001:00   | 131:00 | 637:00  | 17.1% | 637:00    |
+| 637:00  | 13. Wait for meeting with Infrastr. | 080:00     | 000:00   | 080:00   | 131:00 | 717:00  | 18.4% | 713:00    |
+| 713:00  | 14. Modify design for server env.   | 008:00     | 008:00   | 000:00   | 139:00 | 717:00  | 16.2% | 717:00    |
+| 717:00  | 15. Initial database design         | 012:00     | 012:00   | 000:00   | 151:00 | 717:00  | 17.6% | 717:00    |
+| 717:00  | 16. Sched meeting w/Database Team   | 001:00     | 000:00   | 001:00   | 151:00 | 718:00  | 17.3% | 718:00    |
+| 718:00  | 17. Wait for Database meeting       | 080:00     | 000:00   | 080:00   | 151:00 | 798:00  | 15.9% | 718:00    | 
+| 718:00  | 18. Modify database design          | 006:00     | 006:00   | 000:00   | 157:00 | 798:00  | 16.5% | 718:00    |
+| 718:00  | 19. Estimate all tasks in plan      | 035:00     | 000:00   | 035:00   | 157:00 | 833:00  | 15.8% | 753:00    |
+| 753:00  | 20. Sched meeting with PM           | 001:00     | 000:00   | 001:00   | 157:00 | 834:00  | 15.8% | 754:00    | 
+| 754:00  | 21. Adjust task estimates           | 004:00     | 000:00   | 004:00   | 157:00 | 838:00  | 15.7% | 758:00    | 
+
+_Team feeling_ 
+
+- Frustration 
+- Boredom
+- Disengagement
+- Impatience
+- Stress
+
+_Customer satisfaction_ 
+
+- Worried that the project has become opaque. With no obvious progress or results, customer asks for status reports and estimates. 
 
 <hr/>
 
