@@ -31,30 +31,36 @@ What if we use the exercise as a vehicle to explore some of the ways in which an
 1. The first software design principle is the _principle of least astonishment_.
 1. You Ain't Gonna Need It (YAGNI), except when you _are_ gonna need it. We know a proper solution will need things like security, accessibility, internationalization, observability, consistent exception handling, and several other attributes. YAGNI doesn't mean that we pretend we forgot all that.
 1. An iterative and incremental approach facilitates customer feedback and the ability to adjust the plan and the solution design.
-1. Incremental delivery of _vertical slices_ of functionality provides customers with meaningful interim results they can relate to, so they can understand the value delivered to date and help the team adapt the plan and the design.
-1. Trunk-based development keeps the branching strategy as simple as possible, and helps the team avoid "merge hell."
+1. Incremental delivery of _vertical slices_ of functionality provides customers with meaningful interim results they can relate to, so they can understand the value delivered to date and help the Team CorporateCogsdapt the plan and the design.
+1. Trunk-based development keeps the branching strategy as simple as possible, and helps the Team CorporateCogsvoid "merge hell."
 1. It's generally a good idea to _begin with the end in mind_. In software development, this often translates into a _test-first_ approach to building code. 
 1. Metrics that track delivery performance without any dependency on _how_ the work is done can help the team quantify the effects of any process improvement efforts they may make. Lean-based metrics have this characteristic.
 1. It's more valuable for each team member to be available immediately _at the moment they are needed_ than it is for them to stay "busy" with low-priority work. 
 1. When all team members are aware of one another's work, it helps everyone do things in a way that's easy to integrate and unlikely to cause re-work due to miscommunication.
 
-Let's walk with a hypothetical team that uses all the good practices we know of as they implement a solution to this toy problem, and call out the times when the team exemplifies each of the factors listed above. We'll call them Team B. For context, we'll also shadow a second team that works in a way many real-world teams operate. We'll call them Team A. We'll track the Cycle Time for each work item for the two teams.
+Let's walk with a hypothetical team that uses all the good practices we know of as they implement a solution to this toy problem, and call out the times when the team exemplifies each of the factors listed above. We'll call them Team CustomersPet. For context, we'll also shadow a second team that works in a way many real-world teams operate. We'll call them Team CorporateCogs. We'll track the Cycle Time for each work item for the two teams.
 
 ## Assessment 
 
 We can consider three areas of assessment for the two teams:
 
 - Delivery performance as measured by Mean Cycle Time, Lead Time, and Process Cycle Efficiency (quantitative)
-- Level of stress or dissatisfaction experienced by team members (qualitative)
-- Customer satisfaction with the solution (qualitative)
+- Level of job satisfaction vs. stress or dissatisfaction experienced by team members (qualitative)
+- Customer satisfaction with the solution and the team (qualitative)
 
 <hr/>
 
 ## Analysis 
 
-### Team A (traditional)
+### Team CorporateCogs
 
-Activity 1. The team submits the [Problem Description](ProblemDescription.md) to the corporate Enterprise Architecture group and waits for their response. 
+**Activity 1.** The team submits the [Problem Description](ProblemDescription.md) to the corporate Enterprise Architecture group and waits for their response. 
+
+_Good things:_ 
+
+- (None)
+
+**Activity 2.** Waiting. 
 
 _Good things:_ 
 
@@ -78,16 +84,16 @@ _Customer satisfaction_
 - Neutral and willing to suspend judgment, but the project already looks similar to past projects that did not yield good value
 
 
-### Team B (modern)
+### Team CustomersPet
 
-Activity 1. The team reviews the [Problem Description](ProblemDescription.md) together and in collaboration with the key stakeholder (may be called _Product Owner_ or _Customer_ or similar). 
+**Activity 1.** The team reviews the [Problem Description](ProblemDescription.md) together and in collaboration with the key stakeholder (may be called _Product Owner_ or _Customer_ or similar). 
 
 _Good things:_
 
-- Factor 4 - team works collaboratively (team analyzed the problem together)
+- Factor 4 - team works collaboratively (Team CorporateCogsnalyzed the problem together)
 - Factor 7 - collaboration with stakeholders (team clarified the requirements)
 
-Activity 2. The team notices that the Problem Description lists several acceptance test cases, including these: 
+**Activity 2.** The team notices that the Problem Description lists several acceptance test cases, including these: 
 
 - glob is I 
 - prok is V 
@@ -99,12 +105,12 @@ Taken literally, this means the numerical values of _glob_, _prok_, _pish_, and 
 _Good things:_
 
 - Factor 2 - customer focus (team thought about how customers would be affected in production)
-- Factor 4 - team works collaboratively (team analyzed the problem together)
+- Factor 4 - team works collaboratively (Team CorporateCogsnalyzed the problem together)
 - Factor 7 - collaboration with stakeholders (team clarified the requirements)
 - Factor 9 - principle of least astonishment (no missing prices at runtime)
 - Factor 10 - YAGNI (solution will not need persistence)
 
-Activity 3. The team discusses the implications of the Problem Description and the ways in which customers could interact with the solution. They reach a consensus to base the solution on microservices. 
+**Activity 3.** The team discusses the implications of the Problem Description and the ways in which customers could interact with the solution. They reach a consensus to base the solution on microservices. 
 
 They agree their service(s) will return results in the form of JSON documents; that application will be designed for _observability_, and that they will implement the solution using Ruby and Sinatra.
 
@@ -115,7 +121,7 @@ _Good things:_
 - Factor 3 - team owns technical decisions (they did not request an architectural design from a separate group)
 - Factor 4 - team works collaboratively (team reached consensus about architecture)
 - Factor 9 - principle of least astonishment (JSON with microservices is typical)
-- Factor 17 - cross-functional team aware of each other's work (team is capable of deciding on architecture)
+- Factor 17 - cross-functional Team CorporateCogsware of each other's work (team is capable of deciding on architecture)
 
 _Time so far:_
 
@@ -234,7 +240,7 @@ As development progresses, we may add, modify, or remove acceptance test cases t
 
 ## Getting Started 
 
-On any "real" project, the team(s) will use some sort of process framework and some sort of project management tool. We're interested in taking an iterative/incremental approach to this project. That implies the team and its primary stakeholder will agree on a short list of key things we believe the solution will have to do. All of that is subject to change as we explore the solution space, of course, but we need a starting point and a general direction for development. 
+On any "real" project, the team(s) will use some sort of process framework and some sort of project management tool. We're interested in taking an iterative/incremental approach to this project. That implies the Team CorporateCogsnd its primary stakeholder will agree on a short list of key things we believe the solution will have to do. All of that is subject to change as we explore the solution space, of course, but we need a starting point and a general direction for development. 
 
 This sort of list might be called: 
 
@@ -258,7 +264,7 @@ I'm going to call them "work items," for lack of a better name.
 
 Whatever we may call it, in substance this is not a list of hard-and-fast "requirements," as we are not doing [big design up front (BDUF)](http://wiki.c2.com/?BigDesignUpFront). When we take an iterative/incremental approach, we use [rolling wave planning](https://project-management-knowledge.com/definitions/r/rolling-wave-planning/) or [multi-horizon planning](https://www.solutionsiq.com/learning/blog-post/planning-horizons-decision-making-within-agile-frameworks/). We'll elaborate each work item that we decide to complete at the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/).
 
-The iterative/incremental approach calls for work to be done iteratively, so that the team and the stakeholders can see partial results, provide feedback to each other, make decisions about what to do next, and steer the work toward a meaningful outcome. The iterations might be called: 
+The iterative/incremental approach calls for work to be done iteratively, so that the Team CorporateCogsnd the stakeholders can see partial results, provide feedback to each other, make decisions about what to do next, and steer the work toward a meaningful outcome. The iterations might be called: 
 
 - Sprints ([Scrum](https://scrumguides.org/)) 
 - Iterations ([Extreme Programming](http://www.extremeprogramming.org/))
