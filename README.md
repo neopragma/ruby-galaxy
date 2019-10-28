@@ -164,6 +164,8 @@ _Customer satisfaction_
 
 - High satisfaction resulting from direct collaboration with the team in understanding customer needs and clarifying requirements 
 
+#### Comparison of Teams
+
 Team CorporateCogs has taken 160.0 hours to reach this point. Team CustomersPet has taken 3.0 hours to reach the equivalent point in their process. 
 
 <hr/>
@@ -314,6 +316,8 @@ _Customer satisfaction_
 - High satisfaction resulting from direct collaboration with the team in understanding customer needs and clarifying requirements.
 - High satisfaction with the results of the initial planning activities.
 
+#### Comparison of Teams
+
 Both teams are now ready to begin development. Team CorporateCogs took 274 hours to reach this point. Team CustomersPet took 11 hours to reach the equivalent point in their process. 
 
 <hr/>
@@ -410,6 +414,30 @@ _Customer satisfaction_
 
 - Worried that the project has become opaque. With no obvious progress or results, customer asks for status reports and estimates. 
 
+### Team CustomersPet 
+
+**Activity 1:** Realize _Echo Transaction_ Cucumber step, "Given the application is available."
+
+The team decides to _swarm_ or to work in a _mob programming_ setting to complete this item, so that all team members will have a consistent understanding of how the solution architecture and delivery pipeline emerge. The WIP Limit is 1. 
+
+First, the team discusses the Definition of Done for this story. The basic Definition of Done is: 
+
+- An Echo Transaction is processed by the application.
+
+In turn, the definition of an Echo Transaction is a request passed to the Galaxy service that contains an integer, with a response document containing the integer value incremented by one, to demonstrate that the service processed the message. 
+
+At this point, the team is taking an _outside-in_ test-driven development approach, using an assertion at the "acceptance test" level to guide the solution design. 
+
+The Echo Transaction must penetrate all layers of the application architecture, and must provide a working example of key design considerations such as _observability_. 
+
+There was no need to design the application architecture in detail in advance, as the process of satisfying the Definition of Done for "Given the application is available" will drive out the architecture naturally - there would be no way to run a transaction without it. 
+
+Microservices are a "known" type of solution, and the team is confident they can allow the design to emerge provided they follow the _principle of least astonishment_, without the need for a detailed design up front. Other details, such as JSON, Cucumber, Rspec, the Honeycomb API, conventions regarding Ruby project directory structures and file naming conventions, good practices for exception handling, the format and content of configuration files for the various cloud-based services, and general API design guidelines are also well-known and amply documented. None of these things must be specified in detail up front before the team can begin development. 
+
+There is no need for team members to make short-term estimates for fine-grained tasks, as there is nothing they could do that would yield greater value than to complete the first work item in the backlog, and no estimate they could produce that would speed delivery of that work item. 
+
+
+
 <hr/>
 
 
@@ -418,176 +446,12 @@ Text below is being revised. Ignore it.
 
 <hr/>
 
-The solution _architecture_ is "given," but the solution _design_ is not. We plan to define high-level acceptance tests guided by mockist-style TDD to lay out the general structure of the app, and then flesh out the detailed design incrementally using classic-style TDD. 
-
-From the [Problem Description](ProblemDescription.md), we see the solution has to support a couple of general areas of functionality: 
-
-- processing and responding to messages via an API; and 
-- converting galactic numbers into decimal numbers representing the value of goods.
-
-**Note:** The documentation doesn't mention "API." Why are we calling for one? Because we want our design to adhere to the design principle, [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Responding to messages and calculating the prices of goods are the "business functionality" of the solution. Input/output is not. Any number of different clients may be written to interact with the service, from command line programs to webapps to mobile apps to you-name-it. All of that is outside the scope of this project. 
-
-The message processing functionality comprises two parts: 
-
-- accepting messages that provide the value of goods, for later reference; and 
-- responding to queries about the cost of various shipments of goods. 
-
-Just to be a little more realistic (for a loose definition of "realistic"), we'll add a database to the solution. There isn't one in the setup documented in the blog posts. The problem description states the solution must be able to accept messages that define the values associated with "alien" words, like this: 
-
-- glob is I 
-- prok is V 
-- pish is X 
-- tegj is L 
-
-Based on the way the problem is described, it looks as if the solution must accept value definitions at runtime. That implies they can't be hard-coded either in the code or in a configuration file. So, we need someplace to store the values once they've been supplied by the client. (This was probably not the author's intent, but they wrote it they way they wrote it, so here we are. Typically, when a prospective employer gives you a list of "test cases" in the context of a screening exercise, the expectation is that your solution can process those test cases exactly as provided.)
-
-The problem description also specifies messages like these: 
-
-- glob glob Silver is 34 Credits
-- glob prok Gold is 57800 Credits
-- pish pish Iron is 3910 Credits
-
-These messages don't result in a response payload. We might interpret them as probes to verify the system is operational and not misbehaving in an obvious way, such as reporting incorrect prices. There are no instructions to the contrary, so that's the assumption we will make. Probes like these provide a deeper test of an application's health than just pinging the URL, so it's actually a good idea to include them. 
-
-Messages that end with a question mark look as if they require a response: 
-
-- how much is pish tegj glob glob ?
-- how many Credits is glob prok Silver ?
-- how many Credits is glob prok Gold ?
-- how many Credits is glob prok Iron ?
-- how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
-
-So, in the absence of clarifying information, our message-handling standard will be that any input message that ends with a question mark will result in a response payload, and other messages will either succeed and return an HTTP status 200 with no response payload, or return a 500 with a description of the error in the payload. 
-
-We also intend to begin development by verifying that we've set up the development and deployment environment correctly. We'll build an _echo_ transaction to do that. 
 
 ## Observability and Monitoring 
 
 _Observability_ has become an important feature of microservice solutions. The complexity of a live production environment running in an elastic cloud infrastructure makes it impossible to test all scenarios exhaustively before deploying to production. Software product teams need a way to understand what's happening with their solution in the live production environment, providing sufficient fine-grained data to enable them to drill down into a problem and solve it quickly. Beyond that, what the team learns from these events should be folded back into the solution to improve it. 
 
 As this exercise is based on "free" cloud-based tools, we have no practical way to demonstrate real production monitoring using observability-based tools like [Wavefront](https://www.wavefront.com/) or [Honeycomb](https://www.honeycomb.io/). In the interest of "realism," we'll write API calls to Honeycomb [as documented here](https://docs.honeycomb.io/api/events/) to register _events_. We won't bother with other Honeycomb feartures in this exercise. We'll mock the Honeycomb API calls and return status 200 with an empty response body in all cases. We just want to show how one might add instrumentation to an app, as that is rapidly becoming a baseline requirement for professional application development. 
-
-This topic is not covered in the blog posts mentioned above.
-
-## Customer Focus 
-
-One characteristic of a product team is that their primary concern is the _experience of the customers who use their system_. This contrasts with a traditional software development team, whose primary concern has been the _delivery_ of requested functionality to production, in the same sense as an unwanted baby is delivered to the steps of an orphanage so that someone else can raise it. 
-
-We've interpreted the problem description to call for API calls that associate values with "alien" words, like 
-
-- prok is V 
-
-That means the values of the words are not predefined. An implication for the customer experience is that they cannot use the application until a client has defined the value of each word. That implies we need a persistent data store to save the values when clients send them. 
-
-One of the realities of a robust cloud-based microservices application is that the server instances on which it runs will come and go, for example using the [phoenix server](https://www.thoughtworks.com/insights/blog/moving-to-phoenix-server-pattern-introduction) strategy, while the application is expected to remain available to customers all the time. If our data store is destroyed each time a server instance is destroyed, we will lose the associations between the "alien" words and their numerical values and the customer experience will be unpleasant. It will appear as if the application sometimes works and sometimes doesn't. 
-
-To provide a suitable customer experience, we need a persistent data store that remains valid as server instances are destroyed and re-created. We also need to provide reasonable behaviors for cases when a customer tries to use the application and the values have not yet been defined. (The problem description creates the need for all this thrashing, when I suspect the authors really intended to have static definitions for the values; but they didn't write it that way.
-
-## Persistence 
-
-Unlike a traditional "monolithic" application, a cloud-based microservices application does not define its own database instances. Instead, it's preferable to use the data storage facilities offered by the cloud service provider who hosts the application. That way, we know persistent data will survive across server instances that may be destroyed and re-created at any time by the infrastructure. We aren't actually going to define an "elastic" server configuration for this particular exercise, but we will structure the application so that it could support such a configuration. 
-
-Each cloud service provider has unique data storage offerings. We plan to deploy this demo app on Heroku, so we will use a Heroku data offering known as [Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql). We will defer the design and configuration of the data store until the last responsible moment, as usual.
-
-## Initial Acceptance Tests
-
-Our first set of acceptance tests (which we will express as Cucumber features) will include: 
-
-- echo transaction - must "pass" before we proceed with any "user" stories;
-- responding to API calls that supply the price of goods - must "fail" for the right reason; and 
-- responding to API calls that query the system for calculated prices - must "fail" for the right reason.
-
-As development progresses, we may add, modify, or remove acceptance test cases to reflect the emerging solution design. Ultimately, when all the acceptance tests "pass", we'll be _done_. 
-
-## Getting Started 
-
-On any "real" project, the team(s) will use some sort of process framework and some sort of project management tool. We're interested in taking an iterative/incremental approach to this project. That implies the Team CorporateCogsnd its primary stakeholder will agree on a short list of key things we believe the solution will have to do. All of that is subject to change as we explore the solution space, of course, but we need a starting point and a general direction for development. 
-
-This sort of list might be called: 
-
-- Product Backlog ([Scrum](https://scrumguides.org/)) 
-- Master Story List ([Extreme Programming](http://www.extremeprogramming.org/))
-- Work Queue ([Kanban](https://resources.collab.net/agile-101/what-is-kanban)) 
-- Work Breakdown Structure ([traditional methods](https://www.workbreakdownstructure.com/))
-- Whatever-you-want-to-call-it (your own method)
-
-I'm going to call it "backlog," as that is a popular term in the industry today. 
-
-The items in the list might be called: 
-
-- Backlog Items ([Scrum](https://scrumguides.org/)) 
-- User Stories ([Extreme Programming](http://www.extremeprogramming.org/))
-- Tickets ([Kanban](https://resources.collab.net/agile-101/what-is-kanban)) 
-- Work Packages ([traditional methods](https://www.workbreakdownstructure.com/))
-- Whatever-you-want-to-call-them (your own method)
-
-I'm going to call them "work items," for lack of a better name.
-
-Whatever we may call it, in substance this is not a list of hard-and-fast "requirements," as we are not doing [big design up front (BDUF)](http://wiki.c2.com/?BigDesignUpFront). When we take an iterative/incremental approach, we use [rolling wave planning](https://project-management-knowledge.com/definitions/r/rolling-wave-planning/) or [multi-horizon planning](https://www.solutionsiq.com/learning/blog-post/planning-horizons-decision-making-within-agile-frameworks/). We'll elaborate each work item that we decide to complete at the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/).
-
-The iterative/incremental approach calls for work to be done iteratively, so that the Team CorporateCogsnd the stakeholders can see partial results, provide feedback to each other, make decisions about what to do next, and steer the work toward a meaningful outcome. The iterations might be called: 
-
-- Sprints ([Scrum](https://scrumguides.org/)) 
-- Iterations ([Extreme Programming](http://www.extremeprogramming.org/))
-- Development Cadence ([Kanban](https://resources.collab.net/agile-101/what-is-kanban)) 
-- Units of time - _week_, _fortnight_, _month_ ([traditional methods](https://www.workbreakdownstructure.com/))
-- Whatever-you-want-to-call-them (your own method)
-
-I'm going to call them "iterations," as that's the most general term.
-
-Numerous techniques and models are available to help us reach a decision about what functionality our solution ought to have and how to prioritize and sequence the delivery of that functionality. The details are out of scope here. Let's pretend we've used some of those techniques and models, and we've decided to proceed with this list: 
-
-- Echo Message
-- Number Conversion 
-- Price Calculation 
-- System Probes 
-
-The Echo Transaction is first, so we will elaborate that item in more detail than the others initially. It's okay to leave the other three as one-liners to remind us that we have to pay attention to them eventually. 
-
-**Note:** You may have noticed that we haven't completed the _Toolchain Setup_ and _Project Setup_ steps, listed below. We can't proceed with application development until those things are done. So, why didn't we do them before planning our initial list of work? The reason is that building the Echo Message functionality will _force_ or _cause_ those activities to be done. When using lightweight methods for iterative/incremental development, it's common to express the [Definition of Done](https://www.agilealliance.org/glossary/definition-of-done/#q=~(infinite~false~filters~(postType~(~'page~'post~'aa_book~'aa_event_session~'aa_experience_report~'aa_glossary~'aa_research_paper~'aa_video)~tags~(~'definition*20of*20done))~searchTerm~'~sort~false~sortDirection~'asc~page~1)) for each work item in such a way that many implementation details fall out naturally, rather than attempting to predict all the detailed work in advance and document it in our project management tool. That sort of activity is _overhead_; it isn't [value-add work](http://businessknowledgesource.com/manufacturing/what_is_valueadded_work_nonvalue_added_work_021690.html). It won't be possible to respond to the Echo Message unless the application architecture is complete. That's the whole point of the Echo Message. A natural consequence of our effort to implement the Echo Message will be to build out the application architecture. It's a case of [emergent architecture](https://scrumcrazy.wordpress.com/2018/09/28/an-introduction-to-agile-emergent-architecture-always-intentional/). People sometimes worry about emergent architecture, but I think that's because they conflate the architecture of the elastic cloud infrastructure that hosts microservices (risky to emerge within the scope of a single application development project) with the architecture of an application that runs on that infrastructure (not risky to emerge). We're talking about letting the application architecture emerge, not the underlying cloud infrastructure. 
-
-
-## Work Item 1: Echo Transaction Definition of Done 
-
-At this point, the team _pulls_ the first work item from the list, and the [Cycle Time](http://www.businessdictionary.com/definition/cycle-time.html) clock starts ticking. Cycle Time is the simplest and most meaningful metric for tracking a team's delivery capacity, and for informing _forecasting_ of a team's upcoming work. Cycle Time has the same meaning regardless of the kind of process a team uses, and it can be used across multiple teams and projects (unlike Velocity, for instance). Cycle Time is also less subject to "gaming" than other metrics that are often used for iterative/incremental development.
-
-**Note:** I'm including timings for all the work in this write-up. The reason is that most people who have not worked in this way assume that doing things "right" will take considerably more time than doing things...well, however they _currently_ do things - typically, without much (if any) automation of routine, repetitive work such as functional checks, server provisioning, and code deployment, but with plenty of context-switching overhead and blocked work, bottlenecks caused by specialists working in silos, as well as misunderstandings and re-work caused by individuals working separately. I don't understand that logic, but...okay. Whatever. Timings included.
-
-To demonstrate we've set up the application stack correctly, the Echo Transaction must show that
-
-- the service returns the response defined for _echo_ 
-- the response payload contains something that indicates application code saw and processed the _echo_ request 
-- the service returns the correct error response when the _echo_ request is not formatted properly 
-
-After a team discussion, we decide to pass a field containing an integer value on the Echo request, and expect the application to increment the value by one and return it in the response payload. That will satisfy the need to see evidence that the application did _something_ with the request. 
-
-We also decide the error case will be indicated by an HTTP status of 500 and a message in the payload that reads, "Echo request message is formatted incorrectly," as well as an example of the correct format. 
-
-We also decide the persistent data store will be created as a consequence of the first work item that pertains to storing the value of an "alien" word. There's no need to create "extra" work around the Echo Transaction for that purpose. So:
-
-Out of scope: 
-
-- evidence that there is a persistent data store somewhere in the universe 
-
-The team has performed the following work:
-
-- ensured all team members have a consistent understanding of the Echo Transaction
-- determined what functionality is in scope and out of scope for this work item 
-- specified a Definition of Done for the work item 
-
-<hr/>
-
-### Time check 
-
-- If the team has worked in this way before: 30 minutes
-- If the team has not worked in this way before: 1 hour
-
-Cycle Time so far: 
-
-- Best case: 00:30
-- Worst case: 01:00
-
-<hr/>
 
 ## Work Item 1: Toolchain Setup 
 
