@@ -80,7 +80,7 @@ _Time so far:_
 - Cycle Time - CT in hours:minutes consumed in the activity.
 - VA Time (Value-Add Time) - time in hours:minutes during which value was added to the product. 
 - NVA Time (Non-Value-Add Time) - time in hours:minutes consumed in overhead activity or process waste.
-- PCE (Process Cycle Efficiency) - percentage of Lead Time that was Value-Add Time. 
+- PCE (Process Cycle Efficiency) - percentage of Lead Time that was Value-Add Time, cumulative from the start of the project to the present moment. 
 - Lead Time - cumulative time from the start of the project to the present moment. 
 
 _Team feeling_ 
