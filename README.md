@@ -38,22 +38,56 @@ What if we use the exercise as a vehicle to explore some of the ways in which an
 1. It's more valuable for each team member to be available immediately _at the moment they are needed_ than it is for them to stay "busy" with low-priority work. 
 1. When all team members are aware of one another's work, it helps everyone do things in a way that's easy to integrate and unlikely to cause re-work due to miscommunication.
 
-Let's walk with a hypothetical team that uses all the good practices we know of as they implement a solution to this toy problem, and call out the times when the team exemplifies each of the factors listed above. We'll call them Team A. For context, we'll also shadow a second team that works in a way many real-world teams operate. We'll call them Team B. We'll track the Cycle Time for each work item for the two teams.
+Let's walk with a hypothetical team that uses all the good practices we know of as they implement a solution to this toy problem, and call out the times when the team exemplifies each of the factors listed above. We'll call them Team B. For context, we'll also shadow a second team that works in a way many real-world teams operate. We'll call them Team A. We'll track the Cycle Time for each work item for the two teams.
+
+## Assessment 
+
+We can consider three areas of assessment for the two teams:
+
+- Delivery performance as measured by Mean Cycle Time, Lead Time, and Process Cycle Efficiency (quantitative)
+- Level of stress or dissatisfaction experienced by team members (qualitative)
+- Customer satisfaction with the solution (qualitative)
 
 <hr/>
 
 ## Analysis 
 
-### Team A 
+### Team A (traditional)
 
-1. The team reviews the [Problem Description](ProblemDescription.md) together and in collaboration with the key stakeholder (may be called _Product Owner_ or _Customer_ or similar). 
+Activity 1. The team submits the [Problem Description](ProblemDescription.md) to the corporate Enterprise Architecture group and waits for their response. 
+
+_Good things:_ 
+
+- (None)
+
+_Time so far:_
+
+| Prev CT | Activity                         | VA Time  | NVA Time | PCE  | Lead Time |
+| ------- | -------------------------------- | -------- | -------- | ---- | --------- |
+| 000:00  | Submit docs to arch team         | 001:00   | 000:00   | 100% | 001:00    |
+| 159:00  | Wait for response from arch team | 000:00   | 159:00   | 0.6% | 160:00    |
+
+_Team feeling_ 
+
+- Low engagement
+- Low interest 
+- Vague sense of impending doom awaiting the architecture that will be imposed on the team by the Enterprise Architecture group
+
+_Customer satisfaction_ 
+
+- Neutral and willing to suspend judgment, but the project already looks similar to past projects that did not yield good value
+
+
+### Team B (modern)
+
+Activity 1. The team reviews the [Problem Description](ProblemDescription.md) together and in collaboration with the key stakeholder (may be called _Product Owner_ or _Customer_ or similar). 
 
 _Good things:_
 
 - Factor 4 - team works collaboratively (team analyzed the problem together)
 - Factor 7 - collaboration with stakeholders (team clarified the requirements)
 
-2. The team notices that the Problem Description lists several acceptance test cases, including these: 
+Activity 2. The team notices that the Problem Description lists several acceptance test cases, including these: 
 
 - glob is I 
 - prok is V 
@@ -70,7 +104,7 @@ _Good things:_
 - Factor 9 - principle of least astonishment (no missing prices at runtime)
 - Factor 10 - YAGNI (solution will not need persistence)
 
-3. The team discusses the implications of the Problem Description and the ways in which customers could interact with the solution. They reach a consensus to base the solution on microservices. 
+Activity 3. The team discusses the implications of the Problem Description and the ways in which customers could interact with the solution. They reach a consensus to base the solution on microservices. 
 
 They agree their service(s) will return results in the form of JSON documents; that application will be designed for _observability_, and that they will implement the solution using Ruby and Sinatra.
 
@@ -91,24 +125,19 @@ _Time so far:_
 | 159:00  | 2. Clarification about numbers   | 000:15   | 000:00   | 100% | 002:15    |
 | 159:00  | 3. Initial tech decisions        | 000:45   | 000:00   | 100% | 003:00    |
 
+_Team feeling_ 
+
+- High engagement 
+- High interest 
+- Anticipation of fun building out a cloud-based microservices solution 
+
+_Customer satisfaction_ 
+
+- High satisfaction resulting from direct collaboration with the team in understanding customer needs and clarifying requirements 
+
+<hr/>
 
 
-
-
-### Team B
-
-The team submits the [Problem Description](ProblemDescription.md) to the Enterprise Architecture team and waits for their response. 
-
-_Good things:_ 
-
-- (None)
-
-_Time so far:_
-
-| Prev CT | Activity                         | VA Time  | NVA Time | PCE  | Lead Time |
-| ------- | -------------------------------- | -------- | -------- | ---- | --------- |
-| 000:00  | Submit docs to arch team         | 001:00   | 000:00   | 100% | 001:00    |
-| 159:00  | Wait for response from arch team | 000:00   | 159:00   | 0.6% | 160:00    |
 
 
 
