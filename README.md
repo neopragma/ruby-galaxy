@@ -202,7 +202,7 @@ _Time so far:_
 **Activity 1.** Working collaboratively with key stakeholders, the team determines the solution will have to handle the following general types of operations:
 
 - A price request, exemplified by the test cases 
-- - how much is pish tegj glob glob ?
+  - how much is pish tegj glob glob ?
 - - how many Credits is glob prok Silver ?
 - - how many Credits is glob prok Gold ?
 - - how many Credits is glob prok Iron ?
