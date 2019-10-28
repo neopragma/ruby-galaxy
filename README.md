@@ -50,7 +50,7 @@ We can consider three areas of assessment for the two teams:
 
 <hr/>
 
-## Analysis 
+## Getting Started: Analysis 
 
 ### Team CorporateCogs
 
@@ -153,9 +153,53 @@ _Customer satisfaction_
 
 <hr/>
 
-## Planning 
+## Getting Started: Planning 
 
 ### Team CorporateCogs
+
+**Activity 1.** Based on the Problem Description, the team elaborates a detailed Requirements Specification to guide their work. 
+
+_Good things:_ 
+
+- (None)
+
+**Activity 2.** Based primarily on the response from the Enterprise Architecture group, the team determines which specialized team must be engaged to provide resources or work products for the project. 
+
+_Good things:_ 
+
+- (None)
+
+**Activity 3.** Based on the results of Activities 1 and 2, the team documents a detailed project plan in their project management tool, showing work packages and tasks with resource allocations, estimated timings, dependencies, risk assessment, and budget needs. 
+
+_Good things:_ 
+
+- (None)
+
+_Time so far:_
+
+| Prev CT | Activity                            | Cycle Time | VA Time  | NVA Time | PCE  | Lead Time |
+| ------- | ----------------------------------- | ---------- | -------- | -------- | ---- | --------- |
+| 000:00  | 1. Requirements Specification       | N/A        | 080:00   | 000:00   | 33%  | 241:00    |
+| 000:00  | 2. Team Dependencies                | N/A        | 001:00   | 000:00   | 33%  | 242:00    |
+| 000:00  | 3. Project Planning                 | N/A        | 030:00   | 000:00   | 30%  | 272:00    |
+
+### Team CustomersPet
+
+**Activity 1.** Working collaboratively with key stakeholders, the team determines the solution will have to handle the following general types of operations:
+
+- A price request, exemplified by the test cases 
+- - how much is pish tegj glob glob ?
+- - how many Credits is glob prok Silver ?
+- - how many Credits is glob prok Gold ?
+- - how many Credits is glob prok Iron ?
+- - how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
+- Price calculations - under the covers functionality, a separate concern from handling requests/responses
+- System probe messages, exemplified by the test cases
+- - glob glob Silver is 34 Credits
+- - glob prok Gold is 57800 Credits
+- - pish pish Iron is 3910 Credits
+- An Echo transaction, to validate the application architecture is in place (not defined in the Problem Description)
+
 
 
 
