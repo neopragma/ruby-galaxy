@@ -7,6 +7,9 @@ The Merchant's Guide to the Galaxy is a simple programming exercise that's often
 - [Another problem description](#another-problem-description)
 - [Opinions are like belly-buttons](#opinions-are-like-belly-buttons)
 - [Another goal for the exercise](#another-goal-for-the-exercise)
+- [Assessment](#assessment)
+- [Getting Started: Analysis](#getting-started-analysis)
+- [Getting Started: Planning](#getting-started-planning)
 
 ## Another problem description
 
