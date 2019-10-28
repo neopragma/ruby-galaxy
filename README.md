@@ -138,7 +138,6 @@ _Good things:_
 
 _Time so far:_
 
-
 | Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE  | Lead Time |
 | ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ---- | --------- |
 | 000:00  | 1. Team review                      | N/A        | 000:00   | 002:00   | 000:00 | 002:00  | 0.0% | 002:00    |
@@ -214,6 +213,51 @@ _Time so far:_
   - pish pish Iron is 3910 Credits
 - An Echo transaction, to validate the application architecture is in place (not defined in the Problem Description)
 
+The team interprets some of the test cases provided in the Problem Description as "probe messages" because they do not return a result. They seem to be in the nature of assertions, in that they will either be "true" or the transaction will error out. Team members debate whether they are necessary, and ultimately agree that they could provide a more meaningful way to check the health of the application in production than merely pinging the server. To help avoid [gray failures](https://blog.acolyer.org/2017/06/15/gray-failure-the-achilles-heel-of-cloud-scale-systems/) and to provide a slightly more robust way to monitor production operations than log aggregation, the team decides to implement these messages as "probes." The galactic merchant will probably not use these transactions. 
+
+Based on the Problem Description and discussions with key stakeholders, it becomes clear there is just one _Persona_ to be concerned about: The galactic merchant. They agree not to spend more time on creating Personas for the solution. 
+
+The team and key stakeholders carry out a [Feature Mapping](https://johnfergusonsmart.com/feature-mapping-a-simpler-path-from-stories-to-executable-acceptance-criteria/) exercise to gain a better understanding of how users will interact with the solution. 
+
+The problem calls for very little complicated behavior, and the group feels there is no need to decompose the planned functionality to understand where to begin, or in what direction the design should go. So, they dispense with further formal planning methods. 
+
+Key stakeholders agree that the relative value of the different pieces of functionality don't vary by much. The price request functionality is the main thing, and that has to be supported by the underlying price calculation logic. 
+
+Technical team members recommend that the Echo transaction be implemented first, as a way to ensure the end-to-end solution architecture is sound, and is in place. Business stakeholders agree. 
+
+Everyone agrees that the probe transactions can be the lowest-priority items for implementation. 
+
+The team captures brief descriptions of the key functionality in the form of a list of options. This might be called a Product Backlog (Scrum), a Master Story List (Extreme Programming), a Work Queue (Kanban), a Work Breakdown Structure (traditional methods), or something else. In any case, it is not a requirements specification; it is a list of options that may be implemented at the discretion of key stakeholders, if and when they perceive there is value to be obtained from doing so.
+
+Pursuant to [rolling wave planning](https://www.brighthubpm.com/project-planning/48953-basics-of-rolling-wave-planning/) the team and key stakeholders collaboratively define more details pertaining to the Echo transaction story. In keeping with the principle of deferring decisions until the [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/), they refrain from adding details to the remaining stories. 
+
+Following the general guideline of [behavior-driven development](https://hiptest.com/behavior-driven-development/) and Steven Covey's 2nd habit of highly effective people, ["begin with the end in mind"](https://www.artofmanliness.com/articles/the-7-habits-begin-with-the-end-in-mind/), the team and key stakeholders collaboratively define a few sample scenarios for the Echo transaction. These will guide development of the solution. 
+
+The purpose of the "check value" is to provide the client with some evidence that the back-end actually saw the request message and did _something_ with it (as opposed to _nothing_). Otherwise, it would be easy to spoof the Echo transaction and make it appear as if the service were working, when in fact it was not. 
+
+```
+Feature: Echo Transaction
+
+Background:
+  Given the application is available 
+
+Scenario: Valid request message 
+  When the client sends a valid Echo request with check value 5
+  Then the resulting status code is 200 
+  And the check value in the response is 6 
+
+Scenario: Request message formatted incorrectly 
+  When the client sends an invalid Echo request 
+  Then the resulting status code is 500 
+  And the response contains element "errorMessage" with value "Echo request message is formatted incorrectly"
+  And the response contains element "sampleRequest" with value "/echo/5"
+
+Scenario: Request message does not contain a check value 
+  When the client sends an Echo request with no check value 
+  Then the resulting status code is 500
+  And the response contains element "errorMessage" with value "Echo request does not have a check value"
+  And the response contains element "sampleRequest" with value "/echo/5"
+```
 
 
 
