@@ -2,6 +2,12 @@
 
 The Merchant's Guide to the Galaxy is a simple programming exercise that's often used to screen candidates for software developer positions or as an exercise in [code dojos](http://codingdojo.org/). Here's the [Problem Description](ProblemDescription.md).  
 
+## Contents 
+
+- [Another problem description](#another-problem-description)
+- [Opinions are like belly-buttons](#opinions-are-like-belly-buttons)
+- [Another goal for the exercise](#another-goal-for-the-exercise)
+
 ## Another problem description
 
 Most of the time, people fly through exercises like this quickly. They may wish to show their friends that they can type source code really fast. They may have to submit a solution to a prospective employer as part of a screening or interviewing process, and they have limited time. They may be participating in a code dojo or similar event that's only 60 to 90 minutes long. For one reason or another, people tend to go fast on these things.
