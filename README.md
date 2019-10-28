@@ -68,10 +68,20 @@ _Good things:_
 
 _Time so far:_
 
-| Prev CT | Activity                         | VA Time  | NVA Time | PCE  | Lead Time |
-| ------- | -------------------------------- | -------- | -------- | ---- | --------- |
-| 000:00  | Submit docs to arch team         | 001:00   | 000:00   | 100% | 001:00    |
-| 159:00  | Wait for response from arch team | 000:00   | 159:00   | 0.6% | 160:00    |
+| Prev CT | Activity                            | Cycle Time | VA Time  | NVA Time | PCE  | Lead Time |
+| ------- | ----------------------------------- | ---------- | -------- | -------- | ---- | --------- |
+| 000:00  | 1. Submit docs to arch team         | N/A        | 001:00   | 000:00   | 100% | 001:00    |
+| 000:00  | 2. Wait for response from arch team | N/A        | 000:00   | 159:00   | 0.6% | 160:00    |
+
+**Note:**
+
+- Prev CT (Previous Cycle Time) - accumulated CT on the current work item, or N/A if not applicable to the activity. 
+- Activity - one of the activities mentioned in the description just above the table. 
+- Cycle Time - CT in hours:minutes consumed in the activity.
+- VA Time (Value-Add Time) - time in hours:minutes during which value was added to the product. 
+- NVA Time (Non-Value-Add Time) - time in hours:minutes consumed in overhead activity or process waste.
+- PCE (Process Cycle Efficiency) - percentage of Lead Time that was Value-Add Time. 
+- Lead Time - cumulative time from the start of the project to the present moment. 
 
 _Team feeling_ 
 
@@ -143,8 +153,14 @@ _Customer satisfaction_
 
 <hr/>
 
+## Planning 
+
+### Team CorporateCogs
 
 
+
+
+<hr/>
 
 
 
