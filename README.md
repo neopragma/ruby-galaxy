@@ -44,15 +44,61 @@ Let's walk with a hypothetical team that uses all the good practices we know of 
 
 ## Analysis 
 
+### Team A 
+
+1. The team reviews the [Problem Description](ProblemDescription.md) together and in collaboration with the key stakeholder (may be called _Product Owner_ or _Customer_ or similar). 
+
+- Factor 4 - team works collaboratively (team analyzed the problem together)
+- Factor 7 - collaboration with stakeholders (team clarified the requirements)
+
+2. The team notices that the Problem Description lists several acceptance test cases, including these: 
+
+- glob is I 
+- prok is V 
+- pish is X 
+- tegj is L 
+
+Taken literally, this means the numerical values of _glob_, _prok_, _pish_, and _tegj_ are undefined, and must be given values through input to the application, provided in some form not specified. But if the model for galactic numbers is the Roman system, then this would be tantamount to having variable values for symbols like L and X. They note that this would lead to unexpected behavior from the customer's point of view, as prices could not be calculated until the base values had been provided by a client of the system. It also creates possibly-unnecessary technical complication in the design for (a) persisting the values that are subitted, and (b) handling the cases when customers access the system before values have been assigned to the alien number-words. The team collaborates with the key stakeholer to clarify that the numerical values of the alien words are, in fact, predefined and will not change at runtime. This will enable a simpler design. 
+
+- Factor 2 - customer focus (team thought about how customers would be affected in production)
+- Factor 4 - team works collaboratively (team analyzed the problem together)
+- Factor 7 - collaboration with stakeholders (team clarified the requirements)
+- Factor 9 - principle of least astonishment (no missing prices at runtime)
+- Factor 10 - YAGNI (solution will not need persistence)
+
+3. The team discusses the implications of the Problem Description and the ways in which customers could interact with the solution. They reach a consensus to base the solution on microservices. 
+
+They agree their service(s) will return results in the form of JSON documents; that application will be designed for _observability_, and that they will implement the solution using Ruby and Sinatra.
+
+They agree to use Git for version control with Github as the server; CodeClimate for static code analysis and code coverage; TravisCI for continuous integration; and Heroku as the cloud provider for production. 
+
+- Factor 3 - team owns technical decisions (they did not request an architectural design from a separate group)
+- Factor 4 - team works collaboratively (team reached consensus about architecture)
+- Factor 17 - cross-functional team aware of each other's work (team is capable of deciding on architecture)
+
+
+Time so far:
+
+| Prev CT | Activity                         | VA Time  | NVA Time | PCE  | Lead Time |
+| ------- | -------------------------------- | -------- | -------- | ---- | --------- |
+| 000:00  | 1. Team review                   | 002:00   | 000:00   | 100% | 002:00    |
+| 159:00  | 2. Clarification about numbers   | 000:15   | 000:00   | 100% | 002:15    |
+| 159:00  | 3. Initial tech decisions        | 000:45   | 000:00   | 100% | 003:00    |
+
+
+
+
+
 ### Team B
 
 The team submits the [Problem Description](ProblemDescription.md) to the Enterprise Architecture team and waits for their response. 
 
-| Previous CT | Activity                         | Value-add Time | Non-value-add Time | PCE until now |
-| ----------- | -------------------------------- | -------------- | ------------------ | ------------- |
-|   000:00    | Submit docs to arch team         | 001:00         | 000:00             | 100%          |
-|   159:00    | Wait for response from arch team | 000:00         | 159:00             | 0.6%          |
+Time so far:
 
+| Prev CT | Activity                         | VA Time  | NVA Time | PCE  | Lead Time |
+| ------- | -------------------------------- | -------- | -------- | ---- | --------- |
+| 000:00  | Submit docs to arch team         | 001:00   | 000:00   | 100% | 001:00    |
+| 159:00  | Wait for response from arch team | 000:00   | 159:00   | 0.6% | 160:00    |
 
 
 
@@ -64,7 +110,7 @@ The team submits the [Problem Description](ProblemDescription.md) to the Enterpr
 Text below is being revised. Ignore it.
 
 
-## Analysis 
+<hr/>
 
 The solution _architecture_ is "given," but the solution _design_ is not. We plan to define high-level acceptance tests guided by mockist-style TDD to lay out the general structure of the app, and then flesh out the detailed design incrementally using classic-style TDD. 
 
