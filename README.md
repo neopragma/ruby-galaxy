@@ -141,8 +141,8 @@ _Time so far:_
 | Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE  | Lead Time |
 | ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ---- | --------- |
 | 000:00  | 1. Team review                      | N/A        | 000:00   | 002:00   | 000:00 | 002:00  | 0.0% | 002:00    |
-| 159:00  | 2. Clarification about numbers      | N/A        | 000:00   | 002:15   | 000:00 | 002:15  | 0.0% | 002:15    |
-| 159:00  | 3. Initial tech decisions           | N/A        | 000:00   | 000:45   | 000:00 | 003:00  | 0.0% | 003:00    |
+| 002:00  | 2. Clarification about numbers      | N/A        | 000:00   | 002:15   | 000:00 | 002:15  | 0.0% | 002:15    |
+| 002:15  | 3. Initial tech decisions           | N/A        | 000:00   | 000:45   | 000:00 | 003:00  | 0.0% | 003:00    |
 
 _Team feeling_ 
 
