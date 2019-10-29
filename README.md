@@ -235,11 +235,11 @@ _Time so far:_
   - pish pish Iron is 3910 Credits
 - An Echo transaction, to validate the application architecture is in place (not defined in the Problem Description)
 
+Based on the Problem Description and discussions with key stakeholders, it becomes clear there is just one _Persona_ to be concerned about: The galactic merchant. They agree not to spend more time on creating Personas for the solution. 
+
 The team interprets some of the test cases provided in the Problem Description as "probe messages" because they do not return a result. They seem to be in the nature of assertions, in that they will either be "true" or the transaction will error out. Team members debate whether they are necessary, and ultimately agree that they could provide a more meaningful way to check the health of the application in production than merely pinging the server. To help avoid [gray failures](https://blog.acolyer.org/2017/06/15/gray-failure-the-achilles-heel-of-cloud-scale-systems/) and to provide a slightly more robust way to monitor production operations than log aggregation, the team decides to implement these messages as "probes." The galactic merchant will probably not use these transactions. 
 
 The team makes the technical decision to build _observability_ into the solution and to instrument the code to supply data to a tool for live production monitoring and problem resolution. This is because the nature of a dynamic, elastic cloud environment makes it impossible to test all possible scenarios prior to production release, and the team is responsible for operations as well as development. 
-
-Based on the Problem Description and discussions with key stakeholders, it becomes clear there is just one _Persona_ to be concerned about: The galactic merchant. They agree not to spend more time on creating Personas for the solution. 
 
 The team and key stakeholders carry out a [Feature Mapping](https://johnfergusonsmart.com/feature-mapping-a-simpler-path-from-stories-to-executable-acceptance-criteria/) exercise to gain a better understanding of how users will interact with the solution. 
 
@@ -611,7 +611,7 @@ class Handler
 end 
 ```
 
-One of the team members has worked with Heroku before, and she informed the team that in production, the server will be started using _bundler_ to execute _rackup_. To avoid unpleasant surprises due to configuration differences, the team decides to start the server in the development environment in the same way. 
+One of the team members has worked with Heroku before, and she informs the team that in production, the server will be started using _bundler_ to execute _rackup_. To avoid unpleasant surprises due to configuration differences, the team decides to start the server in the development environment in the same way. 
 
 They create this _config.ru_ file in the project root directory:
 
@@ -906,12 +906,22 @@ TBD
 
 CT = 00:30.
 
+**Activity 1, Task 12:** Instrument the code for observability 
+
+The team's intent is to use a cloud-based service, [Honeycomb.io](https://www.honeycomb.io/), to support production monitoring. Honeycomb doesn't offer a "free" plan that I could use for this demo, so the sample code will mock Honeycomb API calls to show how one might instrument the application code. We'll say the CustomersPet team wrote live calls to Honeycomb for purposes of this exercise. 
+
+TBD
+
+CT 00:30 
+
+
+
 
 _Time so far:_
 
 | Prev LT | Activity                            | Cycle Time | VA Time  | NVA Time | Cum VA | Cum NVA | PCE   | Lead Time |
 | ------- | ----------------------------------- | ---------- | -------- | -------- | ------ | ------- | ----- | --------- |
-| 011:00  | 1. Given the application is available  | 004:00     | 004:00   | 000:00   | 004:00 | 011:00  | 26.6% | 015:00    |
+| 011:00  | 1. Given the application is available  | 004:30     | 004:30   | 000:00   | 004:30 | 011:00  | 29.0% | 015:30    |
 
 _Team feeling:_ 
 
