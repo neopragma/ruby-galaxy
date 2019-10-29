@@ -50,6 +50,14 @@ What if we use the exercise as a vehicle to explore some of the ways in which an
 
 Let's walk with a hypothetical team that uses all the good practices we know of as they implement a solution to this toy problem, and call out the times when the team exemplifies each of the factors listed above. We'll call them Team CustomersPet. For context, we'll also shadow a second team that works in a way many real-world teams operate. We'll call them Team CorporateCogs. We'll track the Cycle Time for each work item for the two teams.
 
+## The Teams
+
+Team CorporateCogs comprises 12 people, each of whom has a specialized role. There is a single Technical Lead, whose main function will be to serve as a bottleneck for code reviews. As the team works on each task in plan, they will follow a mini-waterfall process in which analysis, coding, and testing will overlap. When testers find issues, there will be back-flows and rework. Individuals will work separately, and then experience integration nightmares. Every code drop, planned task, defect, and developer will work on a separate branch of the source code, with overlapping delivery schedules as the project moves forward. 
+
+Team CustomersPet comprises 6 people, each of whom has a specialty of interest to them as well as a range of other skills such that any team member can contribute in the roles of analyst, programmer, tester, and system administrator. They will work collaboratively in short TDD cycles and commit to the master branch. They will be able to release to production from master at any time with high confidence and low stress. 
+
+You can see where this is heading. And I _hope_ you understand that when people protest against using good practices, they are (in effect) _defending_ a CorporateCogs style of working.
+
 ## Assessment 
 
 We can consider three areas of assessment for the two teams:
@@ -893,7 +901,15 @@ _Customer satisfaction:_
 - Joy at seeing software actually running at this early stage of the project - less than a week in!
 - Anticipation that business value will be realized early, if the team continues to deliver at this rate.
 
+#### Comparison of Teams
 
+Both teams have completed their first few pieces of real work on the project. 
+
+Team CorporateCogs has worked a total of 995 hours, of which only 157 hours were value-add activities, and their Lead Time up to this point is 758. Most of their time has been spent in estimating, documenting, requesting services from other teams in the organization, attending meetings, and waiting for thing; above all, waiting for things. They have no usable environments and no code written. They _do_ have lots of design documentation, including for things they ultimately will not need (like the database). Stakeholders are worried. Team members are stressed. Morale is low. Once they start assigning tasks to different individuals on the team, things will get much worse. 
+
+Team CustomersPet spent under 30 hours to reach this point in their project. All their time after the initial analysis and planning activities has been value-add time. Their first piece of development work was designed to drive out a working set of environments and an automated CI/CD pipeline, and provides sufficient visible functionality to demonstrate to stakeholders that the team is making progress. Stakeholders are pleased. Team members are energized. Morale is high. Working collaboratively, they are able to complete tasks one-by-one faster than would be possible by having individuals work on different tasks in parallel.
+
+And this is only the beginning. 
 
 
 
