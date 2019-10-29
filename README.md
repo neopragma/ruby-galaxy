@@ -48,7 +48,7 @@ What if we use the exercise as a vehicle to explore some of the ways in which an
 1. It's more valuable for each team member to be available immediately _at the moment they are needed_ than it is for them to stay "busy" with low-priority work. 
 1. When all team members are aware of one another's work, it helps everyone do things in a way that's easy to integrate and unlikely to cause re-work due to miscommunication.
 
-Let's walk with a hypothetical team that uses all the good practices we know of as they implement a solution to this toy problem, and call out the times when the team exemplifies each of the factors listed above. We'll call them Team CustomersPet. For context, we'll also shadow a second team that works in a way many real-world teams operate. We'll call them Team CorporateCogs. We'll track the Cycle Time for each work item for the two teams.
+Let's walk with a hypothetical team that uses all the good practices we know of as they implement a solution to this toy problem, and call out the times when the team exemplifies each of the factors listed above. We'll call them Team CustomersPet. For context, we'll also shadow a second team that works in a way many real-world teams operate. We'll call them Team CorporateCogs. We'll track the Cycle Time, Lead Time, and Process Cycle Efficiency for the two teams to get a sense of which approach might be more effective.
 
 ## The Teams
 
