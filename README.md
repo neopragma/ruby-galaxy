@@ -52,7 +52,7 @@ Let's walk with a hypothetical team that uses all the good practices we know of 
 
 ## The Teams
 
-Team CorporateCogs comprises 12 people, each of whom has a specialized role. There is a single Technical Lead, whose main function will be to serve as a bottleneck for code reviews. As the team works on each task in plan, they will follow a mini-waterfall process in which analysis, coding, and testing will overlap. When testers find issues, there will be back-flows and rework. Individuals will work separately, and then experience integration nightmares. Every code drop, planned task, defect, and developer will work on a separate branch of the source code, with overlapping delivery schedules as the project moves forward. 
+Team CorporateCogs comprises 12 people, each of whom has a specialized role. There is a single Technical Lead, whose main function will be to serve as a bottleneck for code reviews. As the team works on each task in plan, they will follow a mini-waterfall process in which analysis, coding, and testing will overlap. When testers find issues, there will be back-flows and rework. Individuals will work separately, and then experience integration nightmares. Every code drop, planned task, defect, and developer will have a separate branch of the source code, with overlapping delivery schedules as the project moves forward. 
 
 Team CustomersPet comprises 6 people, each of whom has a specialty of interest to them as well as a range of other skills such that any team member can contribute in the roles of analyst, programmer, tester, and system administrator. They will work collaboratively in short TDD cycles and commit to the master branch. They will be able to release to production from master at any time with high confidence and low stress. 
 
@@ -914,8 +914,17 @@ TBD
 
 CT 00:30 
 
+_Good things:_ 
 
-
+- Factor 1: Team is taking responsibility for all aspects of the product, including operations, support, and development.
+- Factor 4: The team works collaboratively throughout these activities. Every team member understands what is going on and how to support each part of the development and deployment tooling.
+- Factor 5: The team has set up a professional-quality development/delivery environment.
+- Factor 6: By setting a WIP limit of 1 the team has been able to work very quickly and complete many tasks in a short time without compromising quality. 
+- Factor 9: The team has supported the _principle of least astonishment_ by setting up each part of the environment and pipeline according to established conventions and standards. 
+- Factor 13: Using trunk-based development, the team has kept the branchig strategy very simple and avoided "merge hell" and integration issues. 
+- Factor 14: Throughout this activity the team has _begun with the end in mind_ in all tasks.
+- Factor 16: By working together as a single group, the team ensured that when they needed the expertise of any one team member, that person was available immediately and understood the context of any questions or problems they were asked to address. 
+- Factor 17: Every team member learned at least one new thing in the course of completing this activity, thanks to working together. 
 
 _Time so far:_
 
